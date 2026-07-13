@@ -1,0 +1,919 @@
+<!-- Projects Modal - Self-contained code block for Webflow injection -->
+<!-- Usage: Add button with id="projects-modal" to trigger, paste this entire block into Webflow Embed -->
+
+<style>
+/* Modal overlay */
+.os-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 9999; display: none; overflow-y: auto; }
+.os-modal-overlay.active { display: block; }
+
+/* Modal container */
+.os-modal-container { max-width: 1200px; margin: 40px auto; padding: 48px 20px 48px; }
+
+/* Close button */
+.os-modal-close { position: fixed; top: 20px; right: 30px; color: #fff; font-size: 32px; cursor: pointer; z-index: 10000; }
+.os-modal-close:hover { color: #ccc; }
+
+/* Section headings */
+.os-modal-container h2 { color: #fff; font-size: 1.5em; text-transform: uppercase; margin: 56px 0 24px; font-family: inherit; }
+.os-modal-container h2:first-child { margin-top: 0; }
+
+/* Grid layout (3 columns) */
+.os-projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+
+/* Project card */
+.os-project-card { backdrop-filter: blur(13px); background: #00000036; outline: 1px solid #e2e2e245; padding: 21px; }
+.os-project-card a { display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; }
+.os-project-card img { aspect-ratio: 1; object-fit: contain; max-width: 70px; border: 1px solid #ffffff1c; border-radius: 15px; background: #fff; }
+.os-project-card h3 { color: #fff; font-size: 1.2em; text-transform: uppercase; margin: 10px 0 5px; font-family: inherit; }
+.os-project-card p { color: #ffffffa8; font-size: 0.9em; text-align: left; margin: 0; line-height: 1.4; }
+
+/* Responsive */
+@media (max-width: 991px) { .os-projects-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 479px) {
+  .os-modal-container { padding: 24px 15px 24px; margin: 20px auto; }
+  .os-modal-close { top: 10px; right: 15px; }
+  .os-modal-container h2 { margin: 32px 0 12px; font-size: 1.25em; }
+  .os-modal-container h2:first-child { margin-top: 0; }
+  .os-projects-grid { grid-template-columns: 1fr; gap: 0; }
+  .os-project-card { padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .os-project-card a { flex-direction: row; align-items: center; gap: 10px; min-width: 0; }
+  .os-project-card img { max-width: 36px; min-width: 36px; height: 36px; border-radius: 8px; margin: 0; }
+  .os-project-card h3 { margin: 0; font-size: 1em; }
+  .os-project-card p { font-size: 0.8em; line-height: 1.3; margin: 0; padding-left: 46px; }
+}
+</style>
+
+<div class="os-modal-overlay" id="os-projects-modal">
+  <span class="os-modal-close">&times;</span>
+  <div class="os-modal-container">
+
+    <h2>Wallets</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://github.com/get10101/10101" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664cfbef78ea868a51a1bfa9_88702448.png" alt="10101">
+          <h3>10101</h3>
+        </a>
+        <p>10101 combines the power of a self-custodial on-chain and off-chain wallet with the vast world of trading.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/getAlby" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e3bd_90630635.png" alt="Alby">
+          <h3>Alby</h3>
+        </a>
+        <p>A browser extension to bring the Bitcoin Lightning Network to the browser.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/AquaWallet/aqua-wallet" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b1998ad531a3ec083b_156037659.png" alt="Aqua Wallet">
+          <h3>Aqua Wallet</h3>
+        </a>
+        <p>AQUA is a free, open-source wallet for iOS and Android.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://bitcoin.design/guide/case-studies/bitcoin-core-app/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b23a6721626e083dd0_9bfba240f0df3364c1cb051b44d8bbab.webp" alt="Bitcoin Core app">
+          <h3>Bitcoin Core app</h3>
+        </a>
+        <p>The biggest design update for Bitcoin Core in the works.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/synonymdev/bitkit" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/64dd1c61e60b026b28defe7c_68897969%2019.57.27.png" alt="Bitkit">
+          <h3>Bitkit</h3>
+        </a>
+        <p>Bitkit offers on-chain and lightning transactions, as well as user-controlled social profiles and contacts; easy payments to contacts; key-based log-ins; and data streaming from private and public feeds into widgets.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/galoymoney/galoy-mobile" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/65f9d4c9db3508f5a1a8de26_Blink-bitcoin-wallet-app-icon.png" alt="Blink">
+          <h3>Blink</h3>
+        </a>
+        <p>An accessible, reliable and secure custodial Lightning wallet built for everyday payments and new user onboarding. Features built-in Bitcoin education, Stablesats for volatility management and a robust set of merchant features.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/hsjoberg/blixt-wallet" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e041_blixt-wallet-icon.png" alt="Blixt Wallet">
+          <h3>Blixt Wallet</h3>
+        </a>
+        <p>Bitcoin Lightning Wallet with focus on usability and user experience</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://bluewallet.io/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83df8f_bluewallet.png" alt="Blue Wallet">
+          <h3>Blue Wallet</h3>
+        </a>
+        <p>A powerful mobile wallet available on both android and iphone that is both easy to use and has power user features including multisig.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/microchad/borderwallets" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b2c0be48382a454867_LWYxY5BY_400x400.jpeg" alt="Border Wallets">
+          <h3>Border Wallets</h3>
+        </a>
+        <p>Offer Bitcoiners a way to quickly, easily, and reliably generate, memorise and recall Bitcoin wallet seed words using user-generated patterns or cell co-ordinates combined with randomly shuffled 'grids' of Bitcoin seed words.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/breez" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83df6d_breez.png" alt="Breez Wallet">
+          <h3>Breez Wallet</h3>
+        </a>
+        <p>An easy to use lightning wallet available on android and iphone that includes podcasting 2.0 and point of sale capability.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/chaincase-app/Chaincase-iOS-Beta" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8af7d98ae64c4848a88_56419275.png" alt="Chaincase">
+          <h3>Chaincase</h3>
+        </a>
+        <p>Preserving #bitcoin privacy</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/spesmilo/electrum/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e032_electrum_logo.png" alt="Electrum">
+          <h3>Electrum</h3>
+        </a>
+        <p>A powerful desktop wallet that can be used in a variety of different ways including with hardware wallets, multisig, and lightning.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/cashubtc/eNuts" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b1662e0740d374b605_114246592.png" alt="Enuts">
+          <h3>Enuts</h3>
+        </a>
+        <p>A Cashu wallet for Android and iOS</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/EttaWallet" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b20d8effe478b8ab97_124452068.png" alt="Etta Wallet">
+          <h3>Etta Wallet</h3>
+        </a>
+        <p>Simple open-source non-custodial bitcoin/lightning wallet with a strong bias towards usability, accessibility and good UX</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/Fonta1n3/FullyNoded" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e3a9_cropped-final-fully-noded-logo.png" alt="FullyNoded">
+          <h3>FullyNoded</h3>
+        </a>
+        <p>Self sovereign, secure, powerful, easy to use wallet that utilizes your own Bitcoin Core node as a backend. Providing an easy to use interface to interact with your nodes non wallet capabilities.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/selfcustody/krux" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8afd7e2af61548b1f7e_68747470733a2f2f73656c66637573746f64792e6769746875622e696f2f6b7275782f696d672f6d61697870795f616d69676f2f6c6f676f2d3135302e706e67.png" alt="Krux Wallet">
+          <h3>Krux Wallet</h3>
+        </a>
+        <p>Krux is open-source firmware that enables anyone to build their own Bitcoin signing device via off-the-shelf parts.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/layer2tech/mercury-wallet" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e000_82931602.png" alt="Mercury Wallet">
+          <h3>Mercury Wallet</h3>
+        </a>
+        <p>A privacy focused wallet that uses a concept called statechains to enable users to swap bitcoin off chain with minimal fees.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/minibits-cash/minibits_wallet" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b1b898727f4d86353a_zlTg7kRj_400x400.jpeg" alt="Minibits">
+          <h3>Minibits</h3>
+        </a>
+        <p>E-cash wallet with a focus on performance and usability. Cash is issued by mints and backed by Bitcoin via the Cashu protocol and Lightning Network.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/muun" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e035_10998166.png" alt="Muun Wallet">
+          <h3>Muun Wallet</h3>
+        </a>
+        <p>An extremely easy to use mobile wallet on both android and iphone that works with both traditional bitcoin payments and lightning.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://code.samourai.io/wallet" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e043_10795847.png" alt="Samourai Wallet">
+          <h3>Samourai Wallet</h3>
+        </a>
+        <p>A privacy focused android wallet that makes it easy to use collaborative transactions to improve privacy on chain. Samourai also makes it easy to use your own node with a QR code pairing process and Tor.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/satsigner/satsigner" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b1bbcb31b073d3cc2a_satSigner_symbol.png" alt="Satsigner">
+          <h3>Satsigner</h3>
+        </a>
+        <p>A bitcoin first mobile application for full control of your bitcoin data.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/sparrowwallet/sparrow" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e036_64004273.png" alt="Sparrow Wallet">
+          <h3>Sparrow Wallet</h3>
+        </a>
+        <p>A full featured desktop wallet that is compatible with electrum servers. Works with all major hardware wallets, including multisig configurations, and has built in paynym, payjoin, and whirlpool coinjoin support.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/cryptoadvance/specter-desktop" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e039_52270008.png" alt="Specter Wallet">
+          <h3>Specter Wallet</h3>
+        </a>
+        <p>A desktop wallet that makes it easy to use any hardware wallet with your own node, including multisig configurations.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/zkSNACKs/WalletWasabi" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e428_Screenshot%202023-03-02%20at%2017.19.37.png" alt="Wasabi Wallet">
+          <h3>Wasabi Wallet</h3>
+        </a>
+        <p>Open-source, non-custodial, privacy focused Bitcoin wallet for Windows, Linux, and Mac. Built-in Tor, CoinJoin, and coin control features.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/ZeusLN/zeus" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/67d461d6ff65dba45f15a1ff_e21103ec5ce5eef111fe388b9b4d1b46770050005524090d35761087c9e3b153.jpg" alt="Zeus">
+          <h3>Zeus</h3>
+        </a>
+        <p>The easiest way to interact with your own lightning full node on android and iphone.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/BitVaulty/bitvault-desktop" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6809095e8d02c82c4b292225_bitvault.jpeg" alt="bitvault">
+          <h3>bitvault</h3>
+        </a>
+        <p>BitVault is a secure multisig Bitcoin wallet built with Rust, focusing on security and reliability.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/ACINQ/phoenix" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e37c_256x256bb-2519449804.jpg" alt="phoenix">
+          <h3>phoenix</h3>
+        </a>
+        <p>Phoenix is a Bitcoin wallet developed by ACINQ, that allows you to send and receive bitcoins securely over the Lightning Network. It is self-custodial, which means that you hold the keys of the wallet.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/andreasgriffin/bitcoin-safe" target="_blank">
+          <img src="https://bitcoin-safe.org/images/logo.svg" alt="Bitcoin Safe">
+          <h3>Bitcoin Safe</h3>
+        </a>
+        <p>Desktop software for managing cold storage wallets. Easy multisig setup with hardware signers; encrypted backup and label sync via Nostr.</p>
+      </div>
+    </div>
+
+    <h2>Nostr</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://github.com/vitorpamplona/amethyst" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e42a_unnamed.webp" alt="Amethyst">
+          <h3>Amethyst</h3>
+        </a>
+        <p>Amethyst brings the best social network to your Android phone. Just insert your Nostr private key and start posting.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/bitvora" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a71985e75adbe2b05b2442_bitvora.png" alt="Bitvora">
+          <h3>Bitvora</h3>
+        </a>
+        <p>Bitcoin and Nostr-based payment infrastructure. Merchant payment systems powered by Bitcoin and NWC (Nostr Wallet Connect).</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/damus-io/damus" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e40f_Damus%20real%20logo.png" alt="Damus">
+          <h3>Damus</h3>
+        </a>
+        <p>A twitter-like nostr client for iPhone, iPad and MacOS.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/MostroP2P/mostro" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b1d8d56367b9d814bb_117840772.png" alt="Mostro">
+          <h3>Mostro</h3>
+        </a>
+        <p>NO-KYC P2P Lightning exchange on top of nostr</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/nostr-protocol/nostr" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e37a_IMAGE%202022-12-16%2015%3A46%3A12.jpg" alt="nostr">
+          <h3>nostr</h3>
+        </a>
+        <p>A decentralized network based on cryptographic keypairs and that is not peer-to-peer, it is super simple and scalable and therefore has a chance of working.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/nostr-dev-kit/ndk" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b2413c13cf8e701914_129583761.png" alt="Nostr Development Kit">
+          <h3>Nostr Development Kit</h3>
+        </a>
+        <p>A nostr development kit that makes the experience of building Nostr-related applications, whether they are relays, clients, or anything in between.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/getAlby/nostr-wallet-connect" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b10677b680ce5be5e2_nwc-logo.svg" alt="Nostr Wallet Connect">
+          <h3>Nostr Wallet Connect</h3>
+        </a>
+        <p>A way for applications like Nostr clients to access a remote Lightning wallet through a standardized protocol.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/KoalaSat/nostros" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e42e_nostros.jpg" alt="Nostros">
+          <h3>Nostros</h3>
+        </a>
+        <p>An open source nostr client on android.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/v0l/snort" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e40e_Screenshot%202023-02-14%20at%2019.22.44.png" alt="Snort">
+          <h3>Snort</h3>
+        </a>
+        <p>Snort is a nostr UI built with React aiming for speed and efficiency.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://gitlab.com/soapbox-pub/clawstr" target="_blank">
+          <img src="https://gitlab.com/uploads/-/system/project/avatar/78127452/clawstr.jpg" alt="Clawstr">
+          <h3>Clawstr</h3>
+        </a>
+        <p>AI social network built on Nostr.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/francismars/chain-duel" target="_blank">
+          <img src="https://r2.primal.net/cache/9/95/b0/995b0141f202347bfee33d515a392be221cdb7166bc2d546c90f649be745cca8.jpg" alt="Chain Duel">
+          <h3>Chain Duel</h3>
+        </a>
+        <p>Revamp of the classic snake game where two chains fight for the next block reward.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/francismars/pubpay" target="_blank">
+          <img src="https://r2.primal.net/cache/4/90/3e/4903e159f0117d2e0efd9510b8f24b8f5b02bd2c87714523d698f2c34b036b7a.jpg" alt="PubPay">
+          <h3>PubPay</h3>
+        </a>
+        <p>Nostr public payments client. Payment requests as easy as posting; Lightning payments as social as Nostr.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/coracle-social/coracle" target="_blank">
+          <img src="https://r2.primal.net/cache/b/4a/ef/b4aef335f00562011ddccbe130b0ef49262a1788944890a98416fa5d24d5d88c.png" alt="Coracle">
+          <h3>Coracle</h3>
+        </a>
+        <p>Experimental Nostr client focused on relay selection, custom feeds, and a curated Nostr experience.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/PrimalHQ" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69aa0ff0cc27f3cdc9653167_primal.png" alt="Primal">
+          <h3>Primal</h3>
+        </a>
+        <p>Nostr client for web, iOS, and Android. Fast, feature-rich social experience on Nostr with a built-in Lightning wallet.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/zapstore/zapstore" target="_blank">
+          <img src="https://blob.satellite.earth/0255d7bdd965e5e54f19e4c8eafbd060c30dbaf50329d21366de09bfa6b81fb6" alt="Zapstore">
+          <h3>Zapstore</h3>
+        </a>
+        <p>The social permissionless app store powered by your Nostr social graph. Discover and install apps with trust from people you follow.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/marmot-protocol/whitenoise" target="_blank">
+          <img src="https://cdn.zapstore.dev/af2caaefbcf0e2c4540578f0bac2abb300887f31fed1b832949e54426c7a2d05" alt="White Noise">
+          <h3>White Noise</h3>
+        </a>
+        <p>Secure, private, and decentralized chat app using MLS and Nostr. End-to-end encrypted group messaging built on the marmot protocol.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/marmot-protocol/marmot" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69aa10e3e1346737408c0c2d_marmot.png" alt="Marmot">
+          <h3>Marmot</h3>
+        </a>
+        <p>Messaging protocol for secure, decentralized group messaging combining MLS cryptography with Nostr's decentralized identity and relay network.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/greenart7c3/Amber" target="_blank">
+          <img src="https://cdn.zapstore.dev/e3af46b5e260c22a3a04dca65968dd6043f5a75bb465c916f2209629b4cbee3e" alt="Amber">
+          <h3>Amber</h3>
+        </a>
+        <p>Nostr event signer for Android. Keeps your private key isolated in a single dedicated app, acting as a NIP-46 signing device without servers or extra hardware.</p>
+      </div>
+    </div>
+
+    <h2>AI</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://github.com/ollama/ollama" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a738fd27474322091c5f35_ollama.png" alt="Ollama">
+          <h3>Ollama</h3>
+        </a>
+        <p>Run LLMs locally; no cloud; aligns with self-custody.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/ggerganov/llama.cpp" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a738fdcc6d5c8e78a83470_llama.jpg" alt="llama.cpp">
+          <h3>llama.cpp</h3>
+        </a>
+        <p>Core inference and quantization; used by many local AI tools.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/mudler/LocalAI" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a738fd738e5d84b5acd349_LocalAI.jpg" alt="LocalAI">
+          <h3>LocalAI</h3>
+        </a>
+        <p>OpenAI-compatible API for local models; drop-in for apps.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/open-webui/open-webui" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a73902b9d7427a4fde776f_open-webui.png" alt="Open WebUI">
+          <h3>Open WebUI</h3>
+        </a>
+        <p>Chat UI for local models (Ollama, etc.); OSS alternative to closed UIs.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/continuedev/continue" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a738fea59e6a56f529be88_continue.png" alt="Continue">
+          <h3>Continue</h3>
+        </a>
+        <p>Dev assistant (VS Code/Cursor) that can use local models.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://gitlab.com/soapbox-pub/shakespeare" target="_blank">
+          <img src="https://gitlab.com/uploads/-/system/project/avatar/71983338/shakespeare-192.png" alt="Shakespeare">
+          <h3>Shakespeare</h3>
+        </a>
+        <p>AI-powered Nostr website builder; open source, local-first.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/openclaw/openclaw" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a73acfc8f6d0124964a111_openclaw.jpg" alt="OpenClaw">
+          <h3>OpenClaw</h3>
+        </a>
+        <p>Personal AI assistant you run on your own devices; multi-channel (WhatsApp, Telegram, Slack, Discord, Signal, Nostr, etc.); local-first.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/Routstr/routstr-core" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a73ad907020cf5cb881023_routstr.jpg" alt="Routstr">
+          <h3>Routstr</h3>
+        </a>
+        <p>Decentralized protocol for permissionless, private, and censorship-resistant AI inference; Nostr for discovery and Cashu for Bitcoin micropayments.</p>
+      </div>
+    </div>
+
+    <h2>Utilities</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://github.com/opentimestamps" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e438_2550462.png" alt="OpenTimestamps">
+          <h3>OpenTimestamps</h3>
+        </a>
+        <p>Scalable, Trust-Minimized, Distributed Timestamping with Bitcoin.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/teambtcmap" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/64ee36efc01b8c30089de817_112748212.png" alt="BTC Map">
+          <h3>BTC Map</h3>
+        </a>
+        <p>Find bitcoin friendly businesses near you.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/btcpayserver" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83df42_btcpay-server.png" alt="BTCPay Server">
+          <h3>BTCPay Server</h3>
+        </a>
+        <p>Accept bitcoin for goods and services easily and reliably.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://www.bisq.network" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83df3d_bisq.png" alt="Bisq">
+          <h3>Bisq</h3>
+        </a>
+        <p>A decentralized network that allows users to communicate bitcoin trades peer-2-peer.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://bitcoin.org" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83df3c_bitcoincore.png" alt="Bitcoin Core">
+          <h3>Bitcoin Core</h3>
+        </a>
+        <p>The reference client and backbone of the bitcoin network - both a node and a wallet.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/bitcoinknots/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a73cfcab219582691bc2a4_bitcoin_knots.png" alt="Bitcoin Knots">
+          <h3>Bitcoin Knots</h3>
+        </a>
+        <p>Enhanced Bitcoin node and wallet software; community-maintained fork of Bitcoin Core.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/blockchaincommons" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8af598d09121a63c209_68747470733a2f2f7777772e626c6f636b636861696e636f6d6d6f6e732e636f6d2f696d616765732f62632d6c6f676f2d626c61636b2e706e67.png" alt="Blockchain Commons">
+          <h3>Blockchain Commons</h3>
+        </a>
+        <p>Blockchain Commons works with developer communities to design, build, and maintain secure &amp; compassionate decentralized architectures &amp; tools for responsible key management of digital assets &amp; digital identity.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/hzrd149/blossom" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b09d596b0816b27319_pwa-192x192.png" alt="Blossom">
+          <h3>Blossom</h3>
+        </a>
+        <p>Blossom is a spec for a set of HTTP endpoints that allow users to store blobs of data on publicly accessible servers.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/CalyxOS" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8af97ba56de7e1cbbb5_64103205.jpeg" alt="CalyxOS">
+          <h3>CalyxOS</h3>
+        </a>
+        <p>A mobile phone operating system built with "Privacy by Design". A project of The Calyx Institute https://calyxinstitute.org</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/cashubtc/cashu" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e427_114246592.png" alt="Cashu">
+          <h3>Cashu</h3>
+        </a>
+        <p>Cashu is a Chaumian Ecash wallet and mint for Bitcoin Lightning.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/romanz/electrs" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e045_electers.png" alt="Electrs">
+          <h3>Electrs</h3>
+        </a>
+        <p>An easy and performant way to use your own bitcoin node with a variety of wallets and tools. Electra is built into most dedicated full node implementations.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/fedimint/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/67ead7c96f8504584d5cb62d_84478549.png" alt="Fedimint">
+          <h3>Fedimint</h3>
+        </a>
+        <p>An open source protocol to custody and transact bitcoin in a community context, built on a strong foundation of privacy.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/ZcashFoundation/frost" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664cfb3c5db3eb3676ae3a61_26173891.png" alt="Frost">
+          <h3>Frost</h3>
+        </a>
+        <p>Flexible Round-Optimised Schnorr Threshold signatures</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/GaloyMoney" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e426_galoy.jpg" alt="Galoy">
+          <h3>Galoy</h3>
+        </a>
+        <p>Bitcoin-native banking infrastructure that reduces the development burden for organizations seeking to use Bitcoin and Lightning at enterprise scale. Bitcoin Beach Wallet is built on the Galoy platform.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/btcontract/immortan" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e033_btcontract.jpg" alt="Immortan">
+          <h3>Immortan</h3>
+        </a>
+        <p>A minimal, privacy-focused, opinionated LN protocol implementation aimed to specifically power lite LN nodes which are mostly to be found on mobile phones or desktop computers and only run private channels.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/joinmarket-webui/jam" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e3bf_94058607.png" alt="Jam">
+          <h3>Jam</h3>
+        </a>
+        <p>Jam is a web interface for JoinMarket focusing on user-friendliness and ease-of-use. It aims to provide sensible defaults and be easy to use for beginners while still having the features advanced users expect.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/lnbits" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e034_lnbits.png" alt="LNBits">
+          <h3>LNBits</h3>
+        </a>
+        <p>A platform that makes it easy to integrate lightning in a wide variety of situations.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/lnp2pBot/bot" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e40d_logo-600.png" alt="LNp2pBot">
+          <h3>LNp2pBot</h3>
+        </a>
+        <p>Telegram bot that allows people to trade using lightning network with other people on telegram, this is an open source project and anyone can create issues, submit a PR, fork it, modify it or create their own bot with the code.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/mempool" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e013_mempool.png" alt="Mempool">
+          <h3>Mempool</h3>
+        </a>
+        <p>A direct view on the current state of the bitcoin network that can be easily used with your own node.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/payjoin" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b2932a4e12a344bcde_125623455.png" alt="PayJoin">
+          <h3>PayJoin</h3>
+        </a>
+        <p>Scale Bitcoin, save fees, and preserve privacy all at once</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/rootzoll/raspiblitz" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e03c_raspiblitz-logo.jpeg" alt="RaspiBlitz">
+          <h3>RaspiBlitz</h3>
+        </a>
+        <p>A bitcoin full node implementation that makes it easy to use lightning and joinmarket.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/Reckless-Satoshi/robosats" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e403_robosats.png" alt="Robosats">
+          <h3>Robosats</h3>
+        </a>
+        <p>RoboSats is a simple and private way to exchange bitcoin for national currencies. Robosats simplifies the peer-to-peer user experience and uses lightning hold invoices to minimize custody and trust requirements.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="http://code.samourai.io/ronindojo/RoninDojo" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e03e_57577287.png" alt="RoninDojo">
+          <h3>RoninDojo</h3>
+        </a>
+        <p>A bitcoin full node implementation that supports electrum and easy samourai wallet integration via QR code and Tor.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/stakwork" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6579fb51dc3226b616fc7d10_0VUcv65NyZrSoXTAEIaVy8xJjZEYaFMWv1-elvSkIMHz368iReMyx3SXRenzBjijzcs-351789532.png" alt="Sphinx Chat">
+          <h3>Sphinx Chat</h3>
+        </a>
+        <p>End to end encrypted chat with no central server using the bitcoin lightning network.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/stackernews/stacker.news" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/67ead65e47af0e88758b456f_85754442.png" alt="Stacker News">
+          <h3>Stacker News</h3>
+        </a>
+        <p>Stacker News is trying to fix online communities with economics</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/Start9Labs/start-os" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b2598d09121a63c2b5_VP3PsfOV_400x400.jpeg" alt="Start9">
+          <h3>Start9</h3>
+        </a>
+        <p>Open source Linux distribution optimized for running a personal server.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/TBD54566975" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e40c_94492651.png" alt="TBD">
+          <h3>TBD</h3>
+        </a>
+        <p>We're building the next generation of the decentralized web – returning data back to users.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/apotdevin/thunderhub" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e734_thunderhub.svg" alt="ThunderHub">
+          <h3>ThunderHub</h3>
+        </a>
+        <p>Lightning Node Manager</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://vexl.it/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b2bbcb31b073d3cc84_CF4YcNI0_400x400.jpeg" alt="Vexl">
+          <h3>Vexl</h3>
+        </a>
+        <p>A mobile app giving our users a simple, inclusive, secure and private way to buy and sell BTC as it was intended: peer-to-peer.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/utxo-teleport/teleport-transactions" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664cfac48780f07192b79efc_135707076-1.png" alt="coinswap">
+          <h3>coinswap</h3>
+        </a>
+        <p>A rust implementation of a variant of atomic-swap protocol, using HTLCs on Bitcoin.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/orangeshyguy21/orchard" target="_blank">
+          <img src="https://primaldata.s3.us-east-005.backblazeb2.com/cache/3/80/3a/3803a5cf8df9058d059be050c81074a24f57b03b51547eca7705773477dff3d3.png" alt="Orchard">
+          <h3>Orchard</h3>
+        </a>
+        <p>Web application for Cashu mint management. Your sovereign bank in cyberspace — Bitcoin, Lightning, Cashu, Taproot Assets.</p>
+      </div>
+    </div>
+
+    <h2>Hardware</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://gitlab.lightning-solutions.eu/nodl-private/nodl-admin-private/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e038_-xqVvStt_400x400.jpeg" alt="Nodl">
+          <h3>Nodl</h3>
+        </a>
+        <p>A powerful yet easy to run 24/7 bitcoin node.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/SeedSigner/seedsigner" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e044_RU6TQzjC_400x400.jpeg" alt="Seedsigner">
+          <h3>Seedsigner</h3>
+        </a>
+        <p>A hardware wallet with a screen and camera that you can build yourself for ~$50. If you want a larger screen and smart card support you can build a Specter-DIY for ~$250.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/cmyk/seedetcher" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a738fdba6e69f0351c6211_seedetcher-logo.svg" alt="SeedEtcher">
+          <h3>SeedEtcher</h3>
+        </a>
+        <p>Self-contained, air-gapped system for creating durable Bitcoin backups by printing seed phrases, descriptors, and QR codes with a standard laser printer and permanently etching them into steel.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/mecha-org" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a8206d7af244b8e065b2ec_mecha.png" alt="Mecha">
+          <h3>Mecha</h3>
+        </a>
+        <p>Linux image build system and Mechanix OS GUI stack for Mecha devices. Wayland toolkit, UI controls, and hardware design (e.g. Mecha Comet).</p>
+      </div>
+    </div>
+
+    <h2>Mining</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://github.com/skot/bitaxe" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664c6c8124caf5041b006540_bitaxe.png" alt="Bitaxe">
+          <h3>Bitaxe</h3>
+        </a>
+        <p>Fully open source hardware Bitcoin ASIC miner. Ultra is the 3rd major revision of the bitaxe that now includes the BM1366 ASIC from the S19XP</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/braidpool/braidpool" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b2b898727f4d86358f_YhpgLQzu_400x400.jpeg" alt="Braidpool">
+          <h3>Braidpool</h3>
+        </a>
+        <p>Decentralized mining pool for bitcoin. It is a short-lived Directed Acyclic Graph (DAG)-based layer-1 blockchain solely for the purpose of producing bitcoin blocks.</p>
+      </div>
+    </div>
+
+    <h2>Frameworks</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://brqgoo.medium.com/introducing-ark-6f87ae45e272" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b10677b680ce5be5b8_1*if_ihewjysGUsCm8_bTh0Q.webp" alt="Ark">
+          <h3>Ark</h3>
+        </a>
+        <p>A second-layer protocol for making cheap, anonymous, off-chain Bitcoin payments.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://www.authln.com/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b10f1cde5ff0d5bf79_t8V8jkKe_400x400.jpeg" alt="AuthLN">
+          <h3>AuthLN</h3>
+        </a>
+        <p>A Zero-Trust Solution Offensive Cybersecurity that Transcends Encoded Logic Defenses.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/BitVM/BitVM" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b17d98ae64c4848d1c_147316244.png" alt="BitVM">
+          <h3>BitVM</h3>
+        </a>
+        <p>Smarter Bitcoin Contracts</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/bitcoindevkit/bdk" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e04a_bdk.png" alt="Bitcoin Dev Kit">
+          <h3>Bitcoin Dev Kit</h3>
+        </a>
+        <p>A library that allows you to seamlessly build cross-platform Bitcoin wallets without worrying about bitcoin internals.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/ElementsProject/lightning" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e3f0_corl.jpg" alt="Core Lightning">
+          <h3>Core Lightning</h3>
+        </a>
+        <p>One of the major lightning implementations that leverages plugins to give you additional features and control.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/JoinMarket-Org" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e046_joinmarket.png" alt="Joinmarket">
+          <h3>Joinmarket</h3>
+        </a>
+        <p>A decentralized coinjoin implementation that provides users additional privacy through the construction of collaborative transactions without a centralized server.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/lightningdevkit" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e03d_ldk.png" alt="LDK">
+          <h3>LDK</h3>
+        </a>
+        <p>A library that allows you to build a lightning node without worrying about implementing low-level lightning logic correctly. LDK is based on Rust-Lightning, a full-featured but also incredibly flexible lightning implementation, allowing you to decide how to use it.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/LightningNetwork/lnd" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e031_LND.png" alt="LND">
+          <h3>LND</h3>
+        </a>
+        <p>The most popular lightning network implementation currently available.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/fort-nix/nix-bitcoin" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e03b_50034086.png" alt="Nix-Bitcoin">
+          <h3>Nix-Bitcoin</h3>
+        </a>
+        <p>A collection of Nix packages and NixOS modules for easily installing full-featured Bitcoin nodes with an emphasis on security</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/synonymdev/slashtags" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/64dd1cb893f80b411c6b9bc2_slashtags_brand_mark.png" alt="Slashtags">
+          <h3>Slashtags</h3>
+        </a>
+        <p>Slashtags gives developers tools to build secure and scalable peer-to-peer applications that put users in control of their profiles, contacts, accounts, and data</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/stratum-mining/sv2-spec" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8af75445a829e218d6c_78796858.png" alt="Stratum V2">
+          <h3>Stratum V2</h3>
+        </a>
+        <p>Stratum V2 is the next generation protocol for pooled mining. It increases security, makes data transfers more efficient, and reduces mining infrastructure requirements.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://gitlab.com/lightning-signer/validating-lightning-signer" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8b00677b680ce5be56d_VLS_Logo.png" alt="Validating Lightning Signer">
+          <h3>Validating Lightning Signer</h3>
+        </a>
+        <p>VLS separates your Lightning private keys and security rule validation from your Lightning node, into a discrete signing device.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/ACINQ/lightning-kmp" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e37d_acinq-3660790544.jpg" alt="acinq">
+          <h3>acinq</h3>
+        </a>
+        <p>lightning-kmp is a Kotlin Multiplatform implementation of the Lightning Network optimised for mobile wallets. It can run on many platforms, including mobile devices.</p>
+      </div>
+    </div>
+
+    <h2>Education</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://learnmeabitcoin.com" target="_blank">
+          <img src="https://bitbo.io/tools/img/learnme.png" alt="Learn Me a Bitcoin">
+          <h3>Learn Me a Bitcoin</h3>
+        </a>
+        <p>Technical introduction to Bitcoin: transactions, blocks, mining, and the protocol.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://bitcoinops.org" target="_blank">
+          <img src="https://cdn.prod.website-files.com/68fa61ebe2c713df4f71a681/69a73b27934e8417bb753970_bitcoin_optech.png" alt="Bitcoin Optech">
+          <h3>Bitcoin Optech</h3>
+        </a>
+        <p>Newsletters, documentation, and resources for Bitcoin developers and operators.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/BitcoinDesign" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e3f1_67296775.png" alt="Bitcoin Design Community">
+          <h3>Bitcoin Design Community</h3>
+        </a>
+        <p>Free, open-source community resource for designers and developers working on non-custodial bitcoin products.</p>
+      </div>
+    </div>
+
+    <h2>Others</h2>
+    <div class="os-projects-grid">
+      <div class="os-project-card">
+        <a href="https://github.com/blender/blender" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/67c75aaf1fa1f7310a112a7e_1655928-4152750293.png" alt="Blender">
+          <h3>Blender</h3>
+        </a>
+        <p>Blender is the free and open source 3D creation suite. It supports the entirety of the 3D pipeline-modeling, rigging, animation, simulation, rendering, compositing, motion tracking and video editing.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/GrapheneOS" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/664bc8af5fa07e95b58576d3_780febcc.mask-icon.svg" alt="Graphene OS">
+          <h3>Graphene OS</h3>
+        </a>
+        <p>The private and secure mobile operating system with Android app compatibility. Developed as a non-profit open source project.</p>
+      </div>
+      <div class="os-project-card">
+        <a href="https://github.com/TheTorProject" target="_blank">
+          <img src="https://cdn.prod.website-files.com/6488b0b0fcd2d95f6b83c9da/6488b0b0fcd2d95f6b83e03a_3301912.png" alt="Tor">
+          <h3>Tor</h3>
+        </a>
+        <p>A network focused on preventing surveillance and censorship that is often used by bitcoin projects.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  function closeModal() {
+    var modal = document.getElementById('os-projects-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function openModal() {
+    var modal = document.getElementById('os-projects-modal');
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function init() {
+    // Open modal when #projects-modal is clicked
+    var trigger = document.getElementById('projects-modal');
+    if (trigger) {
+      trigger.addEventListener('click', openModal);
+    }
+
+    // Close modal on X button click
+    var closeBtn = document.querySelector('.os-modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeModal();
+      });
+    }
+
+    // Close on overlay click (but not on content)
+    var modal = document.getElementById('os-projects-modal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  }
+
+  // Run init when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

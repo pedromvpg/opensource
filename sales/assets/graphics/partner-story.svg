@@ -1,0 +1,19 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1920" fill="#000"/>
+  <rect x="60" y="120" width="960" height="1680" stroke="rgba(255,149,0,0.3)" stroke-width="2" fill="none"/>
+  <text x="540" y="280" text-anchor="middle" fill="#FF9500" font-family="system-ui,sans-serif" font-size="24" font-weight="600" letter-spacing="0.2em">COMMUNITY PARTNER</text>
+  <text x="540" y="420" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="56" font-weight="700">[Community</text>
+  <text x="540" y="500" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="56" font-weight="700">Name]</text>
+  <line x1="180" y1="580" x2="900" y2="580" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+  <text x="540" y="680" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,sans-serif" font-size="32">Open Source Hub</text>
+  <text x="540" y="760" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="40" font-weight="600">Bitcoin Asia 2026</text>
+  <text x="540" y="830" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui,sans-serif" font-size="28">Hong Kong / Late Aug</text>
+  <rect x="140" y="920" width="800" height="200" rx="6" fill="rgba(255,149,0,0.1)" stroke="#FF9500" stroke-width="2"/>
+  <text x="540" y="1000" text-anchor="middle" fill="#FF9500" font-family="system-ui,sans-serif" font-size="34" font-weight="700">FREE DEV PASSES</text>
+  <text x="540" y="1060" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="system-ui,sans-serif" font-size="26">for [Community] members</text>
+  <text x="540" y="1180" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="28" font-weight="600">Code: [CODE]</text>
+  <text x="540" y="1240" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="system-ui,sans-serif" font-size="24">[CLAIM LINK]</text>
+  <text x="540" y="1420" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="system-ui,sans-serif" font-size="22">Free dev passes for your members</text>
+  <text x="540" y="1465" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="system-ui,sans-serif" font-size="22">Community partner at the Open Source Hub</text>
+  <text x="540" y="1750" text-anchor="middle" fill="rgba(255,149,0,0.6)" font-family="system-ui,sans-serif" font-size="18" letter-spacing="0.1em">SWIPE UP / DM FOR DETAILS</text>
+</svg>

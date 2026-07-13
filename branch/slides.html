@@ -1,0 +1,2496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>branch.b.tc — Presentation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --bg:           #111;
+      --panel:        #000;
+      --text-dark:    #fff;
+      --text-light:   #fff;
+      --watermark:    #5C5C5C;
+      --placeholder:  rgba(255,255,255,0.12);
+      --header-h:     26.6%;
+
+      --deck-slide:       #000;
+      --deck-header:        #000;
+      --deck-surface:       #000;
+      --deck-ink:           #fff;
+      --deck-ink-strong:    rgba(255,255,255,0.85);
+      --deck-ink-body:      rgba(255,255,255,0.6);
+      --deck-ink-soft:      rgba(255,255,255,0.55);
+      --deck-ink-muted:     rgba(255,255,255,0.45);
+      --deck-ink-faint:     rgba(255,255,255,0.4);
+      --deck-ink-dim:       rgba(255,255,255,0.35);
+      --deck-ink-ghost:     rgba(255,255,255,0.28);
+      --deck-ink-whisper:   rgba(255,255,255,0.25);
+      --deck-ink-hint:      rgba(255,255,255,0.2);
+      --deck-border:        rgba(255,255,255,0.12);
+      --deck-border-subtle: rgba(255,255,255,0.1);
+      --deck-border-faint:  rgba(255,255,255,0.08);
+      --deck-fill-subtle:   rgba(255,255,255,0.06);
+      --deck-fill-soft:     rgba(255,255,255,0.045);
+      --deck-fill-muted:    rgba(255,255,255,0.03);
+      --deck-line:          rgba(255,255,255,0.2);
+      --deck-line-soft:     rgba(255,255,255,0.22);
+      --deck-watermark:     #5C5C5C;
+      --deck-counter:       rgba(255,255,255,0.2);
+      --deck-footnote:      rgba(255,255,255,0.35);
+      --deck-gantt-1:       #fff;
+      --deck-gantt-2:       #aaa;
+      --deck-gantt-3:       #666;
+      --deck-logo-btc:      invert(1);
+      --deck-logo-branch:   none;
+      --deck-logo-frame:    none;
+      --deck-nav:           rgba(255,255,255,0.4);
+      --deck-nav-hover:     rgba(255,255,255,0.85);
+
+      --size-cover:   3.125vw;
+      --size-hero:    5.2vw;
+      --size-body:    2.08vw;
+      --size-body-sm: 1.56vw;
+      --size-body-xs: 1.3vw;
+      --size-watermark: 1.406vw;
+      --size-label:   1.1vw;
+
+      --list-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 28' fill='none'%3E%3Cpath d='M0 14 H9 L24 14' stroke='rgba(255,255,255,0.48)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 0 L24 14 L9 28' stroke='rgba(255,255,255,0.48)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      --list-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 28' fill='none'%3E%3Cpath d='M0 14 H9 L24 14' stroke='rgba(255,255,255,0.42)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 0 L24 14 L9 28' stroke='rgba(255,255,255,0.42)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+
+    .deck {
+      width: min(100vw, 177.78vh);
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swiper { width: 100%; height: 100%; overflow: hidden; }
+    .swiper-wrapper { width: 100%; height: 100%; }
+
+    .swiper-slide {
+      width: 100%; height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swiper-slide.layout-branch-cover,
+    .swiper-slide.layout-branch-content {
+      background: var(--deck-slide);
+    }
+
+    .branch-frame,
+    .btc-logo,
+    .branch-logo {
+      transition: filter 0.25s ease;
+    }
+
+    .swiper-slide.layout-branch-cover,
+    .swiper-slide.layout-branch-content,
+    .layout-branch-content .header-band,
+    .layout-branch-content .content-panel {
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* =========================================
+       SHARED CHROME
+    ========================================= */
+    .branch-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.3;
+      filter: var(--deck-logo-frame);
+    }
+
+    .btc-logo {
+      position: absolute;
+      top: 7.85vw;
+      right: 5.8vw;
+      width: 5.8vw;
+      height: 5.8vw;
+      z-index: 10;
+      filter: var(--deck-logo-btc);
+    }
+
+    .watermark {
+      position: absolute;
+      bottom: 5.2%;
+      left: 5.05vw;
+      font-weight: 500;
+      font-size: var(--size-watermark);
+      letter-spacing: 0.03em;
+      color: var(--deck-watermark);
+      z-index: 10;
+    }
+
+    .slide-counter {
+      position: absolute;
+      bottom: 5.2%;
+      right: 5.8vw;
+      font-size: 1vw;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--deck-counter);
+      z-index: 10;
+    }
+
+    .layout-branch-content .watermark,
+    .layout-branch-content .slide-counter {
+      bottom: 4vw;
+    }
+
+    .layout-branch-content .slide-counter { color: var(--deck-counter); }
+
+    /* =========================================
+       LAYOUT: COVER
+    ========================================= */
+    .layout-branch-cover {
+      background: var(--deck-slide);
+    }
+
+    .layout-branch-cover .headline {
+      position: absolute;
+      left: 5.05vw;
+      z-index: 5;
+      font-weight: 300;
+      font-size: var(--size-cover);
+      letter-spacing: 0.04em;
+      color: var(--text-light);
+      line-height: 1.2;
+    }
+
+    .layout-branch-cover .headline-bottom,
+    .layout-branch-cover .presenting-label {
+      bottom: 11.8%;
+      font-size: var(--size-cover);
+    }
+
+    .layout-branch-cover .hero-main {
+      top: 43%;
+      font-size: var(--size-hero);
+      line-height: 1.15;
+      max-width: 70%;
+    }
+
+    .slide-hook {
+      background: #000;
+    }
+
+    .slide-hook .branch-frame {
+      display: none;
+    }
+
+    .slide-hook .headline {
+      color: #fff;
+    }
+
+    .slide-hook .hero-main {
+      top: 7.85vw;
+    }
+
+    .layout-branch-cover .cover-tagline {
+      position: absolute;
+      left: 5.05vw;
+      bottom: 22%;
+      z-index: 5;
+      font-weight: 300;
+      font-size: 3.8vw;
+      letter-spacing: 0.04em;
+      color: var(--text-light);
+      line-height: 1.25;
+      max-width: 68%;
+      opacity: 0.85;
+    }
+
+    .layout-branch-cover .thank-you {
+      top: 43%;
+      font-size: var(--size-hero);
+      line-height: 1.15;
+    }
+
+    .layout-branch-cover .ask-list {
+      top: 35%;
+      left: 5.05vw;
+      z-index: 5;
+      position: absolute;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2vw;
+      max-width: 75%;
+    }
+
+    .layout-branch-cover .ask-list li {
+      font-weight: 300;
+      font-size: var(--size-body);
+      letter-spacing: 0.04em;
+      color: var(--text-light);
+      line-height: 1.4;
+      display: flex;
+      gap: 1.2vw;
+    }
+
+    .layout-branch-cover .ask-list .ask-num {
+      font-weight: 500;
+      flex-shrink: 0;
+      opacity: 0.4;
+    }
+
+    .layout-branch-cover .ask-footnote {
+      position: absolute;
+      bottom: 16%;
+      left: 5.05vw;
+      z-index: 5;
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      letter-spacing: 0.04em;
+      color: var(--deck-footnote);
+      line-height: 1.5;
+      max-width: 80%;
+    }
+
+    .branch-logo {
+      position: absolute;
+      left: 5.05vw;
+      height: auto;
+      z-index: 10;
+      filter: var(--deck-logo-branch);
+    }
+
+    .branch-logo--cover {
+      top: 7.85vw;
+      width: 68vw;
+    }
+
+    .branch-logo--sm {
+      width: 22vw;
+      top: 14%;
+    }
+
+    .layout-branch-content .header-band .branch-logo--sm {
+      left: auto;
+      right: calc(3.2vw + 3.2vw + 1.8vw);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10vw;
+    }
+
+    .layout-branch-content .header-band .btc-logo {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3.2vw;
+      height: 3.2vw;
+      right: 3.5vw;
+    }
+
+    .layout-branch-content .header-band .section-title {
+      position: absolute;
+      left: 5.05vw;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      color: var(--text-light);
+      max-width: 55%;
+    }
+
+    .presenting-label {
+      position: absolute;
+      left: 5.05vw;
+      z-index: 5;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--text-light);
+      line-height: 1.2;
+    }
+
+    /* =========================================
+       LAYOUT: CONTENT (header + black panel)
+    ========================================= */
+    .layout-branch-content {
+      display: flex;
+      flex-direction: column;
+      background: var(--deck-slide);
+    }
+
+    .layout-branch-content .header-band {
+      height: var(--header-h);
+      flex-shrink: 0;
+      position: relative;
+      background: var(--deck-header);
+      overflow: hidden;
+      isolation: isolate;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .layout-branch-content .header-band .branch-frame {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 375.94%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .layout-branch-content .header-band .section-title,
+    .layout-branch-content .header-band .branch-logo--sm,
+    .layout-branch-content .header-band .btc-logo {
+      z-index: 2;
+    }
+
+    .layout-branch-content .content-panel {
+      flex: 1;
+      background: transparent;
+      color: var(--deck-ink);
+      --text-dark: var(--deck-ink);
+      --panel: transparent;
+      --placeholder: var(--deck-fill-subtle);
+      padding: 3.5vw 5.05vw 9vw;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8vw;
+      position: relative;
+      z-index: 2;
+    }
+
+    .layout-branch-content .section-title {
+      font-weight: 300;
+      font-size: var(--size-cover);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2vw;
+      margin-left: 0;
+      max-width: 88%;
+      font-weight: 300;
+      font-size: var(--size-body-sm);
+      letter-spacing: 0.04em;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 3.2vw;
+    }
+
+    .bullet-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75em;
+      width: 1.5vw;
+      height: 1.55vw;
+      margin-right: 0.5vw;
+      transform: translateY(-50%);
+      background: var(--list-arrow) no-repeat center / contain;
+    }
+
+    .bullet-list--sm {
+      font-size: var(--size-body-sm);
+      gap: 1vw;
+      max-width: 92%;
+    }
+
+    .bullet-list--sm li {
+      padding-left: 2.8vw;
+    }
+
+    .bullet-list--sm li::before {
+      width: 1.35vw;
+      height: 1.4vw;
+    }
+
+    /* =========================================
+       DEFINITION LIST (branding slide)
+    ========================================= */
+    .def-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: var(--size-body-sm);
+      letter-spacing: 0.02em;
+    }
+
+    .def-table td {
+      padding: 1.2vw 1.5vw;
+      border-bottom: 1px solid var(--deck-border-faint, rgba(255,255,255,0.08));
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+
+    .def-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .def-table col.def-col-icon  { width: 5.5vw; }
+    .def-table col.def-col-label { width: 26%; }
+    .def-table col.def-col-desc  { width: auto; }
+
+    .def-table td.def-icon {
+      width: 5.5vw;
+      padding: 1.2vw 0.8vw 1.2vw 0;
+      vertical-align: middle;
+    }
+
+    .def-table td.def-icon img {
+      width: 4vw;
+      height: 4vw;
+      display: block;
+      opacity: 1;
+      filter: brightness(0) invert(1);
+    }
+
+    .def-table td.def-icon img.def-icon--flip-y {
+      transform: scaleY(-1);
+    }
+
+    .def-table td.def-label {
+      font-weight: 400;
+      font-size: var(--size-body);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 26%;
+      min-width: 26%;
+      max-width: 26%;
+      color: #fff;
+      padding-left: 0;
+      padding-right: 1.5vw;
+    }
+
+    .def-table td.def-desc {
+      font-weight: 300;
+      color: var(--deck-ink-body, rgba(255,255,255,0.6));
+      padding-left: 0;
+    }
+
+    .content-body:has(.stats-row) {
+      gap: 1.2vw;
+    }
+
+    .content-body:has(.gantt) {
+      gap: 0;
+    }
+
+    .content-body:has(.project-grid),
+    .content-body:has(.dual-block),
+    .content-body:has(.team-grid) {
+      padding-bottom: 0;
+    }
+
+    .layout-branch-content .content-panel:has(.team-grid) {
+      padding-top: 1.5vw;
+    }
+
+    .content-body:has(.team-grid) {
+      gap: 1.2vw;
+    }
+
+    .content-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 1.8vw;
+      min-height: 0;
+    }
+
+    .content-body.has-media {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 3vw;
+    }
+
+    .content-body.has-media .text-col {
+      flex: 0 0 42%;
+      display: flex;
+      flex-direction: column;
+      gap: 2vw;
+    }
+
+    .media-slot {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .media-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .media-placeholder {
+      flex: 1;
+      border: 1px dashed var(--placeholder);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--watermark);
+      font-weight: 300;
+      font-size: 1.2vw;
+      letter-spacing: 0.06em;
+      min-height: 12vw;
+    }
+
+    .media-slot.has-image .media-placeholder { display: none; }
+    .media-slot:not(.has-image) img { display: none; }
+
+    .layout-branch-content .content-panel.media-only .content-body {
+      flex: 1;
+    }
+
+    /* =========================================
+       COMPARISON TABLE
+    ========================================= */
+    .comp-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: var(--size-body-xs);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: var(--text-dark);
+    }
+
+    .comp-col-label { width: 16%; }
+    .comp-col-data  { width: 9%; }
+    .comp-col-branch { width: 31%; }
+
+    .comp-table th,
+    .comp-table td {
+      text-align: left;
+      padding: 1vw 1.1vw;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      vertical-align: top;
+    }
+
+    .comp-table th {
+      font-weight: 500;
+      font-size: var(--size-label);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(0,0,0,0.4);
+      padding-bottom: 1.1vw;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .comp-table th:last-child,
+    .comp-table td:last-child {
+      font-weight: 500;
+      color: #000;
+      background: rgba(0, 0, 0, 0.045);
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .comp-table th.comp-org {
+      text-align: left;
+      text-transform: none;
+      letter-spacing: 0;
+      vertical-align: middle;
+      padding: 0.7vw 1.1vw 1vw;
+    }
+
+    .comp-org-link {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: inherit;
+      text-decoration: none;
+      min-height: 1.6vw;
+      transition: opacity 0.15s ease;
+    }
+
+    .comp-org-link:hover { opacity: 0.72; }
+
+    .comp-org-link:focus-visible {
+      outline: 1px solid var(--deck-line);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .comp-org-logo {
+      display: block;
+      height: 1.45vw;
+      max-width: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .comp-org-logo--wide { height: 1.25vw; }
+
+    .comp-org-logo--mark { height: 1.55vw; }
+
+    .comp-org-logo--on-light { display: none; }
+    html.light .comp-org-logo--on-dark { display: none; }
+    html.light .comp-org-logo--on-light { display: block; }
+
+    html.light .comp-org-logo--invert { filter: invert(1); }
+
+    .comp-org-logo--invert-dark { filter: brightness(0) invert(1); }
+    html.light .comp-org-logo--invert-dark { filter: none; }
+
+    /* =========================================
+       FLYWHEEL
+    ========================================= */
+    .flywheel {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      flex: 1;
+      gap: 1.8vw;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .flywheel-chain {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .flywheel-node {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35vw;
+      padding: 1.1vw 0.6vw;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.02);
+      text-align: center;
+    }
+
+    .flywheel-node-label {
+      font-weight: 500;
+      font-size: var(--size-body-sm);
+      letter-spacing: 0.06em;
+      color: var(--text-dark);
+      text-transform: uppercase;
+    }
+
+    .flywheel-node-sub {
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      color: rgba(0,0,0,0.4);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+
+    .flywheel-arrow {
+      align-self: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.15vw;
+      line-height: 1;
+    }
+
+    .flywheel-arrow svg {
+      width: 2.2vw;
+      height: 1.2vw;
+    }
+
+    .flywheel-loop {
+      position: relative;
+      width: 100%;
+      margin: 0.6vw 0 0;
+      color: var(--deck-ink-ghost, rgba(255,255,255,0.28));
+    }
+
+    .flywheel-loop-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .flywheel-loop-label {
+      position: absolute;
+      bottom: 30%;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      color: rgba(0, 0, 0, 0.35);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      background: var(--panel);
+      padding: 0 0.8vw;
+      z-index: 3;
+    }
+
+    .flywheel-caption {
+      font-weight: 300;
+      font-size: var(--size-body-sm);
+      color: rgba(0,0,0,0.5);
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    /* =========================================
+       THREE COLUMNS
+    ========================================= */
+    .three-col {
+      display: flex;
+      gap: 2.5vw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .three-col .col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1vw;
+    }
+
+    .col-title {
+      font-weight: 500;
+      font-size: var(--size-body-sm);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      padding-bottom: 0.6vw;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .col-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7vw;
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      letter-spacing: 0.03em;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .col-items li {
+      position: relative;
+      padding-left: 1.85vw;
+    }
+
+    .col-items li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75em;
+      width: 1.3vw;
+      height: 1.3vw;
+      margin-right: 0.4vw;
+      transform: translateY(-50%);
+      background: var(--list-arrow-sm) no-repeat center / contain;
+    }
+
+    /* =========================================
+       TWO COLUMNS (cost slide)
+    ========================================= */
+    .two-col {
+      display: flex;
+      gap: 3vw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .two-col .col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1vw;
+    }
+
+    .cost-punchline {
+      font-weight: 300;
+      font-size: var(--size-body-sm);
+      color: rgba(0,0,0,0.5);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      padding-top: 1vw;
+      margin-top: auto;
+    }
+
+    /* =========================================
+       TEAM GRID
+    ========================================= */
+    .team-grid {
+      display: flex;
+      gap: 2.5vw;
+      flex: 0 1 auto;
+      min-height: 0;
+      align-items: flex-start;
+    }
+
+    .team-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8vw;
+    }
+
+    .team-avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      background: rgba(0,0,0,0.04);
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0,0,0,0.2);
+      font-size: var(--size-body-xs);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      overflow: hidden;
+    }
+
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .team-role {
+      font-weight: 500;
+      font-size: var(--size-body-sm);
+      letter-spacing: 0.03em;
+      color: var(--text-dark);
+    }
+
+    .team-dept {
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      color: rgba(0,0,0,0.4);
+      letter-spacing: 0.03em;
+    }
+
+    .team-note {
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      color: rgba(0,0,0,0.35);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+      flex-shrink: 0;
+      margin-top: 0.5vw;
+    }
+
+    /* =========================================
+       GANTT CHART
+    ========================================= */
+    .gantt {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      gap: 0.15vw;
+    }
+
+    .gantt-header {
+      display: flex;
+      padding-left: 14vw;
+      gap: 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 0.25vw;
+      margin-bottom: 0.1vw;
+    }
+
+    .gantt-header span {
+      flex: 1;
+      text-align: center;
+      font-weight: 400;
+      font-size: var(--size-label);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(0,0,0,0.35);
+      line-height: 1;
+    }
+
+    .gantt-row {
+      display: flex;
+      align-items: center;
+      min-height: 1.35vw;
+      padding-bottom: 0.15vw;
+      margin-bottom: 0.15vw;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .gantt-row:has(+ .gantt-phase-labels) {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .gantt-label {
+      flex: 0 0 14vw;
+      font-weight: 300;
+      font-size: 1.05vw;
+      letter-spacing: 0.02em;
+      color: var(--text-dark);
+      padding-right: 0.8vw;
+      line-height: 1.15;
+    }
+
+    .gantt-track {
+      flex: 1;
+      display: flex;
+      position: relative;
+      height: 0.85vw;
+    }
+
+    .gantt-bar {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      background: #000;
+      border-radius: 0;
+      transform-origin: left center;
+    }
+
+    .s-in .gantt-row.reveal .gantt-bar {
+      transform: scaleX(0);
+      opacity: 0.35;
+    }
+
+    .gantt-bar--phase1 { background: #000; }
+    .gantt-bar--phase2 { background: #444; }
+    .gantt-bar--phase3 { background: #888; }
+
+    .gantt-phase-labels {
+      display: flex;
+      padding-left: 14vw;
+      gap: 0;
+      margin-top: 0.15vw;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      padding-top: 0.25vw;
+    }
+
+    .gantt-phase-labels span {
+      text-align: center;
+      font-weight: 400;
+      font-size: var(--size-label);
+      letter-spacing: 0.06em;
+      color: rgba(0,0,0,0.3);
+      line-height: 1;
+    }
+
+    /* =========================================
+       PROJECT GRID
+    ========================================= */
+    .project-grid {
+      display: flex;
+      gap: 1vw;
+      flex: 0 1 auto;
+      min-height: 0;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .project-card {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4vw;
+      padding: 0.85vw 0.8vw;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 0;
+      align-self: stretch;
+    }
+
+    .project-icon {
+      width: 5vw;
+      height: 5vw;
+      display: block;
+      flex-shrink: 0;
+      margin-bottom: 0.6vw;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+
+    .project-icon--brand {
+      filter: none;
+      opacity: 1;
+    }
+
+    .project-name {
+      font-weight: 500;
+      font-size: var(--size-body-sm);
+      letter-spacing: 0.03em;
+      color: var(--text-dark);
+    }
+
+    .project-desc {
+      font-weight: 300;
+      font-size: 1.05vw;
+      color: rgba(0,0,0,0.55);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      padding-bottom: 1vw;
+      flex: 1;
+    }
+
+    .project-tag {
+      font-weight: 400;
+      font-size: 0.9vw;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+      margin-top: auto;
+      padding-top: 0;
+    }
+
+    /* =========================================
+       STATS ROW (opportunity slide)
+    ========================================= */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6vw;
+      flex-shrink: 0;
+      padding-bottom: 1.6vw;
+      margin-bottom: 0.2vw;
+      border-bottom: 1px solid var(--deck-border-faint);
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7vw;
+      min-width: 0;
+      position: relative;
+      padding-right: 0.4vw;
+    }
+
+    .stat:not(:first-child) {
+      padding-left: 1.6vw;
+      border-left: 1px solid var(--deck-border-faint);
+    }
+
+    .stat-number {
+      font-weight: 300;
+      font-size: 2.85vw;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      color: rgba(0, 0, 0, 0.72);
+    }
+
+    .stat-label {
+      font-weight: 300;
+      font-size: 1.05vw;
+      color: rgba(0,0,0,0.45);
+      letter-spacing: 0.02em;
+      line-height: 1.45;
+      max-width: 100%;
+    }
+
+    .stat-note {
+      font-weight: 300;
+      font-size: 0.9vw;
+      color: rgba(0,0,0,0.3);
+      letter-spacing: 0.02em;
+      font-style: italic;
+      margin-top: auto;
+      flex-shrink: 0;
+      padding-top: 0.4vw;
+    }
+
+    .content-body:has(.stats-row) .bullet-list--sm {
+      gap: 0.85vw;
+      max-width: 85%;
+    }
+
+    /* =========================================
+       WHAT BRANCH IS (two-part)
+    ========================================= */
+    .dual-block {
+      display: flex;
+      gap: 3vw;
+      flex: 0 1 auto;
+      align-items: stretch;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .dual-block .block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6vw;
+      padding: 1.1vw 1.5vw;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 0;
+      align-self: stretch;
+    }
+
+    .block-title {
+      font-weight: 500;
+      font-size: var(--size-body);
+      letter-spacing: 0.04em;
+      color: var(--text-dark);
+    }
+
+    .block-desc {
+      font-weight: 300;
+      font-size: var(--size-body-xs);
+      color: rgba(0,0,0,0.55);
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      padding-bottom: 1vw;
+      flex: 1;
+    }
+
+    /* =========================================
+       STAGGER REVEAL ANIMATIONS
+    ========================================= */
+    @keyframes reveal-up {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes reveal-up-centered {
+      from { opacity: 0; transform: translateY(calc(-50% + 12px)); }
+      to   { opacity: 1; transform: translateY(-50%); }
+    }
+
+    @keyframes gantt-bar-grow {
+      from { transform: scaleX(0); opacity: 0.35; }
+      to   { transform: scaleX(1); opacity: 1; }
+    }
+
+    @keyframes reveal-card {
+      from { opacity: 0; transform: translateY(14px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes brand-rise {
+      0%   { opacity: 0; transform: translateY(5vw); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes brand-frame-fade {
+      from { opacity: 0; }
+      to   { opacity: 0.55; }
+    }
+
+    @keyframes brand-emerge {
+      0%   { opacity: 0; transform: translateY(6vw); filter: blur(8px); }
+      60%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    @keyframes hook-reveal {
+      0%   { opacity: 0; transform: translateY(3vw); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal { opacity: 0; }
+
+    .s-in .reveal {
+      animation: reveal-up 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Hook slides — plain, understated fade */
+    .slide-hook .hero-main.reveal {
+      animation: none;
+      opacity: 0;
+    }
+    .slide-hook.s-in .hero-main.reveal {
+      animation: reveal-up 0.5s ease both;
+      animation-delay: 80ms;
+    }
+
+    /* Brand reveal slide — background and logo slowly materialize together */
+    .slide-brand-reveal .branch-frame {
+      opacity: 0;
+    }
+    .slide-brand-reveal.s-in .branch-frame {
+      animation: brand-frame-fade 4s ease both;
+      animation-delay: 200ms;
+    }
+    .slide-brand-reveal .branch-logo--cover.reveal {
+      transform: translateY(6vw);
+    }
+    .s-in .slide-brand-reveal .branch-logo--cover.reveal,
+    .slide-brand-reveal.s-in .branch-logo--cover.reveal {
+      animation: brand-emerge 4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 200ms;
+    }
+    .slide-brand-reveal .cover-tagline.reveal {
+      /* intentionally blank — overridden below */
+    }
+    .s-in .slide-brand-reveal .cover-tagline.reveal,
+    .slide-brand-reveal.s-in .cover-tagline.reveal {
+      animation: reveal-up 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 3600ms;
+    }
+    .s-in .slide-brand-reveal .watermark.reveal,
+    .slide-brand-reveal.s-in .watermark.reveal {
+      animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 4400ms;
+    }
+
+    .s-in .branch-logo--cover.reveal        { animation-delay: 0ms; }
+    .s-in .cover-tagline.reveal             { animation-delay: 90ms; }
+    .s-in .presenting-label.reveal          { animation-delay: 180ms; }
+    .s-in .thank-you.reveal                { animation-delay: 0ms; }
+    .s-in .ask-list li.reveal:nth-child(1) { animation-delay: 0ms; }
+    .s-in .ask-list li.reveal:nth-child(2) { animation-delay: 100ms; }
+    .s-in .ask-list li.reveal:nth-child(3) { animation-delay: 200ms; }
+    .s-in .ask-footnote.reveal             { animation-delay: 350ms; }
+    .s-in .header-band .section-title.reveal {
+      animation-name: reveal-up-centered;
+      animation-delay: 0ms;
+    }
+    .s-in .content-panel .media-slot.reveal { animation-delay: 75ms; }
+    .s-in .stats-row.reveal                { animation-delay: 50ms; }
+    .s-in .comp-table th.reveal,
+    .s-in .comp-table td.reveal {
+      animation: reveal-up 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .s-in .comp-table :is(th, td).reveal:nth-child(1) { animation-delay: 50ms; }
+    .s-in .comp-table :is(th, td).reveal:nth-child(2) { animation-delay: 120ms; }
+    .s-in .comp-table :is(th, td).reveal:nth-child(3) { animation-delay: 190ms; }
+    .s-in .comp-table :is(th, td).reveal:nth-child(4) { animation-delay: 260ms; }
+    .s-in .comp-table :is(th, td).reveal:nth-child(5) { animation-delay: 330ms; }
+    .s-in .comp-table :is(th, td).reveal:nth-child(6) { animation-delay: 400ms; }
+    .s-in .comp-table :is(th, td).reveal:nth-child(7) { animation-delay: 470ms; }
+    .s-in .def-table tr.reveal {
+      animation-duration: 0.8s;
+    }
+    .s-in .def-table tr.reveal:nth-child(1) { animation-delay: 300ms; }
+    .s-in .def-table tr.reveal:nth-child(2) { animation-delay: 800ms; }
+    .s-in .def-table tr.reveal:nth-child(3) { animation-delay: 1300ms; }
+    .s-in .def-table tr.reveal:nth-child(4) { animation-delay: 1800ms; }
+    .s-in .dual-block.reveal               { animation-delay: 50ms; }
+    .s-in .flywheel.reveal                 { animation-delay: 50ms; }
+    .s-in .project-grid .project-card.reveal {
+      animation: reveal-card 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .s-in .project-grid .project-card.reveal:nth-child(1) { animation-delay: 80ms; }
+    .s-in .project-grid .project-card.reveal:nth-child(2) { animation-delay: 145ms; }
+    .s-in .project-grid .project-card.reveal:nth-child(3) { animation-delay: 210ms; }
+    .s-in .project-grid .project-card.reveal:nth-child(4) { animation-delay: 275ms; }
+    .s-in .project-grid .project-card.reveal:nth-child(5) { animation-delay: 340ms; }
+    .s-in .project-grid .project-card.reveal:nth-child(6) { animation-delay: 405ms; }
+    .s-in .three-col.reveal                { animation-delay: 50ms; }
+    .s-in .team-grid.reveal                { animation-delay: 50ms; }
+    .s-in .two-col.reveal                  { animation-delay: 50ms; }
+    .s-in .gantt-header span.reveal:nth-child(1) { animation-delay: 50ms; }
+    .s-in .gantt-header span.reveal:nth-child(2) { animation-delay: 80ms; }
+    .s-in .gantt-header span.reveal:nth-child(3) { animation-delay: 110ms; }
+    .s-in .gantt-header span.reveal:nth-child(4) { animation-delay: 140ms; }
+    .s-in .gantt-header span.reveal:nth-child(5) { animation-delay: 170ms; }
+    .s-in .gantt-header span.reveal:nth-child(6) { animation-delay: 200ms; }
+    .s-in .gantt-header span.reveal:nth-child(7) { animation-delay: 230ms; }
+    .s-in .gantt-header span.reveal:nth-child(8) { animation-delay: 260ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(2)  { animation-delay: 240ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(3)  { animation-delay: 285ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(4)  { animation-delay: 330ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(5)  { animation-delay: 375ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(6)  { animation-delay: 420ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(7)  { animation-delay: 465ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(8)  { animation-delay: 510ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(9)  { animation-delay: 555ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(10) { animation-delay: 600ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(11) { animation-delay: 645ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(12) { animation-delay: 690ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(2)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 320ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(3)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 365ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(4)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 410ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(5)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 455ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(6)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 500ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(7)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 545ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(8)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 590ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(9)  .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 635ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(10) .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 680ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(11) .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 725ms; }
+    .s-in .gantt > .gantt-row.reveal:nth-child(12) .gantt-bar { animation: gantt-bar-grow 0.48s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 770ms; }
+    .s-in .gantt-phase-labels span.reveal:nth-child(1) { animation-delay: 820ms; }
+    .s-in .gantt-phase-labels span.reveal:nth-child(2) { animation-delay: 880ms; }
+    .s-in .gantt-phase-labels span.reveal:nth-child(3) { animation-delay: 940ms; }
+    .s-in .cost-punchline.reveal           { animation-delay: 150ms; }
+    .s-in .flywheel-caption.reveal         { animation-delay: 200ms; }
+    .s-in .stat-note.reveal                { animation-delay: 150ms; }
+    .s-in .team-note.reveal                { animation-delay: 150ms; }
+    .s-in .bullet-list li.reveal:nth-child(1) { animation-delay: 70ms; }
+    .s-in .bullet-list li.reveal:nth-child(2) { animation-delay: 125ms; }
+    .s-in .bullet-list li.reveal:nth-child(3) { animation-delay: 180ms; }
+    .s-in .bullet-list li.reveal:nth-child(4) { animation-delay: 235ms; }
+    .s-in .bullet-list li.reveal:nth-child(5) { animation-delay: 290ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; }
+      .s-in .reveal { animation: none; }
+      .s-in .gantt-row.reveal .gantt-bar { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* =========================================
+       SWIPER CHROME
+    ========================================= */
+    :root {
+      --swiper-navigation-size: 10px;
+      --swiper-navigation-color: rgba(255,255,255,0.6);
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background 0.15s, color 0.15s, opacity 0.15s;
+      font-family: inherit;
+    }
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      --swiper-navigation-color: #fff;
+    }
+    .swiper-button-prev.swiper-button-disabled,
+    .swiper-button-next.swiper-button-disabled {
+      opacity: 0.35;
+      cursor: default;
+      pointer-events: none;
+    }
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-family: swiper-icons;
+      font-size: var(--swiper-navigation-size) !important;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* =========================================
+       CONTENT PANEL — themed surface overrides
+    ========================================= */
+    .layout-branch-content .content-panel .comp-table th,
+    .layout-branch-content .content-panel .comp-table td {
+      border-bottom-color: var(--deck-border-faint);
+    }
+
+    .layout-branch-content .content-panel .comp-table th {
+      color: var(--deck-ink-faint);
+      border-bottom-color: var(--deck-border);
+    }
+
+    .layout-branch-content .content-panel .comp-table th:last-child,
+    .layout-branch-content .content-panel .comp-table td:last-child {
+      color: var(--deck-ink);
+      background: var(--deck-fill-soft);
+    }
+
+    .layout-branch-content .content-panel .flywheel-node {
+      border-color: var(--deck-border);
+      background: var(--deck-fill-muted);
+    }
+
+    .layout-branch-content .content-panel .flywheel-node-sub {
+      color: var(--deck-ink-muted);
+    }
+
+    .layout-branch-content .content-panel .flywheel-arrow {
+      color: var(--deck-ink-ghost);
+    }
+
+    .layout-branch-content .content-panel .flywheel-loop {
+      color: var(--deck-line);
+    }
+
+    .layout-branch-content .content-panel .flywheel-loop-label {
+      color: var(--deck-ink-faint);
+      background: var(--deck-surface);
+    }
+
+    .layout-branch-content .content-panel .flywheel-caption {
+      color: var(--deck-ink-soft);
+    }
+
+    .layout-branch-content .content-panel .col-title {
+      border-bottom-color: var(--deck-border);
+    }
+
+    .layout-branch-content .content-panel .cost-punchline {
+      color: var(--deck-ink-soft);
+      border-top-color: var(--deck-border);
+    }
+
+    .layout-branch-content .content-panel .team-avatar {
+      background: var(--deck-fill-subtle);
+      color: var(--deck-ink-whisper);
+    }
+
+    .layout-branch-content .content-panel .team-dept {
+      color: var(--deck-ink-muted);
+    }
+
+    .layout-branch-content .content-panel .team-note {
+      color: var(--deck-ink-faint);
+    }
+
+    .layout-branch-content .content-panel .gantt-header {
+      border-bottom-color: var(--deck-border);
+    }
+
+    .layout-branch-content .content-panel .gantt-header span {
+      color: var(--deck-ink-faint);
+    }
+
+    .layout-branch-content .content-panel .gantt-row {
+      border-bottom-color: var(--deck-border-faint);
+    }
+
+    .layout-branch-content .content-panel .gantt-bar--phase1 { background: var(--deck-gantt-1); }
+    .layout-branch-content .content-panel .gantt-bar--phase2 { background: var(--deck-gantt-2); }
+    .layout-branch-content .content-panel .gantt-bar--phase3 { background: var(--deck-gantt-3); }
+
+    .layout-branch-content .content-panel .gantt-phase-labels {
+      border-top-color: var(--deck-border);
+    }
+
+    .layout-branch-content .content-panel .gantt-phase-labels span {
+      color: var(--deck-ink-faint);
+    }
+
+    .layout-branch-content .content-panel .project-card,
+    .layout-branch-content .content-panel .dual-block .block {
+      border-color: var(--deck-border-subtle);
+    }
+
+    .layout-branch-content .content-panel .project-desc,
+    .layout-branch-content .content-panel .block-desc {
+      color: var(--deck-ink-body);
+    }
+
+    .layout-branch-content .content-panel .project-tag {
+      color: var(--deck-ink-dim);
+    }
+
+    .layout-branch-content .content-panel .stat-number {
+      color: var(--deck-ink-strong);
+    }
+
+    .layout-branch-content .content-panel .stat-label {
+      color: var(--deck-ink-muted);
+    }
+
+    .layout-branch-content .content-panel .stat-note {
+      color: var(--deck-ink-dim);
+    }
+
+    .layout-branch-content .content-panel .media-placeholder {
+      color: var(--deck-ink-dim);
+    }
+
+    /* =========================================
+       LIGHT MODE (inverted presentation)
+    ========================================= */
+    html.light {
+      --bg:           #e8e8e8;
+      --panel:        #fff;
+      --text-dark:    #000;
+      --text-light:   #000;
+      --placeholder:  rgba(0,0,0,0.12);
+
+      --deck-slide:       #fff;
+      --deck-header:        #fff;
+      --deck-surface:       #fff;
+      --deck-ink:           #000;
+      --deck-ink-strong:    rgba(0,0,0,0.85);
+      --deck-ink-body:      rgba(0,0,0,0.6);
+      --deck-ink-soft:      rgba(0,0,0,0.55);
+      --deck-ink-muted:     rgba(0,0,0,0.45);
+      --deck-ink-faint:     rgba(0,0,0,0.4);
+      --deck-ink-dim:       rgba(0,0,0,0.35);
+      --deck-ink-ghost:     rgba(0,0,0,0.28);
+      --deck-ink-whisper:   rgba(0,0,0,0.25);
+      --deck-ink-hint:      rgba(0,0,0,0.2);
+      --deck-border:        rgba(0,0,0,0.12);
+      --deck-border-subtle: rgba(0,0,0,0.1);
+      --deck-border-faint:  rgba(0,0,0,0.08);
+      --deck-fill-subtle:   rgba(0,0,0,0.04);
+      --deck-fill-soft:     rgba(0,0,0,0.045);
+      --deck-fill-muted:    rgba(0,0,0,0.02);
+      --deck-line:          rgba(0,0,0,0.18);
+      --deck-line-soft:     rgba(0,0,0,0.22);
+      --deck-watermark:     #888;
+      --deck-counter:       rgba(0,0,0,0.25);
+      --deck-footnote:      rgba(0,0,0,0.4);
+      --deck-gantt-1:       #000;
+      --deck-gantt-2:       #444;
+      --deck-gantt-3:       #888;
+      --deck-logo-btc:      none;
+      --deck-logo-branch:   invert(1);
+      --deck-logo-frame:    invert(1);
+      --deck-nav:           rgba(0,0,0,0.25);
+      --deck-nav-hover:     rgba(0,0,0,0.7);
+
+      --list-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 28' fill='none'%3E%3Cpath d='M0 14 H9 L24 14' stroke='rgba(0,0,0,0.48)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 0 L24 14 L9 28' stroke='rgba(0,0,0,0.48)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      --list-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 28' fill='none'%3E%3Cpath d='M0 14 H9 L24 14' stroke='rgba(0,0,0,0.42)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 0 L24 14 L9 28' stroke='rgba(0,0,0,0.42)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    html.light body { background: var(--bg); }
+
+    html.light .def-table td.def-icon img {
+      filter: none;
+      opacity: 0.85;
+    }
+
+    html.light .def-table td.def-label {
+      color: var(--deck-ink);
+    }
+
+    html.light .project-icon {
+      filter: none;
+      opacity: 0.85;
+    }
+
+    html.light .project-icon--brand {
+      opacity: 1;
+    }
+
+    html.light .slide-hook {
+      background: #000;
+    }
+
+    html.light .slide-hook .headline {
+      color: #fff;
+    }
+
+    html.light .layout-branch-content .header-band {
+      border-bottom-color: rgba(0,0,0,0.08);
+    }
+
+    .deck-controls {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.1;
+      transition: opacity 0.3s ease;
+    }
+    .deck-controls:hover,
+    .deck-controls:focus-within { opacity: 1; }
+
+    #theme-toggle,
+    #fullscreen-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      padding: 5px 13px;
+      border-radius: 20px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background 0.15s, color 0.15s;
+      font-family: inherit;
+    }
+
+    #theme-toggle:hover,
+    #fullscreen-toggle:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    html.light #theme-toggle,
+    html.light #fullscreen-toggle { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.12); color: rgba(0,0,0,0.5); }
+    html.light #theme-toggle:hover,
+    html.light #fullscreen-toggle:hover { background: rgba(0,0,0,0.12); color: #000; }
+
+    html.light .swiper-button-prev,
+    html.light .swiper-button-next {
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.12);
+      color: rgba(0,0,0,0.5);
+      --swiper-navigation-color: rgba(0,0,0,0.5);
+    }
+    html.light .swiper-button-prev:hover,
+    html.light .swiper-button-next:hover {
+      background: rgba(0,0,0,0.12);
+      color: #000;
+      --swiper-navigation-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+
+      <!-- ============================
+           SLIDE 0 — HOOK: OUR POSITION
+      ============================ -->
+      <div class="swiper-slide layout-branch-cover slide-hook">
+        <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+        <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        <h1 class="headline hero-main reveal">We own the conference.<br>The magazine.<br>The audience.<br>The corporate pipeline.</h1>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 1 — HOOK: THE MISSING PIECE
+      ============================ -->
+      <div class="swiper-slide layout-branch-cover slide-hook">
+        <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+        <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        <h1 class="headline hero-main reveal">No one else can fund<br>open source projects and<br>put them in front of the<br>entire ecosystem.</h1>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 2 — BRAND REVEAL
+      ============================ -->
+      <div class="swiper-slide layout-branch-cover slide-brand-reveal">
+        <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+        <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        <img class="branch-logo branch-logo--cover reveal" src="./assets/branch-logo.svg" alt="branch">
+        <p class="cover-tagline reveal">Open source grants, R&amp;D, and live bitcoin deployments &mdash; the open source arm of BTC Inc.</p>
+        <span class="watermark reveal">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 3 — THE NAME
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Why "branch"</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <table class="def-table">
+              <colgroup>
+                <col class="def-col-icon">
+                <col class="def-col-label">
+                <col class="def-col-desc">
+              </colgroup>
+              <tbody>
+                <tr class="reveal">
+                  <td class="def-icon"><img class="def-icon--flip-y" src="./assets/def-icon-merkle.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Merkle tree</td>
+                  <td class="def-desc">The data structure at the heart of Bitcoin. Every block, every transaction, verified through branches.</td>
+                </tr>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-git.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">git branch</td>
+                  <td class="def-desc">The mental model for modern software development. Branch, build, merge. How open source actually works.</td>
+                </tr>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-bank.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Bank branch</td>
+                  <td class="def-desc">The physical presence of financial infrastructure in communities. branch brings bitcoin infrastructure to the world.</td>
+                </tr>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-church.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Church branch</td>
+                  <td class="def-desc">A local chapter of a larger mission. branch is BTC Inc's congregation for open source builders.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 4 — WHY BTC INC
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Why BTC Inc</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <table class="def-table">
+              <colgroup>
+                <col class="def-col-icon">
+                <col class="def-col-label">
+                <col class="def-col-desc">
+              </colgroup>
+              <tbody>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-distribution.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Distribution</td>
+                  <td class="def-desc">30,000+ conference attendees, millions of monthly readers, enterprise pipeline through Bitcoin for Corporations.</td>
+                </tr>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-underutilized.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Underutilized</td>
+                  <td class="def-desc">This infrastructure isn't being used for open source amplification. No other organization can match it.</td>
+                </tr>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-experience.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Experience</td>
+                  <td class="def-desc">Cumulative events, hosting, and engineering capability already inside the company.</td>
+                </tr>
+                <tr class="reveal">
+                  <td class="def-icon"><img src="./assets/def-icon-identity.svg" alt="" aria-hidden="true"></td>
+                  <td class="def-label">Identity</td>
+                  <td class="def-desc">Establish BTC Inc as a technology company, not just events and media. Become the strongest voice in open source bitcoin.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 4 — THE OPPORTUNITY
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">The Opportunity</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="stats-row reveal">
+              <div class="stat">
+                <span class="stat-number">~$20-30M / yr</span>
+                <span class="stat-label">Total open source Bitcoin funding across all existing grant programs combined</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">~$250M+ / yr</span>
+                <span class="stat-label">Linux Foundation annual budget for comparison</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Grant programs that offer media amplification, event deployment, or corporate sales pipeline</span>
+              </div>
+            </div>
+            <ul class="bullet-list bullet-list--sm">
+              <li class="reveal">Existing programs write a check and walk away. No media coverage. No event deployment. No corporate pipeline.</li>
+              <li class="reveal">Funded projects die in obscurity because nobody sees them.</li>
+            </ul>
+            <p class="stat-note reveal">Estimates based on publicly available annual reports from OpenSats, Brink, Spiral, and HRF.</p>
+          </div>
+        </div>
+
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 5 — COMPETITIVE LANDSCAPE
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Competitive Landscape</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <table class="comp-table">
+              <colgroup>
+                <col class="comp-col-label">
+                <col class="comp-col-data">
+                <col class="comp-col-data">
+                <col class="comp-col-data">
+                <col class="comp-col-data">
+                <col class="comp-col-data">
+                <col class="comp-col-branch">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th class="reveal"></th>
+                  <th class="reveal comp-org">
+                    <a class="comp-org-link" href="https://opensats.org" target="_blank" rel="noopener noreferrer" aria-label="OpenSats">
+                      <img class="comp-org-logo comp-org-logo--wide" src="./assets/external-logos/opensats-logo.svg" alt="">
+                    </a>
+                  </th>
+                  <th class="reveal comp-org">
+                    <a class="comp-org-link" href="https://brink.dev" target="_blank" rel="noopener noreferrer" aria-label="Brink">
+                      <img class="comp-org-logo comp-org-logo--wide comp-org-logo--invert-dark" src="./assets/external-logos/brink.png" alt="">
+                    </a>
+                  </th>
+                  <th class="reveal comp-org">
+                    <a class="comp-org-link" href="https://spiral.xyz" target="_blank" rel="noopener noreferrer" aria-label="Spiral">
+                      <img class="comp-org-logo comp-org-logo--wide comp-org-logo--on-dark" src="./assets/external-logos/spiral-dark.svg" alt="">
+                      <img class="comp-org-logo comp-org-logo--wide comp-org-logo--on-light" src="./assets/external-logos/spiral-light.svg" alt="">
+                    </a>
+                  </th>
+                  <th class="reveal comp-org">
+                    <a class="comp-org-link" href="https://hrf.org" target="_blank" rel="noopener noreferrer" aria-label="HRF">
+                      <img class="comp-org-logo comp-org-logo--wide" src="./assets/external-logos/hrf.png" alt="">
+                    </a>
+                  </th>
+                  <th class="reveal comp-org">
+                    <a class="comp-org-link" href="https://www.btrust.tech/" target="_blank" rel="noopener noreferrer" aria-label="Btrust">
+                      <img class="comp-org-logo comp-org-logo--wide comp-org-logo--invert" src="./assets/external-logos/btrust.svg" alt="">
+                    </a>
+                  </th>
+                  <th class="reveal comp-org">
+                    <a class="comp-org-link" href="https://branch.b.tc" target="_blank" rel="noopener noreferrer" aria-label="branch">
+                      <img class="comp-org-logo comp-org-logo--wide comp-org-logo--invert" src="./assets/external-logos/branch.svg" alt="">
+                    </a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="reveal">Funding</td>
+                  <td class="reveal">Yes</td>
+                  <td class="reveal">Yes</td>
+                  <td class="reveal">Yes</td>
+                  <td class="reveal">Yes</td>
+                  <td class="reveal">Yes</td>
+                  <td class="reveal">Yes</td>
+                </tr>
+                <tr>
+                  <td class="reveal">Media amplification</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">Limited</td>
+                  <td class="reveal">Btrust Blog</td>
+                  <td class="reveal">Bitcoin Magazine, Bitcoin TV</td>
+                </tr>
+                <tr>
+                  <td class="reveal">Event deployment</td>
+                  <td class="reveal">Sovereign Engineers</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">Oslo Freedom Forum</td>
+                  <td class="reveal">BitDevs Africa</td>
+                  <td class="reveal">BTC Inc conferences</td>
+                </tr>
+                <tr>
+                  <td class="reveal">Corporate pipeline</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">Limited</td>
+                  <td class="reveal">Limited</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">No</td>
+                  <td class="reveal">Bitcoin for Corporations</td>
+                </tr>
+                <tr>
+                  <td class="reveal">Project curation</td>
+                  <td class="reveal">Community-driven</td>
+                  <td class="reveal">Core-focused</td>
+                  <td class="reveal">Internal</td>
+                  <td class="reveal">Human rights</td>
+                  <td class="reveal">Global South</td>
+                  <td class="reveal">Strategic &mdash; we fund what we deploy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 5 — WHAT BRANCH IS
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">What branch is</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="dual-block reveal">
+              <div class="block">
+                <span class="block-title">R&D Lab (for-profit)</span>
+                <span class="block-desc">BTC Inc division. Builds, deploys, and maintains bitcoin-native technology across events, media, and corporate products. Staffed by existing BTC Inc engineers, no new hires.</span>
+              </div>
+              <div class="block">
+                <span class="block-title">Grant Program (501c3)</span>
+                <span class="block-desc">Separate nonprofit. Funds external open source developers working on Bitcoin, Lightning, Nostr, and AI. Tax-deductible donations from corporate sponsors. Grantees are independent contributors, not employees.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 6 — HOW IT WORKS (FLYWHEEL)
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">How it works</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="flywheel reveal">
+              <div class="flywheel-chain">
+                <div class="flywheel-node">
+                  <span class="flywheel-node-label">Grants</span>
+                  <span class="flywheel-node-sub">branch nonprofit</span>
+                </div>
+                <span class="flywheel-arrow" aria-hidden="true"><svg viewBox="0 0 32 16" fill="none"><path d="M0 8 H26 M20 2 L28 8 L20 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div class="flywheel-node">
+                  <span class="flywheel-node-label">Projects</span>
+                  <span class="flywheel-node-sub">branch R&amp;D lab</span>
+                </div>
+                <span class="flywheel-arrow" aria-hidden="true"><svg viewBox="0 0 32 16" fill="none"><path d="M0 8 H26 M20 2 L28 8 L20 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div class="flywheel-node">
+                  <span class="flywheel-node-label">Events</span>
+                  <span class="flywheel-node-sub">Bitcoin Conference</span>
+                </div>
+                <span class="flywheel-arrow" aria-hidden="true"><svg viewBox="0 0 32 16" fill="none"><path d="M0 8 H26 M20 2 L28 8 L20 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div class="flywheel-node">
+                  <span class="flywheel-node-label">Media</span>
+                  <span class="flywheel-node-sub">Magazine &middot; TV</span>
+                </div>
+                <span class="flywheel-arrow" aria-hidden="true"><svg viewBox="0 0 32 16" fill="none"><path d="M0 8 H26 M20 2 L28 8 L20 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div class="flywheel-node">
+                  <span class="flywheel-node-label">Sponsors</span>
+                  <span class="flywheel-node-sub">Corporate partners</span>
+                </div>
+              </div>
+              <div class="flywheel-loop" aria-hidden="true">
+                <svg class="flywheel-loop-svg" viewBox="0 0 1000 60">
+                  <!-- Right side down, across bottom, left side up -->
+                  <path d="M900 0 L900 45 L100 45 L100 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                  <!-- Arrowhead pointing up into Grants -->
+                  <path d="M92 16 L100 0 L108 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="flywheel-loop-label">Sponsors fund grants</span>
+              </div>
+              <p class="flywheel-caption reveal">Every dollar in creates value across five business lines.</p>
+            </div>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 7 — PROJECTS PIPELINE
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Projects Pipeline</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="project-grid">
+              <div class="project-card reveal">
+                <img class="project-icon" src="./assets/project-icon-phone.svg" alt="" aria-hidden="true">
+                <span class="project-name">BTC+ App</span>
+                <span class="project-desc">Integrate BTC+ with bitcoin-native tech. Proprietary data layer meets open nostr social graph.<br><br>Wallet integration across events, media, and corporate products.</span>
+                <span class="project-tag">Adoption at scale</span>
+              </div>
+              <div class="project-card reveal">
+                <img class="project-icon project-icon--brand" src="./assets/external-logos/BTCPay.svg" alt="" aria-hidden="true">
+                <span class="project-name">BTCPay POS</span>
+                <span class="project-desc">Every vendor at BTC Inc events accepts sats. Built by a branch grantee, deployed by UTXO.<br><br>White-labeled for external conferences.</span>
+                <span class="project-tag">Commerce on chain</span>
+              </div>
+              <div class="project-card reveal">
+                <img class="project-icon project-icon--brand" src="./assets/external-logos/pubpay_vertical_bluewhite.svg" alt="" aria-hidden="true">
+                <span class="project-name">PubPay Live</span>
+                <span class="project-desc">On-stage nostr zaps and a live audience feed.<br><br>Sats to speakers, reactions and Q&amp;A on the main screen — nostr-native, no legacy event apps.</span>
+                <span class="project-tag">Creators earn sats</span>
+              </div>
+              <div class="project-card reveal">
+                <img class="project-icon project-icon--brand" src="./assets/external-logos/satsigner.svg" alt="" aria-hidden="true">
+                <span class="project-name">Signing UX</span>
+                <span class="project-desc">Hardware/software signing projects showcased at conferences.<br><br>Builds security reputation and developer credibility for branch.</span>
+                <span class="project-tag">Custody for all</span>
+              </div>
+              <div class="project-card reveal">
+                <img class="project-icon" src="./assets/project-icon-blocks.svg" alt="" aria-hidden="true">
+                <span class="project-name">Analytics</span>
+                <span class="project-desc">AI-powered block explorer and on-chain analysis tools.<br><br>Content engine for Bitcoin Magazine technical coverage and corporate clients.</span>
+                <span class="project-tag">Transparency open tools</span>
+              </div>
+              <div class="project-card reveal">
+                <img class="project-icon" src="./assets/project-icon-people.svg" alt="" aria-hidden="true">
+                <span class="project-name">Gaming &amp; VR</span>
+                <span class="project-desc">Open-source gaming and VR built on bitcoin principles. Lightning micropayments, nostr-native identity, verifiable game state.<br><br>Players own assets and earn sats — no walled gardens.</span>
+                <span class="project-tag">New use cases</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 8 — REVENUE MODEL
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Revenue Model</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="three-col reveal">
+              <div class="col">
+                <span class="col-title">Event Technology</span>
+                <ul class="col-items">
+                  <li>Lightning POS, nostr feeds, zap walls deployed at BTC Inc events</li>
+                  <li>Licensed or white-labeled to external conferences</li>
+                  <li>BTC Inc events get the tech at cost &mdash; competitive advantage</li>
+                </ul>
+              </div>
+              <div class="col">
+                <span class="col-title">Corporate Upsell</span>
+                <ul class="col-items">
+                  <li>Branch-funded projects become the product catalog for Bitcoin for Corporations</li>
+                  <li>Enterprise clients pay for integration support and "Powered by branch" partnerships</li>
+                  <li>Sponsors pay premium for association with funded projects</li>
+                </ul>
+              </div>
+              <div class="col">
+                <span class="col-title">Media Content Engine</span>
+                <ul class="col-items">
+                  <li>Grantees produce dev logs, launch stories, and technical deep-dives</li>
+                  <li>Exclusive content for Bitcoin Magazine and Bitcoin TV</li>
+                  <li>Drives subscriptions and ad revenue without paying for content production</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 9 — TEAM
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Team</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="team-grid reveal">
+              <div class="team-card">
+                <div class="team-avatar"><img src="./assets/team-andrew.png" alt="Rockstar Dev"></div>
+                <span class="team-role">Rockstar Dev</span>
+                <span class="team-dept">Engineering</span>
+              </div>
+              <div class="team-card">
+                <div class="team-avatar"><img src="./assets/team-rockstar-dev.png" alt="Pedro"></div>
+                <span class="team-role">Pedro</span>
+                <span class="team-dept">Design</span>
+              </div>
+              <div class="team-card">
+                <div class="team-avatar"><img src="./assets/team-pedro.png" alt="Andrew"></div>
+                <span class="team-role">Andrew</span>
+                <span class="team-dept">Sales &amp; Partnerships</span>
+              </div>
+              <div class="team-card">
+                <div class="team-avatar">Photo</div>
+                <span class="team-role">TBD</span>
+                <span class="team-dept">Content &amp; Dev Rel</span>
+              </div>
+            </div>
+            <p class="team-note reveal">Existing BTC Inc team members contributing part-time. No new hires required. Grant recipients operate as independent open source contributors.</p>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 10 — WHAT IT COSTS
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">What it costs</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="two-col reveal">
+              <div class="col">
+                <span class="col-title">New spend</span>
+                <ul class="col-items">
+                  <li>$75k seed for first round of micro grants</li>
+                  <li>~$10k legal setup for 501(c)(3)</li>
+                  <li>Website and brand collateral &mdash; negligible (branch.b.tc exists)</li>
+                </ul>
+              </div>
+              <div class="col">
+                <span class="col-title">Uses what BTC Inc already pays for</span>
+                <ul class="col-items">
+                  <li>~10% of one engineer's time for grant evaluation and deployment</li>
+                  <li>~10% of one partnerships person's time for sponsor outreach</li>
+                  <li>~10% of one editorial person's time for grantee content</li>
+                  <li>Conference stage time and expo space (already allocated)</li>
+                  <li>Bitcoin TV production capacity (already staffed)</li>
+                </ul>
+              </div>
+            </div>
+            <p class="cost-punchline reveal">Phase 2 target: first corporate sponsor covers 100% of grant costs. BTC Inc's ongoing cost: existing staff, existing infrastructure, existing events.</p>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 11 — ROADMAP (GANTT)
+      ============================ -->
+      <div class="swiper-slide layout-branch-content">
+        <div class="header-band">
+          <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+          <h2 class="section-title reveal">Roadmap</h2>
+          <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+          <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        </div>
+        <div class="content-panel">
+          <div class="content-body">
+            <div class="gantt">
+              <div class="gantt-header">
+                <span class="reveal">Q3 '26</span>
+                <span class="reveal">Q4 '26</span>
+                <span class="reveal">Q1 '27</span>
+                <span class="reveal">Q2 '27</span>
+                <span class="reveal">Q3 '27</span>
+                <span class="reveal">Q4 '27</span>
+                <span class="reveal">Q1 '28</span>
+                <span class="reveal">Q2 '28</span>
+              </div>
+              <!-- Phase 1 rows — Seed & Approval (no grants until funded and approved) -->
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Announce branch</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase1" style="left:0%;width:6%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">501(c)(3) setup</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase1" style="left:2%;width:16%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Internal approval &amp; compliance</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase1" style="left:0%;width:22%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Fundraising / secure funding</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase1" style="left:12.5%;width:37.5%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">First sponsor signed</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase1" style="left:37.5%;width:12.5%"></div>
+                </div>
+              </div>
+              <!-- Phase 2 rows — Grants & Deploy (first grants announced at Bitcoin Nashville 2027) -->
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Bitcoin Nashville 2027 &mdash; first grants announced</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase2" style="left:50%;width:12.5%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Builder grants</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase2" style="left:56%;width:31%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">PubPay live deploy</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase2" style="left:62.5%;width:12.5%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Magazine features</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase2" style="left:56%;width:25%"></div>
+                </div>
+              </div>
+              <!-- Phase 3 rows — Scale -->
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Residencies active</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase3" style="left:75%;width:25%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Event tech licensing</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase3" style="left:75%;width:25%"></div>
+                </div>
+              </div>
+              <div class="gantt-row reveal">
+                <span class="gantt-label">Revenue-positive</span>
+                <div class="gantt-track">
+                  <div class="gantt-bar gantt-bar--phase3" style="left:87.5%;width:12.5%"></div>
+                </div>
+              </div>
+              <div class="gantt-phase-labels">
+                <span class="reveal" style="flex:0 0 50%">Phase 1 &mdash; Seed &amp; Approval</span>
+                <span class="reveal" style="flex:0 0 25%">Phase 2 &mdash; Grants &amp; Deploy</span>
+                <span class="reveal" style="flex:1">Phase 3 &mdash; Scale</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 12 — THE ASK
+      ============================ -->
+      <div class="swiper-slide layout-branch-cover">
+        <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+        <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+        <ol class="ask-list">
+          <li class="reveal"><span class="ask-num">1.</span> Approve branch as an official BTC Inc initiative.</li>
+          <li class="reveal"><span class="ask-num">2.</span> Authorize 501(c)(3) legal setup. (~$10k)</li>
+          <li class="reveal"><span class="ask-num">3.</span> Allocate $75k seed for first round of micro grants.</li>
+        </ol>
+        <p class="ask-footnote reveal">If approved today, 501(c)(3) setup and fundraising begin in 2026, with the first grants announced at Bitcoin Nashville 2027. First live deployment follows later in 2027; the program targets covering its own costs by 2028.<br>Every month without branch, competitors build the ecosystem relationships BTC Inc should own.</p>
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+      <!-- ============================
+           SLIDE 13 — THANK YOU
+      ============================ -->
+      <div class="swiper-slide layout-branch-cover" data-uncounted>
+        <img class="branch-frame" src="./assets/branch-frame.svg" alt="" aria-hidden="true">
+        <img class="btc-logo" src="./assets/btc_inc_logo.svg" alt="BTC Inc">
+        <img class="branch-logo branch-logo--sm" src="./assets/branch-logo.svg" alt="branch">
+        <h1 class="headline thank-you reveal">Thank you.</h1>
+        <span class="watermark">branch.b.tc</span>
+        <span class="slide-counter"></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="deck-controls">
+  <button id="fullscreen-toggle" type="button" aria-label="Enter fullscreen">FULL</button>
+  <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
+  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
+  <button id="theme-toggle" type="button">LIGHT</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  /* =========================================================
+     THEME
+  ========================================================= */
+  function applyTheme(light) {
+    document.documentElement.classList.toggle('light', light);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = light ? 'DARK' : 'LIGHT';
+    try { localStorage.setItem('deck_theme', light ? 'light' : 'dark'); } catch {}
+  }
+
+  function initTheme() {
+    const url   = new URLSearchParams(location.search).get('theme');
+    const saved = (() => { try { return localStorage.getItem('deck_theme'); } catch {} return null; })();
+    applyTheme((url ?? saved ?? 'dark') === 'light');
+  }
+
+  /* =========================================================
+     FULLSCREEN
+  ========================================================= */
+  function getFullscreenElement() {
+    return document.fullscreenElement
+      || document.webkitFullscreenElement
+      || document.mozFullScreenElement
+      || document.msFullscreenElement
+      || null;
+  }
+
+  function updateFullscreenButton() {
+    const btn = document.getElementById('fullscreen-toggle');
+    if (!btn) return;
+    const on = !!getFullscreenElement();
+    btn.textContent = on ? 'EXIT' : 'FULL';
+    btn.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Enter fullscreen');
+  }
+
+  function requestDeckFullscreen() {
+    const el = document.documentElement;
+    if (el.requestFullscreen) return el.requestFullscreen();
+    if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+    if (el.mozRequestFullScreen) return el.mozRequestFullScreen();
+    if (el.msRequestFullscreen) return el.msRequestFullscreen();
+    return Promise.reject(new Error('Fullscreen not supported'));
+  }
+
+  function exitDeckFullscreen() {
+    if (document.exitFullscreen) return document.exitFullscreen();
+    if (document.webkitExitFullscreen) return document.webkitExitFullscreen();
+    if (document.mozCancelFullScreen) return document.mozCancelFullScreen();
+    if (document.msExitFullscreen) return document.msExitFullscreen();
+    return Promise.reject(new Error('Fullscreen not supported'));
+  }
+
+  async function toggleFullscreen() {
+    try {
+      if (getFullscreenElement()) await exitDeckFullscreen();
+      else await requestDeckFullscreen();
+    } catch {}
+  }
+
+  ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange']
+    .forEach(evt => document.addEventListener(evt, updateFullscreenButton));
+
+  /* =========================================================
+     URL HASH
+  ========================================================= */
+  function getInitialSlide() {
+    const m = location.hash.match(/^#(\d+)$/);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  function updateHash(index) {
+    history.replaceState(null, '', index > 0 ? '#' + index : location.pathname + location.search);
+  }
+
+  /* =========================================================
+     SLIDE COUNTERS
+  ========================================================= */
+  function initCounters(slides) {
+    const all     = [...slides];
+    const counted = all.filter(s => !s.hasAttribute('data-uncounted'));
+    const total   = counted.length;
+    counted.forEach((s, i) => {
+      const el = s.querySelector('.slide-counter');
+      if (el) el.textContent = `${i + 1} / ${total}`;
+    });
+    all.filter(s => s.hasAttribute('data-uncounted')).forEach(s => {
+      const el = s.querySelector('.slide-counter');
+      if (el) el.textContent = '';
+    });
+  }
+
+  /* =========================================================
+     STAGGER REVEAL
+  ========================================================= */
+  function triggerReveal(swiper) {
+    swiper.slides.forEach(s => s.classList.remove('s-in'));
+    requestAnimationFrame(() => {
+      const active = swiper.slides[swiper.activeIndex];
+      if (active) active.classList.add('s-in');
+    });
+  }
+
+  /* =========================================================
+     BOOT
+  ========================================================= */
+  initTheme();
+
+  const swiper = new Swiper('.swiper', {
+    loop: false,
+    initialSlide: getInitialSlide(),
+    keyboard: { enabled: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    on: {
+      init(s)        { initCounters(s.slides); updateHash(s.activeIndex); triggerReveal(s); },
+      slideChange(s) { updateHash(s.activeIndex); triggerReveal(s); },
+    },
+  });
+
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    applyTheme(!document.documentElement.classList.contains('light'));
+  });
+
+  document.getElementById('fullscreen-toggle').addEventListener('click', toggleFullscreen);
+  updateFullscreenButton();
+</script>
+</body>
+</html>

@@ -1,0 +1,758 @@
+[
+  {
+    "name": "npub1e96u96u…",
+    "org": "",
+    "angle": "Nostr speaker",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "warn",
+    "picture": "",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1e96u96u3nrjax7hn8c4e5gr37hzkm2zxp86pv6c7skvvpngppu0sd58zhw"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1e96u96u3nrjax7hn8c4e5gr37hzkm2zxp86pv6c7skvvpngppu0sd58zhw",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1e96u96u3nrjax7hn8c4e5gr37hzkm2zxp86pv6c7skvvpngppu0sd58zhw"
+  },
+  {
+    "name": "Bitcoin Journey",
+    "org": "",
+    "angle": "Peer-to-Peer Bitcoin Education & Experiences. Community Educator of the Bitcoin Basin Circular Economy.",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/1a6fd4ed8d7978d2a18709ebcde8b1789b481c24adc965ed75c988cbb10d5c1b.png",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub19j2j53z4zeka2e9038yxxww093kjgrsphmddqrgntc03uwgs6wcsxmnm2u"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub19j2j53z4zeka2e9038yxxww093kjgrsphmddqrgntc03uwgs6wcsxmnm2u",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub19j2j53z4zeka2e9038yxxww093kjgrsphmddqrgntc03uwgs6wcsxmnm2u"
+  },
+  {
+    "name": "HT",
+    "org": "ht@nostrplebs.com",
+    "angle": "Off Grid 𝕭𝖎𝖙𝖈𝖔𝖎𝖓 Mining since 17' ⚒️⛏️ ₿itcoin Mining Consults, CEO Sovereign Hybrid Compute, Hardened VPN/VPS in",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://image.nostr.build/448b0bea5d83e52606494b20be792d4c4e1ec20f537da013f519ccb7b85c6399.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub17swrr0ll933wv4djnzfkeg2g9qxp59237pzf67mvkfj4qr265skqxpumsd"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub17swrr0ll933wv4djnzfkeg2g9qxp59237pzf67mvkfj4qr265skqxpumsd",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://ht@nostrplebs.com",
+        "label": "ht@nostrplebs.com"
+      }
+    ],
+    "raw": "https://njump.me/nprofile1qqs0g8p3hlljcchx2kef3ymv59yzsrq6z4glq3ya0dktye2sp4d2gtqpr4mhxue69uhkummnw3ezucnfw33k76twv4ezuum0vd5kzmp0506uyk"
+  },
+  {
+    "name": "Vibitcoiner",
+    "org": "",
+    "angle": "Co-Founder of Bitcoinjourney.nz 🇦🇷🇳🇿 Bitcoin Education & Experiences",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/da30731963be1cefb09ca0cef2790a130723326892dc2396bd8618a566dff393.png",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1a0f90xnrj2e0v0rr5eh49zy48apww8j95mn3lzf95ghdxmsfdyts6s0j3x"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1a0f90xnrj2e0v0rr5eh49zy48apww8j95mn3lzf95ghdxmsfdyts6s0j3x",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1a0f90xnrj2e0v0rr5eh49zy48apww8j95mn3lzf95ghdxmsfdyts6s0j3x"
+  },
+  {
+    "name": "Second",
+    "org": "_@nostr.second.tech",
+    "angle": "Simple solutions for integrating Ark and Lightning payments into your apps. Painlessly deliver fast, low-cost, self-cust",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/430dbc0eebab9d7da92bcde1480820b86458447d104232733fc86616bae44ff4.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1ake09xg6t9nf6gsssumarwa7ev0kt2fdyjstvnc9k32hegr9y45seapfwt"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1ake09xg6t9nf6gsssumarwa7ev0kt2fdyjstvnc9k32hegr9y45seapfwt",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://_@nostr.second.tech",
+        "label": "_@nostr.second.tech"
+      }
+    ],
+    "raw": "https://njump.me/npub1ake09xg6t9nf6gsssumarwa7ev0kt2fdyjstvnc9k32hegr9y45seapfwt"
+  },
+  {
+    "name": "Jimmy Kostro",
+    "org": "chiangmai@zaps.lol",
+    "angle": "Asia’s largest and fastest growing physical Bitcoin hub.",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/cadbe76cf6fcac9beaf3a246d138fd6d03835126035dae4110edaf97a8dd6211.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1c9r9lad84kpqwnh09u58vdzwnfsnxcr7a40uf5ulkpdguq4667jsgaxu4k"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1c9r9lad84kpqwnh09u58vdzwnfsnxcr7a40uf5ulkpdguq4667jsgaxu4k",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://chiangmai@zaps.lol",
+        "label": "chiangmai@zaps.lol"
+      }
+    ],
+    "raw": "https://njump.me/npub1c9r9lad84kpqwnh09u58vdzwnfsnxcr7a40uf5ulkpdguq4667jsgaxu4k"
+  },
+  {
+    "name": "Student of Bitcoin",
+    "org": "studentofbitcoin@nostr.fan",
+    "angle": "💡 Bringing bitcoin ideas to life 🟠 Empowering bitcoin entrepreneurs 📍Cairo to Cape Town",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://yakihonne.s3.ap-east-1.amazonaws.com/4f82bced42584a6acfced2a657b5acabc4f90d75a95ed3ff888f3b04b8928630/files/1728994020962-YAKIHONNES3.png",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1f7ptem2ztp9x4n7w62n90ddv40z0jrt4490d8lug3uasfwyjsccqkknerm"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1f7ptem2ztp9x4n7w62n90ddv40z0jrt4490d8lug3uasfwyjsccqkknerm",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://studentofbitcoin@nostr.fan",
+        "label": "studentofbitcoin@nostr.fan"
+      }
+    ],
+    "raw": "https://njump.me/npub1f7ptem2ztp9x4n7w62n90ddv40z0jrt4490d8lug3uasfwyjsccqkknerm"
+  },
+  {
+    "name": "Code Orange Dev School",
+    "org": "",
+    "angle": "Asia’s Bitcoiner School",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/0218045f3a001c15a3a99c90a9c74dc527355f237428b95eaafcb29118d8ae5e.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1gxqyeea3xspkd68mxlxsvvk3gdzdd555u504ynwpdj0ghg503mvq2gydt0"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1gxqyeea3xspkd68mxlxsvvk3gdzdd555u504ynwpdj0ghg503mvq2gydt0",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1gxqyeea3xspkd68mxlxsvvk3gdzdd555u504ynwpdj0ghg503mvq2gydt0"
+  },
+  {
+    "name": "Brian Hoonjong Paik",
+    "org": "brianhoonjong@nostrplebs.com",
+    "angle": "CEO at SmashFi Author of “Bitcoin Handbook” Bitcoiner. Stacking sats.",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://image.nostr.build/d37a7faba75d5d68f5aa06ddac52351af5f19fc7c03874a7d89e933bbfa474d3.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1jf54924h4509t9xz94juypy05wugenz85x6ez77flswl7cngd0lqnmuuw9"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1jf54924h4509t9xz94juypy05wugenz85x6ez77flswl7cngd0lqnmuuw9",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://brianhoonjong@nostrplebs.com",
+        "label": "brianhoonjong@nostrplebs.com"
+      }
+    ],
+    "raw": "https://njump.me/npub1jf54924h4509t9xz94juypy05wugenz85x6ez77flswl7cngd0lqnmuuw9"
+  },
+  {
+    "name": "Electra",
+    "org": "electrafi@nostrplebs.com",
+    "angle": "Collaboratively Accounting for Bitcoin and Open Blockchains Web2: www.linkedin.com/in/electra-frost Substack: blog.elect",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://m.primal.net/QIWS.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1menrmd24ejnp9dk38au0vzw0fe9xsr25jdtdndj0eukapxz7vdps8sl4nq"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1menrmd24ejnp9dk38au0vzw0fe9xsr25jdtdndj0eukapxz7vdps8sl4nq",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://electrafi@nostrplebs.com",
+        "label": "electrafi@nostrplebs.com"
+      }
+    ],
+    "raw": "https://njump.me/npub1menrmd24ejnp9dk38au0vzw0fe9xsr25jdtdndj0eukapxz7vdps8sl4nq"
+  },
+  {
+    "name": "Piriya ⚡🟧",
+    "org": "piriya@rightshift.to",
+    "angle": "Bitcoin is the antidote to the Fiat poison.",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://pbs.twimg.com/profile_images/1371009210901692420/7Fy8Oy1__400x400.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1prya33fnqerq0fljwjtp77ehtu7jlsjt5ydhwveuwmqdsdm6k8esk42xcv"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1prya33fnqerq0fljwjtp77ehtu7jlsjt5ydhwveuwmqdsdm6k8esk42xcv",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://piriya@rightshift.to",
+        "label": "piriya@rightshift.to"
+      }
+    ],
+    "raw": "https://njump.me/npub1prya33fnqerq0fljwjtp77ehtu7jlsjt5ydhwveuwmqdsdm6k8esk42xcv"
+  },
+  {
+    "name": "Stephan Livera",
+    "org": "stephan@primal.net",
+    "angle": "#Bitcoin Podcaster and Advisor to Bold",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://pbs.twimg.com/profile_images/1362551718110580740/v-W5Q2uo_400x400.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1r8l06leee9kjlam0slmky7h8j9zme9ca32erypgqtyu6t2gnhshs3jx5dk"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1r8l06leee9kjlam0slmky7h8j9zme9ca32erypgqtyu6t2gnhshs3jx5dk",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://stephan@primal.net",
+        "label": "stephan@primal.net"
+      }
+    ],
+    "raw": "https://njump.me/npub1r8l06leee9kjlam0slmky7h8j9zme9ca32erypgqtyu6t2gnhshs3jx5dk"
+  },
+  {
+    "name": "Chris @ seedor_io",
+    "org": "seedor@nostrplebs.com",
+    "angle": "🇩🇪 Backup your Bitcoin Recovery Seed in a durable yet elegant way - with SEEDOR. Fire resistant. Water resistant. Aci",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://pbs.twimg.com/profile_images/1805669997340942336/kz7fZu2d.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1r8343wqpra05l3jnc4jud4xz7vlnyeslf7gfsty7ahpf92rhfmpsmqwym8"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1r8343wqpra05l3jnc4jud4xz7vlnyeslf7gfsty7ahpf92rhfmpsmqwym8",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://seedor@nostrplebs.com",
+        "label": "seedor@nostrplebs.com"
+      }
+    ],
+    "raw": "https://njump.me/npub1r8343wqpra05l3jnc4jud4xz7vlnyeslf7gfsty7ahpf92rhfmpsmqwym8"
+  },
+  {
+    "name": "James Pierog",
+    "org": "",
+    "angle": "Co-Founder & CEO of Glimpse",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://image.nostr.build/e952476eb7be60dacc3b50c0607c764650269b407f9e9619d76df33c3d9da9b0.png",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1u8r69esh5r7jt29nj9ufmz4yvuwp6cwl5xqp4e3d46vl8wla5smsexjcky"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1u8r69esh5r7jt29nj9ufmz4yvuwp6cwl5xqp4e3d46vl8wla5smsexjcky",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1u8r69esh5r7jt29nj9ufmz4yvuwp6cwl5xqp4e3d46vl8wla5smsexjcky"
+  },
+  {
+    "name": "Aditya Ranjan",
+    "org": "",
+    "angle": "Building Bitcoin Bharat | Educating India about Bitcoin, money & financial freedom. Travelling across campuses and commu",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/fced6f55603a07f69e450627cb3858ded91dc25cb36740232608c818ec262ec8.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1v3yrr2z6tza5580dwn0cfmh29f2qqdls9gq385v4t094eq9putkqtvsql3"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1v3yrr2z6tza5580dwn0cfmh29f2qqdls9gq385v4t094eq9putkqtvsql3",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1v3yrr2z6tza5580dwn0cfmh29f2qqdls9gq385v4t094eq9putkqtvsql3"
+  },
+  {
+    "name": "Harpreet",
+    "org": "",
+    "angle": "## Harpreet Singh Maan **Co-Founder & CEO, TEIZA** | **President, ACCESS Blockchain Association Malaysia** --- ### Bi",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1xe9zavkhshgu3035uw3ah0qfge0qa0tnuqm26vn8z0ffg0dxv9jstzmgdc"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1xe9zavkhshgu3035uw3ah0qfge0qa0tnuqm26vn8z0ffg0dxv9jstzmgdc",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1xe9zavkhshgu3035uw3ah0qfge0qa0tnuqm26vn8z0ffg0dxv9jstzmgdc"
+  },
+  {
+    "name": "Marius Off🔗Chain",
+    "org": "Marius@primal.net",
+    "angle": "Spreading the word about Bitcoin on offchain.media and also writting stuff for Cryptoast",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://m.primal.net/JXfT.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1yxkvnuk32mw0tvw36u48x008k7anrlytv4rrp6pcrkeytq2uusdqdmw8a5"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1yxkvnuk32mw0tvw36u48x008k7anrlytv4rrp6pcrkeytq2uusdqdmw8a5",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://Marius@primal.net",
+        "label": "Marius@primal.net"
+      }
+    ],
+    "raw": "https://njump.me/npub1yxkvnuk32mw0tvw36u48x008k7anrlytv4rrp6pcrkeytq2uusdqdmw8a5"
+  },
+  {
+    "name": "Roland",
+    "org": "rolznz@getalby.com",
+    "angle": "Building Lightsats⚡ + Alby 🐝 A5EABD8835092B08 Who is John Galt?",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/3a801a36c712a02d1c85c8241f4ae1b7461d7bcea09cd01afeb166ea2933d601.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1zk6u7mxlflguqteghn8q7xtu47hyerruv6379c36l8lxzzr4x90q0gl6ef"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1zk6u7mxlflguqteghn8q7xtu47hyerruv6379c36l8lxzzr4x90q0gl6ef",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://rolznz@getalby.com",
+        "label": "rolznz@getalby.com"
+      }
+    ],
+    "raw": "https://njump.me/npub1zk6u7mxlflguqteghn8q7xtu47hyerruv6379c36l8lxzzr4x90q0gl6ef"
+  },
+  {
+    "name": "mineracks",
+    "org": "piers@mineracks.com",
+    "angle": "bitcoin mining, node hosting, self custody, consulting",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://images.squarespace-cdn.com/content/v1/612781a6864dfb78834c4a0e/8b7c78cc-e4bd-48d7-92fc-af643f20c5e8/D7407B02-E024-4D0E-847E-D0962D1FF573.jpeg?format=750w",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub12r5zunqwnccf8dhy5jvx6wspynxrruy5t4yr4n7jqvxzqykwc7nqqe8g4s"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub12r5zunqwnccf8dhy5jvx6wspynxrruy5t4yr4n7jqvxzqykwc7nqqe8g4s",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://piers@mineracks.com",
+        "label": "piers@mineracks.com"
+      }
+    ],
+    "raw": "https://njump.me/npub12r5zunqwnccf8dhy5jvx6wspynxrruy5t4yr4n7jqvxzqykwc7nqqe8g4s"
+  },
+  {
+    "name": "Pedro 🧨",
+    "org": "_@pedromvpg.com",
+    "angle": "Learning Bitcoin - http://anatomyofbitcoin.com - http://satsigner.com - http://piratehash.com - http://bitcoinOPUXUI.com",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://blossom.primal.net/fcb540fe2b667a0d32feb52a2ce38645c43693c9276bd114ce4512ce5db89416.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub13nfdp7p3pacqn6202q33sur4djeehf50xagxq3y3pchhzjptz7yqenvn7c"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub13nfdp7p3pacqn6202q33sur4djeehf50xagxq3y3pchhzjptz7yqenvn7c",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://_@pedromvpg.com",
+        "label": "_@pedromvpg.com"
+      }
+    ],
+    "raw": "https://njump.me/npub13nfdp7p3pacqn6202q33sur4djeehf50xagxq3y3pchhzjptz7yqenvn7c"
+  },
+  {
+    "name": "Bala",
+    "org": "",
+    "angle": "Nostr speaker",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://m.primal.net/Kkdt.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub15g6xtc8endwv0lj8ukrxmqzjzaa20k4q69uhqdpdge6wvtx76n0qpfzj0w"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub15g6xtc8endwv0lj8ukrxmqzjzaa20k4q69uhqdpdge6wvtx76n0qpfzj0w",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub15g6xtc8endwv0lj8ukrxmqzjzaa20k4q69uhqdpdge6wvtx76n0qpfzj0w"
+  },
+  {
+    "name": "kishin (btc_dakara)",
+    "org": "kishin@trustless-services.com",
+    "angle": "Bitcoin / Lightning⚡ Twitter: @btc_dakara",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://pbs.twimg.com/profile_images/1301092023244476416/3tKIxQ0X_400x400.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub162mtqyjgtmrdhlras3zyd5nqsysdyhw9fepj242c93uvaxakthzqa7rrj8"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub162mtqyjgtmrdhlras3zyd5nqsysdyhw9fepj242c93uvaxakthzqa7rrj8",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://kishin@trustless-services.com",
+        "label": "kishin@trustless-services.com"
+      }
+    ],
+    "raw": "https://njump.me/npub162mtqyjgtmrdhlras3zyd5nqsysdyhw9fepj242c93uvaxakthzqa7rrj8"
+  },
+  {
+    "name": "Mr. M Podcast",
+    "org": "",
+    "angle": "Nostr speaker",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://ik.imagekit.io/pnbizia3c/nostr/profiles/npub169s9jsu7dll9czl_lIzi66oMF",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub169s9jsu7dll9czldmtnfjhu22u4gt6f3umxpqn2k0r50tz9fdfwq0xl3h0"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub169s9jsu7dll9czldmtnfjhu22u4gt6f3umxpqn2k0r50tz9fdfwq0xl3h0",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub169s9jsu7dll9czldmtnfjhu22u4gt6f3umxpqn2k0r50tz9fdfwq0xl3h0"
+  },
+  {
+    "name": "Avik Roy",
+    "org": "",
+    "angle": "Nostr speaker",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://image.nostr.build/73d11768eb2a3025ff0ec86d88f5161ecf705773b044b01c87f889ceecd30ee8.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1324a9y06c8qewx2yl952j78u26mv9h94z9xp8kcwfwdnhdyvspnsxkvcjz"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1324a9y06c8qewx2yl952j78u26mv9h94z9xp8kcwfwdnhdyvspnsxkvcjz",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1324a9y06c8qewx2yl952j78u26mv9h94z9xp8kcwfwdnhdyvspnsxkvcjz"
+  },
+  {
+    "name": "gsovereignty",
+    "org": "",
+    "angle": "Nostr speaker",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "",
+    "links": [
+      {
+        "t": "web_url",
+        "v": "https://primal.net/gsovereignty",
+        "label": "Primal"
+      }
+    ],
+    "raw": "https://primal.net/gsovereignty"
+  },
+  {
+    "name": "thewhalelounge",
+    "org": "",
+    "angle": "Nostr speaker",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "",
+    "links": [
+      {
+        "t": "web_url",
+        "v": "https://primal.net/thewhalelounge",
+        "label": "Primal"
+      }
+    ],
+    "raw": "https://primal.net/thewhalelounge"
+  },
+  {
+    "name": "dawninthewild",
+    "org": "",
+    "angle": "Nostr speaker · X only in source list",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "links": [
+      {
+        "t": "x",
+        "v": "dawninthewild"
+      }
+    ],
+    "raw": "https://x.com/dawninthewild"
+  },
+  {
+    "name": "BitcoinAnja",
+    "org": "",
+    "angle": "Curious human asking big questions 🌴 Exploring freedom & value 🎙️ Host of @honestmoneyshow 📚 Always learning/often un",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://image.nostr.build/f63f90642f6e019fb11411a5899d425fc26335289d4165676082dcd4b64b8c48.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1gxpk0rvwh7afctazl7w33qxpxxcm6k0e29q3kqd5gcqgrn6acdwstlfx5j"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1gxpk0rvwh7afctazl7w33qxpxxcm6k0e29q3kqd5gcqgrn6acdwstlfx5j",
+        "label": "njump"
+      }
+    ],
+    "raw": "https://njump.me/npub1gxpk0rvwh7afctazl7w33qxpxxcm6k0e29q3kqd5gcqgrn6acdwstlfx5j"
+  },
+  {
+    "name": "Jack Lee",
+    "org": "jacklee@primal.net",
+    "angle": "Jack Lee Linktree: https://hcm.capital/jack #Bitcoin, and #Nostr ",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://m.primal.net/IiCv.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub1dg93ktmdyez89q98gg3lgjw2vrvmxr5cm69yc8c79tkfhmpfq09spgdu3h"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub1dg93ktmdyez89q98gg3lgjw2vrvmxr5cm69yc8c79tkfhmpfq09spgdu3h",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://jacklee@primal.net",
+        "label": "jacklee@primal.net"
+      }
+    ],
+    "raw": "npub1dg93ktmdyez89q98gg3lgjw2vrvmxr5cm69yc8c79tkfhmpfq09spgdu3h"
+  },
+  {
+    "name": "Shaun",
+    "org": "shaun@yakihonne.com",
+    "angle": "Long is the way and hard, that out of Hell leads up to the light.",
+    "tags": [
+      "Nostr",
+      "speaker"
+    ],
+    "conf": "ok",
+    "picture": "https://yakihonne.s3.ap-east-1.amazonaws.com/af9d70407464247d19fd243cf1bee81e6df1e639217dc66366bf37aa42d05d35/files/1720499568246-YAKIHONNES3.jpg",
+    "links": [
+      {
+        "t": "nostr",
+        "v": "npub147whqsr5vsj86x0ays70r0hgreklre3ey97uvcmxhum65skst56s30selt"
+      },
+      {
+        "t": "web_url",
+        "v": "https://njump.me/npub147whqsr5vsj86x0ays70r0hgreklre3ey97uvcmxhum65skst56s30selt",
+        "label": "njump"
+      },
+      {
+        "t": "web_url",
+        "v": "https://shaun@yakihonne.com",
+        "label": "shaun@yakihonne.com"
+      }
+    ],
+    "raw": "npub147whqsr5vsj86x0ays70r0hgreklre3ey97uvcmxhum65skst56s30selt"
+  }
+]

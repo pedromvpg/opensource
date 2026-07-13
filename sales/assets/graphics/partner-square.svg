@@ -1,0 +1,16 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1080" fill="#000"/>
+  <rect x="48" y="48" width="984" height="984" stroke="#FF9500" stroke-width="3" fill="none" opacity="0.35"/>
+  <circle cx="540" cy="200" r="72" fill="#FF9500" opacity="0.12"/>
+  <path d="M540 128c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm0 108c-19.9 0-36-16.1-36-36s16.1-36 36-36 36 16.1 36 36-16.1 36-36 36z" fill="#FF9500"/>
+  <text x="540" y="340" text-anchor="middle" fill="#FF9500" font-family="system-ui,sans-serif" font-size="28" font-weight="600" letter-spacing="0.2em">COMMUNITY PARTNER</text>
+  <text x="540" y="430" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="64" font-weight="700">[Community Name]</text>
+  <text x="540" y="520" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-family="system-ui,sans-serif" font-size="32" font-weight="400">Open Source Hub</text>
+  <line x1="200" y1="580" x2="880" y2="580" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+  <text x="540" y="660" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="36" font-weight="600">Bitcoin Asia 2026</text>
+  <text x="540" y="720" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="system-ui,sans-serif" font-size="28">Hong Kong / Late August</text>
+  <rect x="240" y="780" width="600" height="120" rx="4" fill="rgba(255,149,0,0.12)" stroke="#FF9500" stroke-width="2"/>
+  <text x="540" y="840" text-anchor="middle" fill="#FF9500" font-family="system-ui,sans-serif" font-size="26" font-weight="600">FREE DEV PASSES</text>
+  <text x="540" y="878" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,sans-serif" font-size="22">Code: [CODE] / [CLAIM LINK]</text>
+  <text x="540" y="1000" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="system-ui,sans-serif" font-size="20" letter-spacing="0.12em">COMMUNITY PARTNER / FREE DEV PASSES</text>
+</svg>

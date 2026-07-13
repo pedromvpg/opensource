@@ -1,0 +1,29 @@
+<svg width="1000" height="340" viewBox="0 0 1000 340" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="1000" height="340" fill="#000"/>
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      text{font-family:'Inter',system-ui,-apple-system,sans-serif;}
+      .tag  {fill:rgba(255,255,255,0.58);font-weight:600;letter-spacing:6px;}
+      .kick {fill:#fff;font-weight:800;letter-spacing:16px;}
+      .hero {fill:#fff;font-weight:900;letter-spacing:1px;}
+      .title{fill:#fff;font-weight:900;letter-spacing:8px;}
+      .cta  {fill:#fff;font-weight:800;letter-spacing:2px;}
+      .sub  {fill:rgba(255,255,255,0.60);font-weight:500;}
+      .badge{fill:#fff;font-weight:900;}
+      .kickO{fill:#F7931A;font-weight:800;letter-spacing:10px;}
+      .tname{fill:#fff;font-weight:700;}
+      .foot {fill:rgba(255,255,255,0.55);font-weight:600;letter-spacing:5px;}
+      .arrow{fill:#F7931A;font-weight:900;}
+    </style>
+  </defs>
+
+  <path d="M120 40 H880 V262 L520 262 L500 300 L480 262 H120 Z" fill="#0b0b0b" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+  <rect x="120" y="40" width="760" height="9" fill="#F7931A"/>
+  <text class="tag"  x="500" y="112" font-size="21" text-anchor="middle">OPEN SOURCE HUB · DELEGATE</text>
+  <text class="hero" x="500" y="192" font-size="58" text-anchor="middle" filter="url(#glow)">[ COMMUNITY ]</text>
+  <text class="foot" x="500" y="238" font-size="17" text-anchor="middle">BITCOIN ASIA 2026 · HONG KONG</text>
+</svg>

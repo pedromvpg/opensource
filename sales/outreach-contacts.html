@@ -1,0 +1,3212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Open source hub outreach contact directory — distribute developer tickets and amplify conference Open Source Hubs across regions." />
+<meta name="application-name" content="Outreach contacts" />
+<title>Outreach contacts · Open source hub</title>
+<script>
+(function () {
+  var t = localStorage.getItem("osh-theme");
+  if (!t && window.matchMedia("(prefers-color-scheme: light)").matches) t = "light";
+  document.documentElement.setAttribute("data-theme", t || "dark");
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root,
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #000;
+    --bg-2: #000;
+    --panel: #000;
+    --panel-hover: #0a0a0a;
+    --ink: #fff;
+    --ink-soft: rgba(255,255,255,0.62);
+    --ink-muted: rgba(255,255,255,0.42);
+    --ink-faint: rgba(255,255,255,0.28);
+    --border: rgba(255,255,255,0.10);
+    --border-soft: rgba(255,255,255,0.06);
+    --surface-subtle: rgba(255,255,255,0.04);
+    --surface-hover: rgba(255,255,255,0.06);
+    --controls-bg: rgba(0,0,0,0.95);
+    --link-bg: rgba(255,255,255,0.04);
+    --link-hover-bg: rgba(255,255,255,0.08);
+    --link-hover-border: rgba(255,255,255,0.3);
+    --card-hover-border: rgba(255,255,255,0.22);
+    --section-caveat-bg: rgba(232,185,59,0.07);
+    --section-caveat-border: rgba(232,185,59,0.22);
+    --section-caveat-text: rgba(255,255,255,0.7);
+    --accent: #FF9500;
+    --ok: #3ecf8e;
+    --warn: #e8b93b;
+    --dead: #ef5f5f;
+    --star: #FF9500;
+    --font-display: 'Geist', system-ui, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, monospace;
+    --font-inter: 'Inter', system-ui, sans-serif;
+  }
+
+  html[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f4f4f5;
+    --bg-2: #ebebed;
+    --panel: #fff;
+    --panel-hover: #f0f0f2;
+    --ink: #0a0a0a;
+    --ink-soft: rgba(0,0,0,0.62);
+    --ink-muted: rgba(0,0,0,0.45);
+    --ink-faint: rgba(0,0,0,0.32);
+    --border: rgba(0,0,0,0.12);
+    --border-soft: rgba(0,0,0,0.07);
+    --surface-subtle: rgba(0,0,0,0.03);
+    --surface-hover: rgba(0,0,0,0.05);
+    --controls-bg: rgba(244,244,245,0.95);
+    --link-bg: rgba(0,0,0,0.04);
+    --link-hover-bg: rgba(0,0,0,0.07);
+    --link-hover-border: rgba(0,0,0,0.22);
+    --card-hover-border: rgba(0,0,0,0.2);
+    --section-caveat-bg: rgba(232,185,59,0.12);
+    --section-caveat-border: rgba(232,185,59,0.35);
+    --section-caveat-text: rgba(0,0,0,0.72);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; background: var(--bg); }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  .wrap.hub-shell { max-width: none; width: 100%; }
+  .hub-shell {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
+  }
+  .hub-shell .stats { flex-shrink: 0; }
+
+  .hub-bar,
+  header.top { flex-shrink: 0; }
+  .hub-bar {
+    width: 100%;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .hub-brand {
+    width: 100%;
+    margin: 0;
+    padding: 18px 24px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--bg);
+    font-family: var(--font-inter);
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .hub-brand-main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(14px, 4.5vw, 32px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.06em;
+  }
+  .hub-brand-sub {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(9px, 1.8vw, 12px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+  }
+  html[data-theme="dark"] .hub-brand-sub {
+    color: var(--ink-soft);
+  }
+
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color .15s, border-color .15s, background .15s;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--card-hover-border); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .icon-sun { display: none; }
+  html[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+  html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+
+  html[data-theme="light"] .event-tab-logo { filter: brightness(0); }
+
+  /* ---------- Header ---------- */
+  header.top {
+    padding: 32px 0 28px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .event-tabs {
+    display: flex; justify-content: center; gap: 0; margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .event-tab {
+    padding: 14px 20px 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: border-color .15s, opacity .15s;
+    opacity: 0.45;
+  }
+  .event-tab:hover { opacity: 0.75; }
+  .event-tab.active { opacity: 1; border-bottom-color: var(--accent); }
+  .event-tab-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+    pointer-events: none;
+  }
+  .event-tab[data-event="btc-2027"] .event-tab-logo { height: 17px; }
+
+  .empty-event {
+    text-align: center; color: var(--ink-muted);
+    padding: 80px 24px; font-family: var(--font-inter); font-size: 15px;
+    border: 1px solid var(--border); background: var(--panel);
+  }
+
+  /* ---------- Stats ---------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px; margin: 28px 0 4px;
+  }
+  .stat {
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 18px 20px;
+  }
+  .stat .num {
+    font-family: var(--font-mono);
+    font-size: 30px; font-weight: 500; letter-spacing: -0.04em;
+  }
+  .stat .lbl {
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--ink-muted); margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .stat.ok .num { color: var(--ok); }
+  .stat.warn .num { color: var(--warn); }
+  .stat.accent .num { color: var(--accent); }
+
+  /* ---------- Strategy ---------- */
+  .strategy {
+    margin-top: 28px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .strategy-head {
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .strategy-head h2 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .strategy-head p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 720px;
+  }
+  .strategy-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--border-soft);
+    overflow-x: auto;
+  }
+  .strategy-tab {
+    flex-shrink: 0;
+    padding: 11px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--ink-muted);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+    margin-bottom: -1px;
+  }
+  .strategy-tab:hover { color: var(--ink-soft); }
+  .strategy-tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+  .strategy-body { padding: 20px 22px 22px; }
+  .strategy-panel { display: none; }
+  .strategy-panel.active { display: block; }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 22px;
+  }
+  .strategy-block h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .strategy-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .strategy-points li {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .strategy-points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+  }
+  .strategy-points strong { color: var(--ink); font-weight: 600; }
+  .strategy-audience {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .strategy-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    color: var(--ink-muted);
+    background: var(--surface-subtle);
+  }
+  .track-contacts {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .track-contacts-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .track-contacts-count {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .track-contacts .grid { margin-top: 0; }
+  .track-contacts .table-wrap { margin-top: 16px; }
+  .msg-sample {
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: #fff;
+    padding: 14px 16px;
+    position: relative;
+  }
+  .msg-sample pre {
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #1a1a1a;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+  }
+  .msg-sample .template-var,
+  .partnership-modal-body .template-var {
+    color: #0a0a0a;
+    font-weight: 700;
+    background: rgba(255, 149, 0, 0.14);
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+  .msg-copy {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    font-family: var(--font-display);
+    font-size: 12px;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+  }
+  .msg-copy:hover { color: var(--ink); border-color: var(--card-hover-border); }
+  .msg-copy.copied { color: var(--ok); border-color: var(--ok); }
+  .msg-channel {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+  }
+  .msg-channel span { color: var(--ink-soft); }
+  @media (max-width: 900px) {
+    .strategy-grid { grid-template-columns: 1fr; }
+  }
+  .strategy + .stats { margin-top: 16px; }
+
+  /* ---------- Hub vertical tabs ---------- */
+  .hub-layout.hub-nav-collapsed {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+  .hub-nav-collapse-wrap {
+    flex-shrink: 0;
+    padding: 4px 10px 8px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .hub-nav-collapse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: color .15s, border-color .15s, background .15s;
+  }
+  .hub-nav-collapse:hover {
+    color: var(--ink);
+    border-color: var(--card-hover-border);
+    background: var(--surface-hover);
+  }
+  .hub-nav-collapse svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .hub-nav-collapse .collapse-icon-collapsed { display: none; }
+  .hub-layout.hub-nav-collapsed .hub-nav-collapse .collapse-icon-expanded { display: none; }
+  .hub-layout.hub-nav-collapsed .hub-nav-collapse .collapse-icon-collapsed { display: block; }
+  .hub-layout.hub-nav-collapsed .hub-nav-label,
+  .hub-layout.hub-nav-collapsed .hub-nav-tab-label,
+  .hub-layout.hub-nav-collapsed .hub-nav-count {
+    display: none;
+  }
+  .hub-layout.hub-nav-collapsed .hub-nav-tab {
+    justify-content: center;
+    padding: 9px 6px;
+    gap: 0;
+  }
+  .hub-layout.hub-nav-collapsed .hub-nav-tab .flag { font-size: 16px; }
+  .hub-layout.hub-nav-collapsed .hub-nav-collapse-wrap {
+    padding: 4px 6px 8px;
+  }
+  .hub-layout.hub-nav-collapsed .hub-nav-footer {
+    padding: 12px 6px 4px;
+  }
+  .hub-layout.hub-nav-collapsed .hub-nav-theme {
+    width: 100%;
+    height: 32px;
+  }
+  .hub-layout {
+    display: grid;
+    grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
+    align-items: stretch;
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    overflow: hidden;
+  }
+  .hub-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 0 14px;
+    border-right: 1px solid var(--border);
+    background: var(--panel);
+    align-self: stretch;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  #hubNavTabs {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-height: 0;
+  }
+  .hub-nav-label {
+    padding: 14px 16px 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+  .hub-nav-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    padding: 9px 16px;
+    background: transparent;
+    border: none;
+    border-left: 2px solid transparent;
+    color: var(--ink-muted);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color .15s, background .15s, border-color .15s;
+  }
+  .hub-nav-tab:hover { color: var(--ink-soft); background: var(--surface-hover); }
+  .hub-nav-tab.active {
+    color: var(--ink);
+    border-left-color: var(--accent);
+    background: var(--surface-hover);
+  }
+  .hub-nav-tab .flag { flex-shrink: 0; font-size: 14px; line-height: 1; }
+  .hub-nav-tab .hub-nav-count {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+  }
+  .hub-nav-footer {
+    margin-top: auto;
+    padding: 12px 16px 4px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .hub-nav-theme { width: 100%; }
+  .hub-main {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .hub-panels {
+    min-width: 0;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  .hub-panel[hidden] { display: none !important; }
+  .hub-panel { display: none; }
+  .hub-panel.active { display: block; }
+  .hub-panel .hub-panel-body { padding: 0 22px 22px; }
+  .hub-panel .sample-graphics {
+    margin-top: 0;
+    border: none;
+  }
+  .section-campaign {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .section-campaign-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .section--track .section-note.track-hint {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .hub-panel .section { margin-top: 0; scroll-margin-top: 0; padding: 20px 22px 28px; }
+  .hub-panel .section:first-child { margin-top: 0; }
+  .contact-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-soft);
+    border-top: none;
+    padding: 6px 0;
+    flex-shrink: 0;
+  }
+  .contact-toolbar > .wrap {
+    max-width: none;
+    padding: 0 22px;
+  }
+  .contact-toolbar .controls-inner {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .contact-toolbar .search {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 240px;
+  }
+  .contact-toolbar .search input {
+    padding: 6px 10px 6px 30px;
+    font-size: 13px;
+  }
+  .contact-toolbar .search svg {
+    left: 10px;
+    width: 14px;
+    height: 14px;
+  }
+  .contact-toolbar .shortlist-toggle,
+  .contact-toolbar .conf-toggle {
+    padding: 5px 8px;
+    font-size: 12px;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .contact-toolbar .conf-filter {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .contact-toolbar .view-btn {
+    padding: 5px 9px;
+    font-size: 12px;
+    gap: 4px;
+  }
+  .contact-toolbar .view-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+  .contact-toolbar .controls-end {
+    gap: 6px;
+  }
+  .hub-panel .no-results { margin: 40px 24px; }
+  @media (max-width: 900px) {
+    .hub-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+    .hub-layout.hub-nav-collapsed { grid-template-columns: 1fr; }
+    .hub-nav-collapse-wrap { display: none; }
+    .hub-main { height: auto; overflow: visible; }
+    .hub-panels { overflow: visible; }
+    .hub-nav {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      max-height: none;
+      min-height: 0;
+      height: auto;
+      align-self: auto;
+      position: relative;
+      top: auto;
+      padding: 8px 10px;
+      gap: 4px;
+    }
+    .hub-nav-label { display: none; }
+    .hub-nav-tab {
+      width: auto;
+      flex-shrink: 0;
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      padding: 8px 12px;
+      white-space: nowrap;
+    }
+    .hub-nav-tab.active { border-left-color: transparent; border-bottom-color: var(--accent); }
+    .hub-nav-tab .hub-nav-count { display: none; }
+  }
+
+  /* ---------- Sample graphics ---------- */
+  .sample-graphics {
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .sample-graphics-head {
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .sample-graphics-head h2 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .sample-graphics-head p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 720px;
+  }
+  .sample-graphics-body { padding: 20px 22px 22px; }
+  .sample-graphics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .graphic-card {
+    border: 1px solid var(--border);
+    background: var(--surface-subtle);
+    display: flex;
+    flex-direction: column;
+  }
+  .graphic-preview {
+    background: #0a0a0a;
+    border-bottom: 1px solid var(--border-soft);
+    padding: 12px;
+  }
+  html[data-theme="light"] .graphic-preview { background: #111; }
+  .graphic-preview-frame {
+    width: 100%;
+    border: 1px solid var(--border-soft);
+    overflow: hidden;
+    background: #000;
+  }
+  .graphic-preview-frame--square { aspect-ratio: 1 / 1; max-height: 300px; }
+  .graphic-preview-frame--banner { aspect-ratio: 1200 / 630; }
+  .graphic-preview-frame--story {
+    aspect-ratio: 9 / 16;
+    max-height: 400px;
+    max-width: 225px;
+    margin: 0 auto;
+  }
+  .graphic-preview-frame--wide { aspect-ratio: 3 / 1; }
+  .graphic-preview-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .graphic-inline-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .graphic-fallback {
+    padding: 24px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+  .graphic-meta { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .graphic-meta h3 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .graphic-meta p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .graphic-spec {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .graphic-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .graphic-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-display);
+    color: var(--ink-soft);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    transition: color .15s, border-color .15s;
+  }
+  .graphic-dl:hover { color: var(--ink); border-color: var(--card-hover-border); }
+  .sample-graphics + .stats { margin-top: 16px; }
+
+  /* ---------- Controls ---------- */
+  .controls.hidden { display: none; }
+  .controls,
+  .contact-toolbar {
+    background: var(--controls-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 16px 0;
+  }
+  .controls {
+    position: sticky; top: 0; z-index: 30;
+    border-bottom: 1px solid var(--border-soft);
+    margin-top: 26px;
+  }
+  .controls-inner { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .search {
+    flex: 1 1 260px; position: relative; min-width: 220px;
+  }
+  .search input {
+    width: 100%; background: var(--panel); border: 1px solid var(--border);
+    color: var(--ink); font-size: 14px; font-family: var(--font-display);
+    padding: 11px 14px 11px 40px; outline: none; transition: border-color .15s;
+  }
+  .search input:focus { border-color: var(--accent); }
+  .search input::placeholder { color: var(--ink-faint); }
+  .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; stroke: var(--ink-muted); }
+
+  .region-filter {
+    position: relative; flex-shrink: 0; min-width: 220px; max-width: 280px;
+  }
+  .region-select {
+    appearance: none; -webkit-appearance: none; width: 100%;
+    background: var(--panel); border: 1px solid var(--border);
+    color: var(--ink); font-family: var(--font-display); font-size: 13px; font-weight: 500;
+    padding: 11px 36px 11px 14px; cursor: pointer; outline: none;
+    transition: border-color .15s;
+  }
+  .region-select:focus { border-color: var(--accent); }
+  .region-filter::after {
+    content: ""; position: absolute; right: 14px; top: 50%; transform: translateY(-25%);
+    border: 5px solid transparent; border-top-color: var(--ink-muted); pointer-events: none;
+  }
+
+  .view-toggle {
+    display: flex; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0;
+  }
+  .controls-end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .view-btn {
+    padding: 8px 14px; font-size: 13px; background: var(--panel); border: none;
+    color: var(--ink-soft); cursor: pointer; font-family: var(--font-display); transition: all .15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .view-btn + .view-btn { border-left: 1px solid var(--border); }
+  .view-btn:hover { color: var(--ink); }
+  .view-btn.active { background: var(--ink); color: var(--bg); }
+  .view-btn svg { width: 14px; height: 14px; }
+
+  .conf-filter { display: flex; gap: 8px; }
+  .conf-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--panel); border: 1px solid var(--border); color: var(--ink-soft);
+    padding: 8px 12px; font-size: 13px; cursor: pointer;
+    transition: all .15s; font-family: var(--font-display);
+  }
+  .conf-toggle:hover { color: var(--ink); }
+  .conf-toggle.off { opacity: .4; text-decoration: line-through; }
+  .conf-toggle .dot { width: 8px; height: 8px; }
+  .dot.ok { background: var(--ok); }
+  .dot.warn { background: var(--warn); }
+  .dot.dead { background: var(--dead); }
+
+  .shortlist-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--panel); border: 1px solid var(--border); color: var(--ink-soft);
+    padding: 8px 12px; font-size: 13px; cursor: pointer;
+    transition: all .15s; font-family: var(--font-display); flex-shrink: 0;
+  }
+  .shortlist-toggle:hover { color: var(--ink); }
+  .shortlist-toggle.active {
+    background: rgba(255,149,0,0.14); border-color: rgba(255,149,0,0.38); color: var(--accent);
+  }
+  .shortlist-toggle .shortlist-star { color: var(--star); font-size: 12px; line-height: 1; }
+  .shortlist-toggle.active .shortlist-star { opacity: 1; }
+
+  /* ---------- Sections ---------- */
+  .section { margin-top: 44px; scroll-margin-top: 90px; }
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .section-head .flag { font-size: 22px; }
+  .section-head .count {
+    font-family: var(--font-mono);
+    color: var(--ink-muted); font-size: 13px; font-weight: 400;
+  }
+  .section-note {
+    color: var(--ink-muted); font-size: 13.5px; margin-bottom: 18px; max-width: 900px;
+  }
+  .section-note.caveat {
+    background: var(--section-caveat-bg); border: 1px solid var(--section-caveat-border);
+    padding: 12px 14px; color: var(--section-caveat-text);
+  }
+  .section-note .note-callout {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 14.5px;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  .section-note strong { color: var(--ink); font-weight: 600; }
+
+  .subsection-title {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 500; margin: 22px 0 12px;
+  }
+
+  /* ---------- Grid + cards ---------- */
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 16px; display: flex; gap: 14px;
+    transition: border-color .16s ease, background .16s ease;
+    position: relative; overflow: hidden;
+  }
+  .card:hover { border-color: var(--card-hover-border); background: var(--panel-hover); }
+  .card.star::after {
+    content: "★"; position: absolute; top: 10px; right: 12px;
+    color: var(--star); font-size: 13px; opacity: .9;
+  }
+
+  .avatar {
+    width: 52px; height: 52px; flex-shrink: 0;
+    background: var(--bg-2); border: 1px solid var(--border);
+    object-fit: cover; display: block;
+  }
+  .avatar-fallback {
+    width: 52px; height: 52px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 600; color: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .card-body { min-width: 0; flex: 1; }
+  .card-name {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 600; letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .conf-badge {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 7px; flex-shrink: 0;
+  }
+  .conf-badge.ok { background: rgba(62,207,142,0.14); color: var(--ok); }
+  .conf-badge.warn { background: rgba(232,185,59,0.14); color: var(--warn); }
+  .conf-badge.dead { background: rgba(239,95,95,0.14); color: var(--dead); }
+  .hit-badge {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 7px; flex-shrink: 0;
+    background: rgba(255,149,0,0.14); color: var(--accent);
+  }
+
+  .card-angle { color: var(--ink-soft); font-size: 13px; margin-top: 5px; font-weight: 300; }
+  .card-tags { display: flex; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--ink-muted); background: var(--border-soft);
+    border: 1px solid var(--border-soft); padding: 2px 7px;
+  }
+  .tag--speaker {
+    color: var(--dead);
+    background: rgba(239, 95, 95, 0.12);
+    border-color: rgba(239, 95, 95, 0.35);
+    font-weight: 600;
+  }
+  .cell-tags .tag { display: inline-block; margin: 0 4px 4px 0; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
+  .partnership-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    width: auto; margin-top: 0; padding: 10px 14px;
+    font-size: 13px; font-weight: 600; font-family: var(--font-display);
+    letter-spacing: -0.01em; color: #042a1a;
+    background: var(--ok); border: 1px solid rgba(62,207,142,0.45);
+    transition: filter .14s ease; cursor: pointer;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .partnership-cta:hover { filter: brightness(1.1); color: #042a1a; }
+  .partnership-cta .ico { width: 15px; height: 15px; flex-shrink: 0; }
+  .card-body > .partnership-cta { width: 100%; margin-top: 10px; }
+  .outreach-msg-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    width: auto; padding: 10px 14px;
+    font-size: 13px; font-weight: 600; font-family: var(--font-display);
+    color: #0a0a0a;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: filter .14s ease, border-color .14s ease;
+    cursor: pointer;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .outreach-msg-cta:hover { filter: brightness(0.96); border-color: rgba(255,255,255,0.55); color: #0a0a0a; }
+  html[data-theme="light"] .outreach-msg-cta { border-color: var(--border); }
+  .outreach-msg-cta .ico { width: 15px; height: 15px; flex-shrink: 0; color: #0a0a0a; }
+  .card-body > .outreach-msg-cta { width: 100%; margin-top: 10px; }
+  .card-body > .outreach-msg-cta + .partnership-cta { margin-top: 6px; }
+
+  .partnership-modal[hidden] { display: none; }
+  .partnership-modal {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .partnership-modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: blur(4px);
+  }
+  .partnership-modal-panel {
+    position: relative; z-index: 1;
+    width: min(560px, 100%); max-height: min(88vh, 720px);
+    display: flex; flex-direction: column;
+    background: var(--panel); border: 1px solid var(--border);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  }
+  .partnership-modal-close {
+    position: absolute; top: 12px; right: 12px;
+    width: 32px; height: 32px; border: none; background: transparent;
+    color: var(--ink-muted); font-size: 22px; line-height: 1;
+    cursor: pointer; transition: color .15s;
+  }
+  .partnership-modal-close:hover { color: var(--ink); }
+  .partnership-modal-head {
+    padding: 20px 22px 12px;
+    border-bottom: 1px solid var(--border-soft);
+    padding-right: 48px;
+  }
+  .partnership-modal-head h2 {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .partnership-modal-meta {
+    margin-top: 6px; font-size: 13px; color: var(--ink-muted);
+    font-family: var(--font-mono);
+  }
+  .partnership-modal-subject {
+    padding: 12px 22px 0;
+    font-size: 13px; color: var(--ink-soft);
+    font-family: var(--font-mono);
+  }
+  .partnership-modal-subject strong { color: var(--ink); font-weight: 500; }
+  .partnership-modal-body {
+    margin: 12px 22px 0;
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: #fff;
+    font-family: var(--font-display);
+    font-size: 13.5px; line-height: 1.55;
+    color: #1a1a1a;
+    white-space: pre-wrap; word-break: break-word;
+    overflow: auto; flex: 1; min-height: 120px; max-height: 42vh;
+  }
+  .partnership-modal-actions {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    padding: 16px 22px 20px;
+    border-top: 1px solid var(--border-soft);
+    margin-top: 14px;
+  }
+  .partnership-modal-send {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 10px 16px; font-size: 13px; font-weight: 600;
+    font-family: var(--font-display); color: #042a1a;
+    background: var(--ok); border: 1px solid rgba(62,207,142,0.45);
+    transition: filter .14s ease;
+  }
+  .partnership-modal-send:hover { filter: brightness(1.1); color: #042a1a; }
+  .link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; color: var(--ink-soft); font-weight: 500;
+    background: var(--link-bg); border: 1px solid var(--border);
+    padding: 4px 9px; transition: all .14s;
+  }
+  .link span { font-family: var(--font-mono); font-size: 11px; }
+  .link:hover { color: var(--ink); border-color: var(--link-hover-border);
+    background: var(--link-hover-bg); }
+  .link .ico { width: 13px; height: 13px; opacity: .8; }
+  .link.copy { cursor: pointer; }
+  .link.copied { color: var(--ok); border-color: var(--ok); }
+
+  .no-results { text-align: center; color: var(--ink-muted); padding: 60px 0; font-size: 15px; }
+  .hidden { display: none !important; }
+
+  /* ---------- Table view ---------- */
+  .table-wrap {
+    overflow-x: auto; border: 1px solid var(--border);
+    background: var(--surface-subtle);
+  }
+  .contact-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; }
+  .contact-table col.col-star { width: 32px; }
+  .contact-table col.col-name { width: 18%; }
+  .contact-table col.col-org { width: 10%; }
+  .contact-table col.col-angle { width: 20%; }
+  .contact-table col.col-tags { width: 10%; }
+  .contact-table col.col-status { width: 86px; }
+  .contact-table col.col-links { width: 24%; }
+  .contact-table th {
+    font-family: var(--font-mono);
+    text-align: left; padding: 11px 14px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--ink-muted); background: var(--bg-2);
+    border-bottom: 1px solid var(--border); white-space: nowrap; font-weight: 500;
+  }
+  .contact-table td {
+    padding: 11px 14px; border-bottom: 1px solid var(--border-soft); vertical-align: top;
+  }
+  .contact-table tr:last-child td { border-bottom: none; }
+  .contact-table tr:hover td { background: var(--surface-hover); }
+  .contact-table tr.hidden { display: none; }
+  .cell-star { width: 32px; text-align: center; color: var(--star); font-size: 12px; }
+  .cell-name { font-family: var(--font-display); font-weight: 600; overflow-wrap: anywhere; }
+  .cell-name-inner { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .cell-name .avatar, .cell-name .avatar-fallback { width: 30px; height: 30px; font-size: 11px; flex-shrink: 0; }
+  .cell-name-inner > span { min-width: 0; overflow-wrap: anywhere; }
+  .cell-org, .cell-angle { color: var(--ink-soft); overflow-wrap: anywhere; }
+  .cell-tags { font-family: var(--font-mono); color: var(--ink-muted); font-size: 11px; overflow-wrap: anywhere; }
+  .cell-status { white-space: nowrap; }
+  .contact-table td.cell-links {
+    min-width: 220px;
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: normal;
+  }
+  body.view-table .cell-links .links {
+    margin-top: 0;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 6px;
+    align-items: center;
+    align-content: flex-start;
+  }
+  body.view-table .cell-links .link,
+  body.view-table .cell-links .partnership-cta,
+  body.view-table .cell-links .outreach-msg-cta {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  body.view-table .cell-links .partnership-cta,
+  body.view-table .cell-links .outreach-msg-cta {
+    margin-top: 0;
+    padding: 4px 9px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  body.view-table .cell-links .partnership-cta span {
+    white-space: nowrap;
+  }
+
+  body.view-grid .table-wrap { display: none; }
+  body.view-table .grid { display: none; }
+
+  @media (max-width: 640px) {
+    header.top { padding: 40px 0 22px; }
+    .grid { grid-template-columns: 1fr; }
+    .controls-inner:not(.contact-toolbar .controls-inner) { flex-direction: column; align-items: stretch; }
+    .contact-toolbar .controls-inner { flex-wrap: wrap; }
+    .view-toggle, .conf-filter, .controls-end { justify-content: center; }
+  }
+</style>
+</head>
+<body class="view-table">
+
+<div class="hub-bar">
+  <h1 class="hub-brand">
+    <span class="hub-brand-main" aria-label="Open source hub">
+      <span>Open</span><span>source</span><span>hub</span>
+    </span>
+    <span class="hub-brand-sub" aria-hidden="true">
+      <span>O</span><span>U</span><span>T</span><span>R</span><span>E</span><span>A</span><span>C</span><span>H</span>
+    </span>
+  </h1>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="event-tabs" id="eventTabs"></div>
+  </div>
+</header>
+
+<div class="wrap hub-shell">
+  <div class="stats" id="stats"></div>
+  <div class="hub-layout" id="hubLayout" hidden>
+    <nav class="hub-nav" id="hubNav" aria-label="Sections">
+      <div class="hub-nav-collapse-wrap">
+        <button type="button" class="hub-nav-collapse" id="hubNavCollapse" aria-label="Collapse sidebar" aria-expanded="true" title="Collapse sidebar">
+          <svg class="collapse-icon-expanded" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+          <svg class="collapse-icon-collapsed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div id="hubNavTabs"></div>
+      <div class="hub-nav-footer">
+        <button type="button" class="theme-toggle hub-nav-theme" id="themeToggle" aria-label="Switch to light mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <div class="hub-main">
+      <div class="contact-toolbar controls hidden" id="contactToolbar">
+        <div class="wrap controls-inner">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="search" type="search" placeholder="Search…" />
+          </div>
+          <button type="button" class="shortlist-toggle" id="shortlistToggle" aria-pressed="false" title="Show ★ shortlist contacts only">
+            <span class="shortlist-star" aria-hidden="true">★</span> Shortlist
+          </button>
+          <div class="conf-filter" id="confFilter">
+            <button class="conf-toggle" data-conf="ok"><span class="dot ok"></span>Verified</button>
+            <button class="conf-toggle" data-conf="warn"><span class="dot warn"></span>Verify</button>
+            <button class="conf-toggle off" data-conf="dead"><span class="dot dead"></span>Dead</button>
+          </div>
+          <div class="controls-end">
+            <div class="view-toggle" id="viewToggle">
+              <button class="view-btn" data-view="grid" title="Grid view">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Grid
+              </button>
+              <button class="view-btn active" data-view="table" title="Table view">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                Table
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hub-panels" id="hubPanels">
+        <div class="hub-panel" data-panel="graphics" id="panel-graphics">
+          <section class="sample-graphics" id="sampleGraphics">
+            <div class="sample-graphics-head">
+              <h2>Sample graphics</h2>
+              <p>Templates for community partnership posts — swap <code>[Community Name]</code>, <code>[CODE]</code>, and <code>[CLAIM LINK]</code> before sending. Download SVG and edit in Figma, Illustrator, or any vector tool.</p>
+            </div>
+            <div class="sample-graphics-body">
+              <div class="sample-graphics-grid" id="sampleGraphicsGrid"></div>
+            </div>
+          </section>
+        </div>
+        <div id="hubSectionPanels"></div>
+      </div>
+    </div>
+  </div>
+  <div class="empty-event hidden" id="emptyEvent"></div>
+</div>
+
+<div class="partnership-modal" id="partnershipModal" hidden>
+  <div class="partnership-modal-backdrop" data-close-partnership-modal></div>
+  <div class="partnership-modal-panel" role="dialog" aria-modal="true" aria-labelledby="partnershipModalTitle">
+    <button type="button" class="partnership-modal-close" data-close-partnership-modal aria-label="Close">×</button>
+    <div class="partnership-modal-head">
+      <h2 id="partnershipModalTitle">Partnership proposal</h2>
+      <p class="partnership-modal-meta" id="partnershipModalMeta"></p>
+    </div>
+    <div class="partnership-modal-subject" id="partnershipModalSubject"></div>
+    <pre class="partnership-modal-body" id="partnershipModalBody"></pre>
+    <div class="partnership-modal-actions">
+      <button type="button" class="msg-copy" id="partnershipModalCopy">Copy message</button>
+      <a class="partnership-modal-send" id="partnershipModalSend" href="#">Send email</a>
+    </div>
+  </div>
+</div>
+
+<script src="scripts/open-source-nostr-speakers.js"></script>
+<script src="scripts/sample-graphics-svgs.js"></script>
+<script>
+/* ============================================================
+   DATA — mirrors sales/apac-outreach-contacts.md
+   link types: x, github, telegram, discord, facebook, instagram,
+   threads, youtube, web, email, meetup, luma, wechat, qq, phone, nostr
+============================================================ */
+const HUB_SPEAKERS_SECTION = (() => {
+  const all = typeof OPEN_SOURCE_NOSTR_SPEAKERS !== "undefined" ? OPEN_SOURCE_NOSTR_SPEAKERS : [];
+  const hubItems = all.filter((s) => s.tags.includes("Open Source Hub"));
+  const nostrItems = all.filter((s) => s.name === "Gareth" || s.name === "Shaun Gao");
+  const used = new Set([...hubItems, ...nostrItems].map((s) => s.name));
+  const stageItems = all.filter((s) => !used.has(s.name));
+  const groups = [];
+  if (hubItems.length) groups.push({ title: "Open Source Hub", items: hubItems });
+  if (nostrItems.length) groups.push({ title: "Nostr", items: nostrItems });
+  if (stageItems.length) groups.push({ title: "Genesis & Nakamoto stage", items: stageItems });
+  return {
+    id: "opensource-nostr-speakers",
+    flag: "⚡",
+    title: "Open Source + Nostr Speakers",
+    note: "Confirmed Bitcoin Asia 2026 speakers on the Open Source Hub, Nostr, and open-source/dev tracks. Session times are HK local. Avatars from Nostr kind 0 profile metadata where available.",
+    groups: groups.length ? groups : [{ title: "", items: [] }],
+  };
+})();
+
+const SECTIONS = [
+  {
+    id: "influencers", flag: "🎤", title: "Influencers",
+    note: "Priority focus. Tier 1 = APAC-based realistic “attend” gets; Tier 2 = best Open Source Hub content fit (on-theme, non-APAC); Tier 3 = amplification channels.",
+    groups: [
+      { title: "Tier 1 — APAC-based, realistic attend gets", items: [
+        { name:"Yat Siu", org:"Animoca", angle:"AI × crypto headline voice", tags:["Hong Kong"], conf:"ok", links:[{t:"x",v:"ysiu"}] },
+        { name:"keypleb", org:"Code Orange Dev School", angle:"Bitcoin/Lightning/Rust OSS education · Bali / SEA · Bitcoin House Bali", tags:["Bali / SEA"], conf:"ok", links:[{t:"email",v:"keypleb@blink.sv"},{t:"email",v:"hello@codeorange.dev",label:"school"},{t:"x",v:"CodeOrangeDevs"},{t:"web",v:"codeorange.dev"}], partnership:{
+          to:"keypleb@blink.sv",
+          subject:"comp passes for Code Orange crew?",
+          label:"Partnership proposal",
+          body:`Hey [name],
+
+How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug).
+
+What Code Orange is doing — training devs into real OSS contributors, Lightning/Rust on actual Bitcoin code — is exactly our crowd.
+
+Simple ask: list Code Orange as a community partner + comp passes for your cohort and Bali/SEA network ([CLAIM LINK], code [CODE]). Good amplification either way even if you're not in town.
+
+Up for a quick thread to set it up?
+
+Pedro
+pedro@btcmedia.org`
+        }},
+        { name:"Jihan Wu", org:"Bitdeer", angle:"Bitcoin mining → AI compute", tags:["Singapore"], conf:"ok", links:[{t:"x",v:"JihanWu"},{t:"web",v:"bitdeer.com"}] },
+        { name:"Dr. Qiwei Chen", org:"Bitdeer", angle:"AI datacenter infra · listed speaker", tags:["Singapore","speaker"], conf:"ok", links:[{t:"web",v:"bitdeer.com"}] },
+      ]},
+      { title: "Tier 2 — Best Open Source Hub content fit", items: [
+        { name:"Abdel Stark", angle:"nostr-mcp + lightning-mcp (AI agents → Nostr/Lightning)", tags:["non-APAC"], conf:"ok", star:true, links:[{t:"x",v:"AbdelStark"},{t:"github",v:"AbdelStark"}] },
+      ]},
+      { title: "Tier 3 — Amplification channels", items: [
+        { name:"Luis Buenaventura", org:"Head of Crypto @ GCash", angle:"Largest PH amplifier", tags:["Philippines"], conf:"ok", star:true, links:[{t:"x",v:"helloluis"},{t:"facebook",v:"helloluis"}] },
+        { name:"Ramon Tayag", org:"PH Bitcoiners organizer", angle:"", tags:["Philippines"], conf:"ok", links:[{t:"x",v:"rtayag"},{t:"github",v:"ramontayag"}] },
+        { name:"Bitshala", org:"India Bitcoin dev academy", angle:"", tags:["India"], conf:"ok", links:[{t:"x",v:"bitshala_org"}] },
+        { name:"ETHTaipei", angle:"", tags:["Taiwan"], conf:"ok", links:[{t:"x",v:"EthTaipei"},{t:"telegram",v:"ethtaipei"},{t:"discord",v:"Dqa2nfEsgv"},{t:"web",v:"ethtaipei.org"}] },
+        { name:"TBA", org:"Taiwan Blockchain Academia", angle:"", tags:["Taiwan"], conf:"ok", links:[{t:"instagram",v:"tba.blockchain"},{t:"threads",v:"tba.blockchain"},{t:"web",v:"tba.ngo"}] },
+        { name:"XueDAO", angle:"", tags:["Taiwan"], conf:"ok", links:[{t:"x",v:"xuedao_tw"},{t:"web",v:"xuedao.xyz"}] },
+        { name:"Taiwan BitDevs", angle:"", tags:["Taiwan"], conf:"ok", links:[{t:"x",v:"TaiwanBitdevs"},{t:"web",v:"bitdevs.tw"},{t:"meetup",v:"taiwan-bitdevs"}] },
+        { name:"BTCStudy", org:"Chinese-lang Bitcoin diaspora", angle:"", tags:["China diaspora"], conf:"ok", links:[{t:"x",v:"btcstudy"},{t:"github",v:"btc-study"}] },
+        { name:"YakiHonne", org:"Nostr, JP ties", angle:"", tags:["Japan/global"], conf:"ok", links:[{t:"x",v:"YakiHonne"}] },
+        { name:"Will Casarin", org:"Damus", angle:"", tags:["global / Asia base"], conf:"ok", links:[{t:"x",v:"jb55"},{t:"email",v:"jb55@jb55.com"}] },
+        { name:"Bitcoin Association of HK", angle:"Primary HK Bitcoin community since 2014", tags:["Hong Kong"], conf:"ok", star:true, links:[{t:"meetup",v:"bitcoin-hk"},{t:"telegram",v:"bitcoinorghk"},{t:"luma",v:"user/bitcoinorghk"},{t:"email",v:"info@bitcoin.org.hk"},{t:"x",v:"bitcoinorghk"}] },
+        { name:"Pouch.ph", org:"founder Ethan Rose", angle:"Verify first — 2026 op status unconfirmed", tags:["Philippines"], conf:"warn", links:[{t:"x",v:"Pouch_PH"},{t:"x",v:"erose_official"}] },
+      ]},
+    ]
+  },
+  HUB_SPEAKERS_SECTION,
+  {
+    id: "hongkong", flag: "🇭🇰", title: "Hong Kong",
+    groups: [
+      { title: "", items: [
+        { name:"Bitcoin Association of Hong Kong (BAHK)", org:"Bitcoin HK", angle:"Primary Bitcoin community since 2014 · Larry Salibra · ~6.2k Meetup · Nostr track via Gareth Hayes", tags:["priority","Bitcoin"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"info@bitcoin.org.hk"},{t:"email",v:"helpdesk@bitcoin.org.hk",label:"helpdesk"},{t:"email",v:"gareth.hayes@bitcoin.org.hk",label:"Gareth (Nostr)"},{t:"telegram",v:"bitcoinorghk"},{t:"meetup",v:"bitcoin-hk"},{t:"luma",v:"user/bitcoinorghk"},{t:"x",v:"bitcoinorghk"},{t:"web",v:"bitcoin.org.hk"}] },
+        { name:"Lightning Hackday HK / BAHK dev meetups", org:"BAHK events", angle:"Bitcoin dev meetups + Lightning Hackday series — same organizers as BAHK", tags:["priority","Bitcoin"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"info@bitcoin.org.hk"},{t:"web_url",v:"https://lightning.bitcoin.org.hk",label:"lightning.bitcoin.org.hk"},{t:"meetup",v:"bitcoin-hk"},{t:"luma",v:"hkweb3"}] },
+        { name:"Bitwork Community HK", angle:"Blockchain coworking + meetups · Kowloon Bay · technical courses & roadshows", tags:["priority","community"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"info@bitwork.asia"},{t:"phone",v:"+85269362194"},{t:"web",v:"bitwork.asia"},{t:"linkedin",v:"company/bitworkasia"},{t:"meetup",v:"web3-0-community",label:"Meetup (Bitwork)"}] },
+        { name:"BTC Chamber of Commerce HK", org:"via BAHK", angle:"Member gatherings on Luma — convenor is BAHK; route partnership ask through info@bitcoin.org.hk", tags:["priority","Bitcoin"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"info@bitcoin.org.hk",label:"via BAHK"},{t:"web_url",v:"https://luma.com/onrq2aoh",label:"Chamber event (Luma)"}] },
+        { name:"Open Source Hong Kong (OSHK)", angle:"HK open-source community since 2011 · co-organizes HKOSCon · GDPR4dev co-host", tags:["priority","open-source"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"webmaster@opensource.hk"},{t:"web",v:"opensource.hk"},{t:"meetup",v:"opensourcehk"},{t:"x",v:"opensourcehk"},{t:"linktree",v:"opensourcehk"}] },
+        { name:"HKOSCon", org:"HK open-source conference", angle:"Annual OSS conference (HKCOTA + OSHK) — developer audience across HK", tags:["priority","open-source"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"conference@opensource.hk"},{t:"web_url",v:"https://info.hkoscon.org",label:"info.hkoscon.org"},{t:"web_url",v:"https://hkoscon.org",label:"hkoscon.org"}] },
+        { name:"Hong Kong Python User Group (HKPUG)", angle:"Active Python dev community — no public email; Meetup + Slack + Google Group", tags:["priority","developers"], conf:"ok", star:true, priority:true, links:[{t:"meetup",v:"pythonhk"},{t:"web_url",v:"https://python.hk",label:"python.hk"},{t:"web_url",v:"https://python.hk/join-slack/",label:"Slack"},{t:"web_url",v:"https://groups.google.com/g/python-hk",label:"Google Group"}] },
+        { name:"EasyA", org:"hackathon + accelerator", angle:"~1,000-dev young Web3 community · Consensus HK hackathon partner · channel beyond single events", tags:["priority","community"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"hello@easya.io"},{t:"web",v:"easya.io/events"},{t:"web_url",v:"https://luma.com/consensus-hackathon-hk",label:"Consensus HK hackathon"}] },
+        { name:"Encode Club", org:"global dev community", angle:"Web3 education + hackathons · Encode Accelerator HK cohort", tags:["priority","community"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"general@encode.club"},{t:"web",v:"encode.club"},{t:"x",v:"encodeclub"}] },
+        { name:"HKUST Web3 Ideathon", org:"staff channel", angle:"200+ tertiary builders · 11 institutions · Mar-2026 cycle past — pool channel for Aug", tags:["priority","university"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"web3ideathon@ust.hk"},{t:"web",v:"web3ideathon.hkust.edu.hk"},{t:"phone",v:"+85234693383"}] },
+        { name:"HKUST Blockchain & Crypto Club", org:"Crypto Club + Web 3.0 Labs", angle:"Peer undergrad crypto club (~580 IG) + largest student Web3 event series — no single \"Blockchain Club\" name at HKUST", tags:["priority","university"], conf:"warn", star:true, priority:true, links:[{t:"email",v:"cryptoclub@ust.hk"},{t:"instagram",v:"hkust.cryptoclub"},{t:"linkedin",v:"company/hkust-web-3-0-labs",label:"Web 3.0 Labs"}] },
+        { name:"HKU & CUHK blockchain clubs", angle:"Fan out via each society — FTSA has best partner email; Blockchain at HKU IG-only; CUHK quieter since 2024", tags:["priority","university"], conf:"ok", star:true, priority:true, links:[{t:"email",v:"collaboration@hkuftsa.com",label:"HKU FTSA"},{t:"instagram",v:"hkublockchain",label:"Blockchain at HKU"},{t:"linktree",v:"blockchainatcuhk",label:"Blockchain at CUHK"},{t:"x",v:"cuhk_blockchain"}] },
+      ]},
+      { title: "Universities & student blockchain / CS societies", items: [
+        { name:"HKU FinTech Student Assoc. (FTSA)", angle:"Best partner-facing email here", tags:["university"], conf:"ok", star:true, links:[{t:"email",v:"collaboration@hkuftsa.com"},{t:"telegram",v:"hku_ftsa"},{t:"instagram",v:"hku.ftsa"},{t:"web",v:"ftsa.hku.hk"}] },
+        { name:"Blockchain at HKU", angle:"IG DM (email stale) · first uni blockchain club in HK (2018)", tags:["university"], conf:"ok", links:[{t:"instagram",v:"hkublockchain"},{t:"x",v:"hkublockchain"},{t:"linkedin",v:"company/hku-blockchainclub"}] },
+        { name:"FinTech Society of HKU", org:"HKUBS", angle:"Separate from FTSA", tags:["university"], conf:"ok", links:[{t:"instagram",v:"fintechsochku"}] },
+        { name:"HKUST CSE Students' Society", org:"CSESS", angle:"Largest HKUST CS reach; no standalone blockchain club — route here", tags:["university"], conf:"ok", links:[{t:"instagram",v:"csess.hkustsu"},{t:"web",v:"csess.su.hkust.edu.hk"}] },
+        { name:"HKUST FinTech", org:"@fintechhkust", angle:"Student-run vs lab-affiliated unconfirmed", tags:["university"], conf:"warn", links:[{t:"instagram",v:"fintechhkust"}] },
+        { name:"PolyU Blockchain Club", org:"PUBC", angle:"Active Mar 2025", tags:["university"], conf:"ok", links:[{t:"x",v:"BlockchainPolyU"},{t:"instagram",v:"polyublockchain"},{t:"linktree",v:"polyublockchain"}] },
+        { name:"Blockchain at CUHK", angle:"Last clear signal ~Apr 2024 — confirm", tags:["university"], conf:"warn", links:[{t:"linktree",v:"blockchainatcuhk"},{t:"instagram",v:"blockchainatcuhk"},{t:"x",v:"cuhk_blockchain"}] },
+        { name:"CityU CS Student Chapter", org:"CSSC", angle:"No blockchain club — route here", tags:["university"], conf:"ok", links:[{t:"instagram",v:"cssc.cityu"},{t:"web_url",v:"https://cityucssc.netlify.app",label:"cityucssc.netlify.app"}] },
+        { name:"HKBU Computer Science Society", org:"CSS", angle:"Blockchain is research-lab only — route here", tags:["university"], conf:"ok", links:[{t:"instagram",v:"hkbu_css"},{t:"facebook",v:"hkbucss.synchronous"}] },
+        { name:"HKMU Computing", angle:"Society activity unconfirmed", tags:["university"], conf:"warn", links:[{t:"facebook",v:"hkmucomp"},{t:"instagram",v:"oucomputing"}] },
+      ]},
+      { title: "Cross-university networks & campus dev clubs — hit first, one contact fans out", items: [
+        { name:"0xU Hong Kong Blockchain Club", angle:"Largest dev-focused Web3 student community — 8 HK unis (~700+ members). DM X / LinkedIn", tags:["cross-campus"], conf:"ok", star:true, links:[{t:"x",v:"0xuclub"},{t:"linkedin",v:"company/0xuhongkongblockchainclub"}] },
+        { name:"HKUST Web 3.0 Labs", angle:"\"Largest student-led Web3 event series in the city\"; active into 2026", tags:["cross-campus"], conf:"ok", links:[{t:"linkedin",v:"company/hkust-web-3-0-labs"}] },
+        { name:"GDG on Campus PolyU", angle:"Largest confirmed HK GDG chapter (~662); runs hackathons", tags:["cross-campus"], conf:"ok", links:[{t:"email",v:"dsc.polyu@gmail.com"},{t:"instagram",v:"google_polyu"},{t:"linktree",v:"google_polyu"}] },
+        { name:"GDG on Campus HKUST", angle:"Agentic-AI hackathon Apr 2026 (100+ builders) · email inferred", tags:["cross-campus"], conf:"ok", links:[{t:"discord",v:"T78Rjn3YuQ"},{t:"instagram",v:"gdg_hkust"},{t:"email",v:"hkustdsc@gmail.com"}] },
+        { name:"Inter-University GenAI Hackathon for SDGs", angle:"All 8 UGC universities · partnership / announcement channel", tags:["cross-campus"], conf:"ok", links:[{t:"web",v:"hack4sdg.com"}] },
+        { name:"Microsoft HK Student Ambassadors", angle:"Force-multiplier connectors across campuses · contact inferred", tags:["cross-campus"], conf:"warn", links:[{t:"web_url",v:"https://mvp.microsoft.com/studentambassadors",label:"microsoft.com"}] },
+      ]},
+      { title: "Coding bootcamps / programming schools", items: [
+        { name:"Tecky Academy", angle:"Best fit: local, in-person, active TG community", tags:["bootcamp"], conf:"ok", star:true, links:[{t:"email",v:"hello@tecky.io"},{t:"telegram",v:"tecky_hub"},{t:"phone",v:"+85297256400"}] },
+        { name:"Xccelerate", angle:"Discord = direct pipe to current students", tags:["bootcamp"], conf:"ok", links:[{t:"discord",v:"PafRhkUShS"},{t:"whatsapp",v:"+85269028625"}] },
+        { name:"Le Wagon Hong Kong", angle:"Small (~143) but engaged; mostly online now", tags:["bootcamp"], conf:"ok", links:[{t:"meetup",v:"le-wagon-hong-kong-coding-bootcamp"},{t:"web_url",v:"https://www.lewagon.com/hong-kong/contact",label:"lewagon.com"}] },
+        { name:"Venturenix LAB", angle:"Fresh cohort ~2 Feb 2026 = job-seeking devs", tags:["bootcamp"], conf:"ok", links:[{t:"web",v:"venturenixlab.co/it-coding-bootcamp"}] },
+        { name:"Preface (Preface AI)", angle:"In-person HK, active since 2014", tags:["bootcamp"], conf:"ok", links:[{t:"web",v:"preface.ai"}] },
+        { name:"General Assembly HK", angle:"No HK campus — skip", tags:["bootcamp"], conf:"dead", links:[] },
+        { name:"freeCodeCamp HK", angle:"Dead since 2017 — reach self-learners via Open Source HK", tags:["bootcamp"], conf:"dead", links:[{t:"facebook",v:"groups/free.code.camp.hk"}] },
+      ]},
+      { title: "Tech / talent hubs", items: [
+        { name:"HKSTP Science Park Startup Meetup", angle:"~7,812 members — DM organizers · best community channel at either hub", tags:["hub"], conf:"ok", star:true, links:[{t:"meetup",v:"meetups-hk-science-park"}] },
+        { name:"HKSTP Developer events team", org:"DSH", angle:"Runs IADS Hackathon + Dev Conf Mar 2026", tags:["hub"], conf:"ok", links:[{t:"email",v:"dsh-events@hkstp.org"}] },
+        { name:"Cyberport Events team", angle:"On-campus tech-event/hackathon coordinators", tags:["hub"], conf:"ok", links:[{t:"email",v:"event@cyberport.hk"}] },
+        { name:"Cyberport W3IC", org:"Web3 Investors Circle", angle:"Into the Web3 Hub@Cyberport community (280+ blockchain firms)", tags:["hub"], conf:"ok", links:[{t:"email",v:"w3ic@cyberport.hk"}] },
+        { name:"Cyberport", angle:"Broadcast channel", tags:["hub"], conf:"ok", links:[{t:"instagram",v:"cyberporthkofficial"}] },
+      ]},
+      { title: "Bitcoin / Lightning / Nostr dev meetups", items: [
+        { name:"YakiHonne \"Nostr & Bitcoiners\" HK", angle:"Ran Nostr & Bitcoin Asia meetup Aug 2025 — natural partner", tags:["nostr"], conf:"ok", links:[{t:"x",v:"YakiHonne"},{t:"luma",v:"user/YakiHonne",label:"Luma"}] },
+        { name:"#HKWeb3 Events Calendar", org:"Web3 Harbour", angle:"Broadest single HK Web3/dev distribution channel", tags:["events"], conf:"ok", links:[{t:"luma",v:"hkweb3"}] },
+        { name:"Dim Sum Labs", org:"hackerspace", angle:"Weekly HackJam (Tue); maker/dev crowd", tags:["community"], conf:"ok", links:[{t:"meetup",v:"dimsumlabs"},{t:"telegram",v:"dimsumlabs"}] },
+        { name:"Bitcoin Asia", org:"the event", angle:"For side-event ticket distribution", tags:["event"], conf:"ok", links:[{t:"x",v:"Bitcoinconfasia"},{t:"web",v:"asia.b.tc/bitcoin-week"}] },
+        { name:"Ethereum HK / HK Web3 Enthusiasts", angle:"Dormant (last events 2021 / 2022)", tags:["community"], conf:"dead", links:[] },
+        { name:"BitDevs Hong Kong", angle:"Does not exist (nearest = BitDevs SG)", tags:["community"], conf:"dead", links:[] },
+      ]},
+    ]
+  },
+  {
+    id: "shenzhen", flag: "🇨🇳", title: "Shenzhen / Greater Bay Area",
+    groups: [
+      { title: "", items: [
+        { name:"0xCUHKSZ", org:"CUHK-Shenzhen blockchain assoc.", angle:"Pitch openly here · warm intro", tags:["university"], conf:"ok", star:true, links:[{t:"wechat",v:"oneblockEmma"},{t:"web_url",v:"https://sse.cuhk.edu.cn/en/page/1599",label:"sse.cuhk.edu.cn"}] },
+        { name:"BTCStudy", org:"Chinese Bitcoin dev diaspora", angle:"", tags:["diaspora"], conf:"ok", links:[{t:"x",v:"btcstudy"},{t:"github",v:"btc-study"}] },
+        { name:"Bitcoin Association of HK", org:"bridge", angle:"", tags:["bridge"], conf:"ok", links:[{t:"email",v:"info@bitcoin.org.hk"},{t:"telegram",v:"bitcoinorghk"}] },
+        { name:"#HKWeb3 side-events", angle:"", tags:["events"], conf:"ok", links:[{t:"luma",v:"hkweb3"},{t:"web",v:"asia.b.tc"}] },
+        { name:"SUSTech CRA / LUG", angle:"OSS framing only", tags:["university"], conf:"ok", links:[{t:"web",v:"cra.moe"},{t:"github",v:"sustech-cra"}] },
+        { name:"SYSU ACM-ICPC", angle:"ACM angle only", tags:["university"], conf:"ok", links:[{t:"github",v:"sysu"},{t:"web",v:"cse.sysu.edu.cn"}] },
+        { name:"HITSZ-OpenCS", angle:"GitHub issue", tags:["university"], conf:"ok", links:[{t:"email",v:"hewei2001@foxmail.com"},{t:"github",v:"HITSZ-OpenCS"}] },
+        { name:"Chaihuo Makerspace / Seeed", angle:"Hardware/AI, low crypto-intent", tags:["makerspace"], conf:"ok", links:[{t:"web_url",v:"https://www.seeedstudio.com/chaihuo-makerspace",label:"seeedstudio.com"},{t:"web",v:"forum.seeedstudio.com"}] },
+        { name:"GDG Guangzhou / Open Source HK", angle:"", tags:["community"], conf:"ok", links:[{t:"web_url",v:"https://gdg.community.dev/gdg-guangzhou",label:"gdg.community.dev"},{t:"meetup",v:"opensourcehk"}] },
+        { name:"Shenzhen University", angle:"Admin only · deprioritize", tags:["university"], conf:"warn", links:[{t:"web",v:"csse.szu.edu.cn"}] },
+        { name:"Bitcoin SZ", org:"meetup", angle:"Dead since 2021", tags:["community"], conf:"dead", links:[{t:"meetup",v:"bitcoin-sz"}] },
+      ]},
+    ]
+  },
+  {
+    id: "philippines", flag: "🇵🇭", title: "Philippines",
+    groups: [
+      { title: "Bitcoin / Lightning communities", items: [
+        { name:"Philippine Bitcoiners", angle:"Active this month", tags:["community"], conf:"ok", star:true, links:[{t:"telegram_url",v:"https://t.me/+BJA_hsq51bI5ODE9",label:"Telegram"},{t:"meetup",v:"philippine-bitcoiners"},{t:"x",v:"rtayag",label:"@rtayag"}] },
+        { name:"Bloom Solutions / BloomX", angle:"via @rtayag (CTO), @helloluis (founder)", tags:["fintech"], conf:"ok", links:[{t:"web",v:"bloom.solutions"}] },
+        { name:"Satoshi Citadel Industries", org:"SCI", angle:"founders Miguel Cuneta, John Bailon", tags:["reduced"], conf:"warn", links:[{t:"web",v:"sci.ph"}] },
+      ]},
+      { title: "Universities — student dev societies", items: [
+        { name:"Blockchain Student Alliance", angle:"Multi-campus", tags:["university"], conf:"ok", star:true, links:[{t:"facebook",v:"61553297971827"},{t:"web",v:"bitskwela.com"}] },
+        { name:"UP CURSOR", org:"UP Diliman CS", angle:"", tags:["university"], conf:"ok", links:[{t:"email",v:"marketing.upcursor@gmail.com"},{t:"facebook",v:"UPCURSOR"},{t:"x",v:"upcursor"}] },
+        { name:"GDSC UP Diliman", angle:"", tags:["university"], conf:"ok", links:[{t:"facebook",v:"GDSCupdiliman"},{t:"web",v:"gdscupd.com"}] },
+        { name:"La Salle Computer Society", org:"DLSU", angle:"", tags:["university"], conf:"ok", links:[{t:"email",v:"lscs@dlsu.edu.ph"},{t:"facebook",v:"LaSalleComputerSociety"},{t:"instagram",v:"dlsu_lscs"}] },
+        { name:"GDSC DLSU", angle:"", tags:["university"], conf:"ok", links:[{t:"facebook",v:"GDSCDLSU"},{t:"github",v:"GDSC-DLSU"}] },
+        { name:"CompSAt", org:"Ateneo", angle:"", tags:["university"], conf:"ok", links:[{t:"facebook",v:"CompSAteneo"}] },
+        { name:"GDG Loyola", org:"Ateneo", angle:"", tags:["university"], conf:"ok", links:[{t:"facebook",v:"gdscloyola"}] },
+        { name:"GDG Mapúa", angle:"", tags:["university"], conf:"ok", links:[{t:"web_url",v:"https://gdg.community.dev/gdg-on-campus-mapua-university-manila-philippines/",label:"gdg.community.dev"}] },
+        { name:"GDG on Campus Philippines", org:"hub", angle:"", tags:["university"], conf:"ok", links:[{t:"facebook",v:"dsc.philippines"}] },
+      ]},
+      { title: "Coding bootcamps", items: [
+        { name:"Zuitt", angle:"~59k FB", tags:["bootcamp"], conf:"ok", star:true, links:[{t:"email",v:"helpdesk@zuitt.co"},{t:"facebook",v:"zuitttechcareer"}] },
+        { name:"KodeGo", angle:"", tags:["bootcamp"], conf:"ok", links:[{t:"email",v:"help@kodego.ph"},{t:"facebook",v:"KodegoPH"}] },
+        { name:"Avion School", org:"YC W21", angle:"via apply form", tags:["bootcamp"], conf:"ok", links:[{t:"facebook",v:"avionschool"}] },
+        { name:"Uplift Code Camp", angle:"~25k FB", tags:["bootcamp"], conf:"ok", links:[{t:"facebook",v:"upliftcodecamp"}] },
+      ]},
+    ]
+  },
+  {
+    id: "singapore", flag: "🇸🇬", title: "Singapore",
+    groups: [
+      { title: "Bitcoin / Lightning communities", items: [
+        { name:"BitDevs Singapore", angle:"Likely dormant — DM to check", tags:["community"], conf:"warn", links:[{t:"x",v:"sgbitdevs"}] },
+        { name:"Singapore Bitcoin Club", angle:"Semi-active · organizer Peter Sin", tags:["community"], conf:"ok", links:[{t:"email",v:"singaporebitcoinclub@gmail.com"},{t:"meetup",v:"singaporebitcoinclub"}] },
+        { name:"YakiHonne (SG stops)", angle:"SG cadence unconfirmed", tags:["nostr"], conf:"warn", links:[{t:"x",v:"YakiHonne"}] },
+        { name:"Nostr Singapore", angle:"Verify live", tags:["nostr"], conf:"warn", links:[{t:"web",v:"nostrsingapore.com"}] },
+        { name:"Grace Gui / Dawns Xu", angle:"Lightning events (2024)", tags:["events"], conf:"warn", links:[{t:"telegram_url",v:"https://t.me/+I5x00Oi2qN43ZmE9",label:"mixer TG"},{t:"x",v:"gracegui43"},{t:"x",v:"DawnsXu"}] },
+      ]},
+      { title: "Universities", items: [
+        { name:"NUS Hackers", angle:"", tags:["university"], conf:"ok", star:true, links:[{t:"email",v:"coreteam@nushackers.org"},{t:"telegram",v:"nushackers"},{t:"web",v:"nushackers.org"}] },
+        { name:"NUS Fintech Society", org:"blockchain", angle:"", tags:["university"], conf:"ok", links:[{t:"email",v:"nusfintech.ops@gmail.com"},{t:"instagram",v:"nusfintech"},{t:"telegram_url",v:"https://t.me/nusfintechsociety",label:"Telegram"},{t:"luma",v:"user/nusblockchain"}] },
+        { name:"Blockchain@NTU", angle:"", tags:["university"], conf:"ok", links:[{t:"email",v:"blockchain-NTU@e.ntu.edu.sg"},{t:"instagram",v:"blockchain.ntusg"},{t:"x",v:"NTUBlockchain"}] },
+        { name:"SMU Blockchain Club", angle:"", tags:["university"], conf:"ok", links:[{t:"email",v:"blockchain@sa.smu.edu.sg"},{t:"telegram",v:"smublockchainclub"},{t:"instagram",v:"smublockchain"}] },
+        { name:"SUTD 3DC", org:"dev club", angle:"Verify committee", tags:["university"], conf:"warn", links:[{t:"instagram",v:"sutd3dc"},{t:"github",v:"3DCdsc"}] },
+      ]},
+      { title: "Coding bootcamps", items: [
+        { name:"Le Wagon Singapore", angle:"", tags:["bootcamp"], conf:"ok", links:[{t:"meetup",v:"le-wagon-singapore-coding-bootcamp"}] },
+        { name:"Rocket Academy", angle:"", tags:["bootcamp"], conf:"ok", links:[{t:"email",v:"hello@rocketacademy.co"}] },
+        { name:"Generation Singapore", angle:"", tags:["bootcamp"], conf:"ok", links:[{t:"web_url",v:"https://singapore.generation.org",label:"generation.org"}] },
+        { name:"Vertical Institute", angle:"+65 6950 7023", tags:["bootcamp"], conf:"ok", links:[{t:"web",v:"verticalinstitute.com"},{t:"phone",v:"+6569507023"}] },
+        { name:"General Assembly SG", angle:"Bootcamp discontinued — skip", tags:["bootcamp"], conf:"dead", links:[] },
+      ]},
+    ]
+  },
+  {
+    id: "taiwan", flag: "🇹🇼", title: "Taiwan / Taipei",
+    groups: [
+      { title: "Cross-university hubs — hit first, fan out to many campuses", items: [
+        { name:"TBA — Taiwan Blockchain Academia", angle:"", tags:["hub"], conf:"ok", star:true, links:[{t:"instagram",v:"tba.blockchain"},{t:"threads",v:"tba.blockchain"},{t:"web",v:"tba.ngo"},{t:"facebook",v:"TaiwanBlockchainAcademia"}] },
+        { name:"XueDAO", angle:"", tags:["hub"], conf:"ok", star:true, links:[{t:"x",v:"xuedao_tw"},{t:"web",v:"xuedao.xyz"},{t:"youtube",v:"XueDAO2023"}] },
+      ]},
+      { title: "Universities", items: [
+        { name:"NTUT Blockchain Club", angle:"Most active", tags:["university"], conf:"ok", links:[{t:"email",v:"ntut.blockchain@gmail.com"},{t:"instagram",v:"ntut.blockchain"},{t:"web",v:"ntutblockchain.com"},{t:"discord",v:"hyKRvsRW"}] },
+        { name:"GDSC NYCU", angle:"", tags:["university"], conf:"ok", links:[{t:"email",v:"gdscnycu@gmail.com"},{t:"instagram",v:"gdsc__nycu"},{t:"web",v:"gdscnycu.com"}] },
+        { name:"NTU FinTech Club", angle:"", tags:["university"], conf:"ok", links:[{t:"instagram",v:"ntu_fc"},{t:"facebook",v:"NTUFintechClub"}] },
+        { name:"NTU CSIE Student Assoc.", angle:"", tags:["university"], conf:"ok", links:[{t:"instagram",v:"ntucsie_council"},{t:"facebook",v:"NTU.CSIE.Council"}] },
+        { name:"NTUST Blockchain Research Club", angle:"", tags:["university"], conf:"ok", links:[{t:"facebook",v:"NTUSTBlockchain"}] },
+        { name:"NYCU SDC", angle:"", tags:["university"], conf:"ok", links:[{t:"instagram",v:"nycu_sdc"},{t:"facebook",v:"NYCUSDC"}] },
+        { name:"NCCU Blockchain", angle:"", tags:["university"], conf:"ok", links:[{t:"instagram",v:"nccu__blockchain"}] },
+        { name:"NCKU Blockchain", angle:"Tainan", tags:["university"], conf:"ok", links:[{t:"instagram",v:"nckublockchainclub"},{t:"facebook",v:"BlockChainInNCKU"}] },
+        { name:"NTHU Blockchain", angle:"Verify handle", tags:["university"], conf:"warn", links:[{t:"instagram",v:"nthubc"}] },
+        { name:"SCU Blockchain", angle:"", tags:["university"], conf:"ok", links:[{t:"instagram",v:"blockchain_scu"}] },
+      ]},
+      { title: "Bitcoin / blockchain / civic-tech communities", items: [
+        { name:"Taiwan BitDevs", angle:"Purest Bitcoin dev fit", tags:["community"], conf:"ok", star:true, links:[{t:"x",v:"TaiwanBitdevs"},{t:"web",v:"bitdevs.tw"},{t:"meetup",v:"taiwan-bitdevs"}] },
+        { name:"ETHTaipei", angle:"", tags:["community"], conf:"ok", links:[{t:"x",v:"EthTaipei"},{t:"telegram",v:"ethtaipei"},{t:"discord",v:"Dqa2nfEsgv"},{t:"web",v:"ethtaipei.org"}] },
+        { name:"Taipei Bitcoin Meetup", angle:"Largest — 1,540 members", tags:["community"], conf:"ok", links:[{t:"telegram_url",v:"https://t.me/BitcoinTaipei",label:"Telegram"},{t:"meetup",v:"Taipei-Bitcoin-Meetup-Group"}] },
+        { name:"g0v", org:"civic-tech OSS", angle:"", tags:["civic-tech"], conf:"ok", links:[{t:"web_url",v:"https://join.g0v.tw",label:"join.g0v.tw"},{t:"web",v:"jothon.g0v.tw"}] },
+        { name:"COSCUP", angle:"Aug 8-9 2026 · 3,000+", tags:["conference"], conf:"ok", links:[{t:"email",v:"program@coscup.org"},{t:"email",v:"marketing@coscup.org"},{t:"x",v:"coscup"},{t:"telegram",v:"coscupchat"}] },
+        { name:"SITCON", org:"student dev conf", angle:"", tags:["conference"], conf:"ok", links:[{t:"email",v:"contact@sitcon.org"},{t:"web_url",v:"https://sitcon.org/tg",label:"sitcon.org/tg"},{t:"facebook",v:"SITCONtw"}] },
+        { name:"Taipei Hackerspace", angle:"", tags:["community"], conf:"ok", links:[{t:"web",v:"taipeihack.org"}] },
+        { name:"FutureWard / CLBC", angle:"Venues · lower priority", tags:["venue"], conf:"ok", links:[{t:"web",v:"futureward.com"},{t:"web",v:"clbc.tw"}] },
+        { name:"FUTUREMODE", org:"ex-Taipei Blockchain Week", angle:"Less dev-focused", tags:["event"], conf:"ok", links:[{t:"x",v:"TaipeiWeek"}] },
+      ]},
+      { title: "Coding bootcamps", items: [
+        { name:"Hexschool", angle:"", tags:["bootcamp"], conf:"ok", star:true, links:[{t:"email",v:"service@hexschool.com"},{t:"facebook",v:"hexschool"}] },
+        { name:"WeHelp Bootcamp", angle:"", tags:["bootcamp"], conf:"ok", star:true, links:[{t:"web_url",v:"https://wehelp.tw/bootcamp",label:"wehelp.tw"}] },
+        { name:"5xRuby / ASTRO", angle:"", tags:["bootcamp"], conf:"ok", links:[{t:"web",v:"5xruby.tw"},{t:"web",v:"astro.5xruby.tw"}] },
+        { name:"Rocket Coding", angle:"Kaohsiung", tags:["bootcamp"], conf:"ok", links:[{t:"web",v:"rocket-coding.com"}] },
+        { name:"iSpan", angle:"Corporate/paid", tags:["bootcamp"], conf:"ok", links:[{t:"web",v:"ispan.com.tw"}] },
+        { name:"TechBridge", angle:"Media channel, not a school", tags:["media"], conf:"warn", links:[{t:"web",v:"blog.techbridge.cc"},{t:"facebook",v:"techbridge.cc"}] },
+        { name:"ALPHA Camp", angle:"Closed", tags:["bootcamp"], conf:"dead", links:[] },
+        { name:"AppWorks School / Aiworks", angle:"Free bootcamp discontinued", tags:["bootcamp"], conf:"dead", links:[{t:"instagram",v:"aiworksbyaws"}] },
+        { name:"Lidemy", angle:"Ended", tags:["bootcamp"], conf:"dead", links:[{t:"github",v:"Lidemy"}] },
+      ]},
+    ]
+  },
+  {
+    id: "india", flag: "🇮🇳", title: "India — open-source devs",
+    note: "Devs, educators, and Bitcoin-only communities — recruitment targets for <strong>attend / free passes</strong>. India-based + active = strongest APAC-attend candidates; diaspora (US-based) are better for amplification. <strong>Bitshala (@bitshala_org)</strong>, the <strong>BitPlebs / BOSS Summit</strong> rosters, and the Bitcoin India Tour are the best batch channels + sourcing venues. Nostr is thin in India (clusters around Bitshala + saiy2k). Beware: most mass-market Indian 'Bitcoin' channels are altcoin-inclusive — vet before use. Japan & Korea still pending.",
+    caveat: true,
+    groups: [
+      { title: "India-based — active protocol devs (attend / free-pass)", items: [
+        { name:"Rajarshi Maitra", org:"Bitshala General Head", angle:"CoinSwap/Teleport privacy; leads citadel-tech/coinswap; BDK, rust-bitcoin, Core review · Spiral/Brink-funded", tags:["India","Bitcoin/BDK"], conf:"ok", star:true, links:[{t:"x",v:"RajarshiMaitra"},{t:"github",v:"rajarshimaitra"}] },
+        { name:"Sivaram Dhakshinamoorthy", angle:"libsecp256k1 (Schnorr batch verify); author BIP-445 FROST Signing (active)", tags:["India","protocol"], conf:"ok", links:[{t:"github",v:"siv2r"}] },
+        { name:"Shashwat Vangani", angle:"LDK — BOLT-12 blinded paths, invoice overpayments · OpenSats LTS grantee", tags:["India","Lightning/LDK"], conf:"ok", links:[{t:"x",v:"_shaavan"},{t:"github",v:"shaavan"}] },
+        { name:"Aditya Sharma", angle:"Core Lightning — chanbackup/emergency-recovery (merged CLN v0.12.0), peer storage, CLN-MCP; LDK", tags:["India","Lightning/CLN"], conf:"ok", links:[{t:"github",v:"adi2011"}] },
+        { name:"Yuvraj Chhetri", angle:"libbitcoinkernel, bitcoinkernel-jdk; runs Bitcoin Kernel Club · GitHub is yuvicc (not i-am-yuvi)", tags:["India","Core/kernel"], conf:"ok", links:[{t:"x",v:"hey_yuvicc"},{t:"github",v:"yuvicc"}] },
+        { name:"Chaitika", angle:"Silent Payments (BIP-352) — silent-pay-wallet, silent-pay-indexer", tags:["India","protocol"], conf:"ok", links:[{t:"github",v:"chaitika"}] },
+        { name:"Pavan Joshi", org:"getAlby", angle:"Lightning/Nostr eng — Alby Hub · Bitcoin Asia 2025 speaker", tags:["India","Lightning"], conf:"ok", star:true, links:[{t:"github",v:"pavanjoshi914"}] },
+        { name:"Saiyasodharan (saiy2k)", angle:"Bitcoin UI/UX + Nostr tooling (zap-button, livestream, crowdfunding widgets); SatSigner contributor; BOSS Summit organizer", tags:["India","Nostr/Lightning"], conf:"ok", links:[{t:"x",v:"saiy2k"},{t:"github",v:"saiy2k"}] },
+      ]},
+      { title: "Diaspora (US-based, Indian origin) — amplify / content", items: [
+        { name:"Sanket Kanjalkar", org:"Blockstream Research", angle:"Co-invented Miniscript; maintainer rust-miniscript, rust-bitcoin", tags:["diaspora","protocol"], conf:"ok", links:[{t:"x",v:"sanket1729"},{t:"github",v:"sanket1729"}] },
+        { name:"Ishaana Misra", angle:"Bitcoin Core (wallet); MIT DCI coinjoin research; Chaincode Scholar · India = heritage", tags:["diaspora","Core"], conf:"warn", links:[{t:"github",v:"ishaanam"}] },
+        { name:"Dhruv Mehta", angle:"Bitcoin Core — led BIP-324 (encrypted v2 P2P) · inactive on Core since 2023", tags:["diaspora","Core"], conf:"warn", links:[{t:"x",v:"dhruv"},{t:"github",v:"dhruv"}] },
+        { name:"Harsh Dev Pathak", angle:"Fedimint / Chaumian Ecash (haze-wallet) — Bitcoin-adjacent, not core protocol · Bitshala fellow", tags:["India","Fedimint"], conf:"warn", links:[{t:"x",v:"Harsh_dev098"},{t:"github",v:"Harshdev098"}] },
+      ]},
+      { title: "Educators / content & Summer of Bitcoin (attend / amplify)", items: [
+        { name:"Aditya Ranjan", org:"Bitcoin Bharat", angle:"Grassroots Bitcoin-only literacy, India Tour (50+ cities) · already speaking at Bitcoin Asia 2026", tags:["India","educator"], conf:"ok", star:true, links:[{t:"x",v:"bitcoinbharat_"},{t:"instagram",v:"bitcoinbhar.at"},{t:"web",v:"bitcoinbhar.at"}] },
+        { name:"Adi Shankara", angle:"Founder Summer of Bitcoin; PM Greenlight/CLN @ Blockstream; Bitshala co-founder", tags:["India","SoB"], conf:"ok", star:true, links:[{t:"x",v:"adibitcoin"},{t:"github",v:"adi-shankara"}] },
+        { name:"Sandeep Goenka", angle:"Bitcoin-only educator/author (Penguin 2024), corporate/YPO workshops", tags:["India","educator"], conf:"ok", links:[{t:"x",v:"goenkasandeep"}] },
+        { name:"Anil Patel (\"Anil SaidSo\")", angle:"Respected Bitcoin-only educator, The Bitcoin Handbook (~250k X) · diaspora (UK/Canada)", tags:["diaspora","educator"], conf:"ok", links:[{t:"x",v:"anilsaidso"}] },
+        { name:"Setu Saurabh", angle:"Bitshala program/ops; worksat (Nostr) contributor", tags:["India","SoB"], conf:"ok", links:[{t:"x",v:"SetuSaurabh"},{t:"github",v:"setusaurabh"}] },
+        { name:"Anmol Sharma", angle:"Bitcoin engineer @ Bold Bitcoin; worksat Nostr job board", tags:["India","dev"], conf:"ok", links:[{t:"x",v:"theanmolsharma_"},{t:"github",v:"theanmolsharma"}] },
+      ]},
+      { title: "Community / meetup orgs (amplify · sourcing venues)", items: [
+        { name:"Bitcoin4India", angle:"Not-for-profit, HRF-funded, Bitcoin-only meetups (Mumbai/Pune/Delhi/Bangalore/Goa) + annual conf", tags:["community"], conf:"ok", links:[{t:"x",v:"Bitcoin4India"},{t:"web",v:"bitcoin4india.org"}] },
+        { name:"Plebs Together Strong", angle:"Grassroots Bitcoin education, co-runs BitPlebs Summit; runs a LN node (South Goa)", tags:["community"], conf:"ok", links:[{t:"x",v:"plebstogether"},{t:"instagram",v:"plebstogetherstrong"}] },
+        { name:"BitPlebs Summit", angle:"India's largest Bitcoin-focused gathering (Goa) — its + Bitshala BOSS Summit rosters = best sourcing venue for more names", tags:["event"], conf:"ok", links:[{t:"web",v:"bitplebs.in"}] },
+      ]},
+    ]
+  },
+  {
+    id: "japan", flag: "🇯🇵", title: "Japan",
+    note: "Deepest protocol-dev + Nostr bench in Asia. Best anchor recruits: <strong>Koji Higashi</strong> + the <strong>Tokyo Bitcoin Base / Diamond Hands</strong> LN community; best Nostr entry points: <strong>nostr-jp</strong> + <strong>mattn</strong>. Bitcoin Japan conf (Fulgur) and Blockstream Japan are institutional partners. Individual Nostr npubs unconfirmed.",
+    caveat: true,
+    groups: [
+      { title: "Bitcoin / Lightning protocol devs (attend)", items: [
+        { name:"Karl-Johan \"Kalle\" Alm", org:"DG Lab / Digital Garage", angle:"Bitcoin Core contributor; author of signet + BIP-322; creator of btcdeb · Tokyo", tags:["Japan","Core"], conf:"ok", star:true, links:[{t:"x",v:"kallewoof"},{t:"github",v:"kallewoof"}] },
+        { name:"Jonathan Underwood", org:"bitbank / FLOC", angle:"BitcoinJS maintainer (PSBT); rust-bitcoin/mempool contributor; Chief Bitcoin Officer at bitbank · Tokyo", tags:["Japan","protocol"], conf:"ok", star:true, links:[{t:"github",v:"junderw"},{t:"x",v:"junderw"}] },
+        { name:"Yuya Ogawa", org:"Diamond Hands", angle:"Co-founder/CTO; Diamond Wallet (Breez SDK + Greenlight), Bolt Link, sats4ads · Nagoya", tags:["Japan","Lightning"], conf:"ok", links:[{t:"github",v:"yuyaogawa"}] },
+        { name:"Thibaut Le Guilly", org:"Crypto Garage", angle:"Tech Lead (DG × Blockstream JV); creator of rust-dlc, DLC-on-Lightning; rust-lightning contributor · Tokyo", tags:["Japan","DLC/LN"], conf:"ok", links:[{t:"github",v:"Tibo-lg"}] },
+        { name:"Kishin Kato", org:"Trustless Services", angle:"LN R&D — Paddle (LN auction), BTCLog; writes on LN/Nostr/DIDs · Tokyo", tags:["Japan","Lightning"], conf:"ok", links:[{t:"web",v:"trustless.services"}] },
+        { name:"Yusuke Shimizu", angle:"PeerSwap engineer (LN liquidity atomic swaps); Elements committer", tags:["Japan","Lightning"], conf:"ok", links:[{t:"github",v:"Yusuke-Shimizu"}] },
+        { name:"Shigeyuki Azuchi", org:"Chaintope", angle:"Authored bitcoinrb (Ruby BTC libs), Open Assets · borderline (leads Tapyrus, a federated BTC fork) · Fukuoka", tags:["Japan","libs"], conf:"warn", links:[{t:"github",v:"azuchi"}] },
+        { name:"Crypto Garage", angle:"DG × Blockstream JV — Liquid/DLC/Elements dev team; send devs · Tokyo", tags:["company"], conf:"ok", links:[{t:"web",v:"cryptogarage.co.jp"}] },
+        { name:"Blockstream Japan", angle:"Tokyo office (opened Feb 2025); LN/Liquid/L2; runs JP dev bootcamps & hackathons", tags:["company"], conf:"ok", links:[{t:"web",v:"blockstream.com"}] },
+      ]},
+      { title: "Nostr devs, voices & community hubs", items: [
+        { name:"mattn (Yasuhiro Matsumoto)", angle:"Core figure of Nostr JP; built cagliostr (C++ relay), algia (CLI); maintains awesome-nostr-japan mirror", tags:["Japan","Nostr"], conf:"ok", star:true, links:[{t:"x",v:"mattn_jp"},{t:"github",v:"mattn"}] },
+        { name:"SnowCait", angle:"Developer of nostter (popular web Nostr client) · npub verified", tags:["Japan","Nostr"], conf:"ok", links:[{t:"github",v:"SnowCait"}] },
+        { name:"syusui-s", angle:"Developer of Rabbit (TweetDeck-style Nostr client, SolidJS)", tags:["Japan","Nostr"], conf:"ok", links:[{t:"github",v:"syusui-s"}] },
+        { name:"imksoo", angle:"Operator of relay-jp.nostr.wirednet.jp (major JP relay)", tags:["Japan","Nostr infra"], conf:"ok", links:[{t:"github",v:"imksoo"}] },
+        { name:"nostr-jp", angle:"Community hub — awesome-nostr-japan, welcome-nostr; best JP Nostr amplification entry point", tags:["community"], conf:"ok", star:true, links:[{t:"github",v:"nostr-jp"},{t:"web_url",v:"https://nostr-jp.github.io/awesome-nostr-japan",label:"awesome-nostr-japan"}] },
+        { name:"Nostrasia", org:"conference", angle:"Nostr + Bitcoin conf (Tokyo/HK); peer event — 2026 recurrence unconfirmed", tags:["event"], conf:"warn", links:[] },
+      ]},
+      { title: "Educators, media, meetups & Bitcoin companies", items: [
+        { name:"Koji Higashi (東晃慈)", org:"Diamond Hands", angle:"Top JP Bitcoin educator; Blockstream JP ambassador; hosts top JP BTC YouTube — anchor recruit", tags:["Japan","educator"], conf:"ok", star:true, links:[{t:"x",v:"Coin_and_Peace"}] },
+        { name:"Diamond Hands", angle:"Largest JP LN community — Diamond Wallet, Boltz swaps, ~450 LN channels; Blockstream + Fulgur partner · Tokyo/Nagoya", tags:["community"], conf:"ok", star:true, links:[{t:"web",v:"diamondhands.technology"}] },
+        { name:"Tokyo Bitcoin Base (T₿B)", angle:"Bitcoin-only coworking/event space; First Fridays, Silent Payments workshops; run by Diamond Hands · Tokyo", tags:["hub"], conf:"ok", links:[{t:"web",v:"tokyobitcoin.space"}] },
+        { name:"ビットコイナー反省会 (Bitcoiner Hanseikai)", angle:"Most popular BTC channel in JP (BTC/LN/Nostr), hosted by Higashi — media partner", tags:["media"], conf:"ok", links:[] },
+        { name:"Bitcoin Japan / Bitcoin Tokyo", angle:"Japan's only Bitcoin-only conf, organized by Fulgur Ventures (Dev Day + main)", tags:["event"], conf:"ok", links:[{t:"x",v:"TheBTCJapan"},{t:"web",v:"btc-jpn.com"}] },
+        { name:"Fulgur Ventures", angle:"Bitcoin-only / LN VC; organizer of Bitcoin Japan conf", tags:["VC"], conf:"ok", links:[] },
+        { name:"Tokyo Bitcoin Dev Meetup (東京ビットコイン勉強会)", angle:"Bitcoin-only dev meetup; LN technical talks — dev recruiting for the OSS Hub", tags:["meetup"], conf:"ok", links:[] },
+        { name:"Kansai Bitcoiners", angle:"Regional BTC meetup (Osaka/Kyoto/Kobe, since 2013); 2026 activity unconfirmed", tags:["meetup"], conf:"warn", links:[] },
+      ]},
+    ]
+  },
+  {
+    id: "korea", flag: "🇰🇷", title: "Korea",
+    note: "<strong>The genuine Korean Bitcoin-only OSS scene is thin</strong> — no verifiable Korean Lightning dev, no live Korean Nostr community, no identifiable Korean Core/LN contributor surfaced. Korea's 'Bitcoin' surface is dominated by exchanges/trading + an RWA/tokenization pivot. Realistic play: one community partner (Seoul Bitcoin Meetup) + one bridge (Ruben Somsen) + cautious amplification. Reject altcoin/exchange names (Upbit, Bithumb, Hashed, KBW, etc.).",
+    caveat: true,
+    groups: [
+      { title: "Genuine Bitcoin-only figures / communities", items: [
+        { name:"Seoul Bitcoin Meetup", angle:"Explicitly Bitcoin-only, tech-not-trading; longest-running (since 2014), active to Oct 2025 (~2,573 members)", tags:["Korea","community"], conf:"ok", star:true, links:[{t:"x",v:"SeoulBitcoin"},{t:"web",v:"seoulbitcoin.kr"}] },
+        { name:"Ruben Somsen", angle:"Dutch, NOT Korean — founded Seoul Bitcoin Meetup; Silent Payments/Spacechains/Statechains; BIP editor; BA 2025 speaker. Best bridge to the Seoul scene", tags:["bridge","protocol"], conf:"ok", links:[{t:"x",v:"SomsenRuben"},{t:"github",v:"RubenSomsen"}] },
+        { name:"BitcoinSeoul", org:"conference", angle:"2025 was Bitcoin-only, but 2026 pivoted to 'Bitcoin→RWA' (media-company-run) — amplify cautiously, not an OSS-values ally", tags:["event"], conf:"warn", links:[{t:"web",v:"bitcoinseoul.kr"}] },
+      ]},
+    ]
+  },
+];
+
+const SHORTLIST = [
+  "Philippine Bitcoiners", "Luis Buenaventura", "TBA — Taiwan Blockchain Academia",
+  "XueDAO", "Taiwan BitDevs", "NUS Hackers", "NUS Fintech Society",
+  "Blockchain Student Alliance", "0xCUHKSZ",
+  "Bitcoin Association of Hong Kong (BAHK)", "Lightning Hackday HK / BAHK dev meetups",
+  "Bitwork Community HK", "BTC Chamber of Commerce HK", "Open Source Hong Kong (OSHK)",
+  "HKOSCon", "Hong Kong Python User Group (HKPUG)", "EasyA", "Encode Club",
+  "HKUST Web3 Ideathon", "HKUST Blockchain & Crypto Club", "HKU & CUHK blockchain clubs",
+  "Bitcoin Association of HK", "HKSTP Science Park Startup Meetup",
+  "HKU FinTech Student Assoc. (FTSA)", "Tecky Academy"
+];
+
+const TRACK_CAMPAIGN_IDS = ["t-bitcoin", "t-ai", "t-students", "t-oss", "recognition"];
+
+const REGION_TEMPLATES = [
+  {
+    id: "hongkong",
+    audiences: ["universities", "bootcamps", "hubs", "meetups"],
+    points: [
+      "<strong>Home turf.</strong> Bitcoin Asia 2026 is local — lead with convenience and community, not travel logistics.",
+      "<strong>Direct peer tone works.</strong> Student societies and bootcamps respond to short casual DMs; hubs want a clear ask with dates and headcount.",
+      "<strong>Priority partners first.</strong> BAHK, Lightning Hackday, Bitwork, OSHK — highest-signal community partners on this list.",
+      "<strong>Web3 hub gotcha.</strong> web3hub.work, web3hub.pro, and web3hub.et are <strong>unrelated third-party sites</strong> — not Cyberport's Web3 Hub@Cyberport.",
+      "<strong>Event-specific inboxes.</strong> event@cyberport.hk, dsh-events@hkstp.org, w3ic@cyberport.hk — <strong>not</strong> generic enquiry@ PR fallbacks.",
+      "<strong>Bitcoin-native channels.</strong> Telegram, Meetup DM, Instagram DM for societies; email for org accounts.",
+    ],
+    channel: "Telegram · email · Meetup DM · Instagram DM · Luma",
+    sample: `Subject: free passes for your members — Bitcoin Asia OSS Hub
+
+Hey [name],
+
+How's it going? Pedro here. I'm working on the Open Source Hub at Bitcoin Asia in HK this August — the builder floor at the conference, good for members who actually ship.
+
+Want to set [society] up as a community partner? Free dev passes ([CLAIM LINK], code [CODE]) + we'll list you on the partner wall and send a graphic to share.
+
+Worth a quick yes/no? Who's best to coordinate — and roughly how many might come?`,
+  },
+  {
+    id: "shenzhen",
+    audiences: ["campus CS clubs", "diaspora devs", "GBA bridges"],
+    points: [
+      "<strong>OSS framing on mainland.</strong> Post-2021 ban — pitch open-source dev conference, <strong>not crypto or Bitcoin marketing</strong>.",
+      "<strong>CUHK-Shenzhen only.</strong> <strong>0xCUHKSZ</strong> is the one contact where you can pitch crypto openly.",
+      "<strong>VPN reality.</strong> X, Telegram, Discord, and Google are VPN-only — devs use <strong>WeChat/QQ</strong>; GitHub works for diaspora.",
+      "<strong>Warm intros win.</strong> WeChat/QQ routes beat cold email.",
+      "<strong>Bridge through HK.</strong> BAHK and Open Source HK are safer cross-border entry points — let HK contacts carry word.",
+      "<strong>Verify before outreach.</strong> Small list — every contact needs a live channel check first.",
+    ],
+    channel: "WeChat warm intro · GitHub issue · email (diaspora)",
+    sample: `Subject: HK dev conf — free passes for your club?
+
+Hey [name],
+
+How's it going? Pedro here. 你好 — I'm working on the Open Source Hub at a dev conference in Hong Kong this August. Open-source / builder focus — not crypto marketing.
+
+Happy to partner with your club: free passes for members ([CLAIM LINK], code [CODE]), we credit you as a community partner. Easy trip from Shenzhen.
+
+Interested? Happy to share details privately.`,
+  },
+  {
+    id: "philippines",
+    audiences: ["Bitcoin meetups", "uni societies", "bootcamps"],
+    points: [
+      "<strong>Strong Bitcoin-native scene.</strong> Philippine Bitcoiners and the Bloom network are top-tier partners.",
+      "<strong>Facebook + Telegram are live.</strong> Meetup groups and uni societies respond on FB/TG.",
+      "<strong>Bootcamps and GDSC chapters</strong> are the student pipeline — multi-campus leverage.",
+      "<strong>Reference local credibility</strong> — PH Bitcoin community is tight; name-drop mutual contacts when you have them.",
+    ],
+    channel: "Telegram · Facebook · X DM · email",
+    sample: `Subject: free dev passes — Bitcoin Asia OSS Hub (HK)
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia in HK late Aug — builder floor, the kind of thing PH Bitcoin folks would actually use.
+
+Want to partner up? Free passes for your crew ([CLAIM LINK], code [CODE]) + we'll shout you out at the Hub.
+
+Rough guess on how many might make it? Who should I ping to set it up?`,
+  },
+  {
+    id: "singapore",
+    audiences: ["dev societies", "meetups", "fintech clubs"],
+    points: [
+      "<strong>Mature dev society ecosystem.</strong> NUS Hackers, blockchain societies — email + Discord + Telegram.",
+      "<strong>Verify meetup cadence.</strong> Bitcoin Club vs BitDevs — confirm which groups are still active.",
+      "<strong>Short flight to HK</strong> — convenience hook works for student groups.",
+      "<strong>Professional on email;</strong> casual on Discord/Telegram.",
+    ],
+    channel: "Email · Telegram · Discord · Meetup",
+    sample: `Subject: free passes for [society] — Bitcoin Asia OSS Hub
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — developer floor at the conference, not a trading expo.
+
+We'd love to partner with [NUS Hackers / your society]: free passes for members ([CLAIM LINK], code [CODE]), your community listed as a partner + a graphic to reshare.
+
+How many might be interested? Who's the right contact?`,
+  },
+  {
+    id: "taiwan",
+    audiences: ["BitDevs-adjacent", "cross-campus hubs", "COSCUP crowd"],
+    points: [
+      "<strong>Builder overlap with BitDevs.</strong> Taipei devs are a natural fit for the OSS Hub floor.",
+      "<strong>COSCUP timing hook.</strong> Aug 8–9 warm-up if folks are already in the region.",
+      "<strong>Cross-campus hubs</strong> (XueDAO, TBA) fan out fast — one yes reaches many societies.",
+      "<strong>Discord, Telegram, IG DMs</strong> all in play for student groups.",
+    ],
+    channel: "Email · Discord · Telegram · Instagram · X",
+    sample: `Subject: free passes — Bitcoin Asia OSS Hub (HK)
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — builder floor, lots of overlap with BitDevs crowd, short flight from Taipei.
+
+Want to partner [club]? Free passes ([CLAIM LINK], code [CODE]) + we credit your community. COSCUP Aug 8–9 is a nice warm-up if folks are already around.
+
+Who should I talk to, and any rough headcount?`,
+  },
+  {
+    id: "india",
+    audiences: ["academies", "dev communities", "OSS educators"],
+    points: [
+      "<strong>Education-first framing.</strong> Bitshala and academy models — builders in training pipelines.",
+      "<strong>Verify active channels.</strong> BOSS Summit / BitPlebs network — confirm before bulk outreach.",
+      "<strong>X and Telegram</strong> for individuals; email for org accounts.",
+      "<strong>Long-haul travel</strong> — only pitch builders who realistically attend APAC events.",
+    ],
+    channel: "X · email · Telegram",
+    sample: `Subject: free dev passes — Bitcoin Asia OSS Hub (HK)
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — builder floor, right crowd for [community].
+
+Want to partner? Free passes for your devs ([CLAIM LINK], code [CODE]) + we'll credit you as a community partner.
+
+Who should I coordinate with?`,
+  },
+  {
+    id: "japan",
+    audiences: ["meetups", "Nostr builders", "OSS clusters"],
+    points: [
+      "<strong>Tokyo Bitcoin Space cluster.</strong> Meetup + GitHub for individual builders.",
+      "<strong>Nostr JP bridges</strong> OSS and Bitcoin-native builders — good DM channel.",
+      "<strong>Polite, concise email;</strong> English works for dev communities.",
+      "<strong>Short hop from Japan to HK</strong> — emphasize convenience for meetup groups.",
+    ],
+    channel: "X · GitHub · email · Meetup",
+    sample: `Subject: free passes — Bitcoin Asia OSS Hub (HK)
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia in HK late Aug — technical builder floor, short hop from Japan.
+
+Partner ask: free dev passes for [community] ([CLAIM LINK], code [CODE]) + community partner listing.
+
+Interested? Who's the right contact?`,
+  },
+  {
+    id: "korea",
+    audiences: ["Bitcoin-only meetups", "protocol bridges"],
+    points: [
+      "<strong>Thin Bitcoin-only OSS scene.</strong> Verify everything — reject exchange/trading names.",
+      "<strong>Seoul Bitcoin Meetup</strong> is the realistic community partner.",
+      "<strong>Ruben Somsen bridge</strong> to the Seoul scene — reference thoughtfully, he's not Korean.",
+      "<strong>Amplify cautiously</strong> — Korea's surface Bitcoin scene skews trading/RWA.",
+    ],
+    channel: "Email · Telegram · X",
+    sample: `Subject: free dev passes — Bitcoin Asia OSS Hub (HK)
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — developer floor at the conference.
+
+We'd love to partner with [community]: free passes ([CLAIM LINK], code [CODE]) + partner wall credit.
+
+Who should I talk to?`,
+  },
+];
+
+const STRATEGY = [
+  {
+    id: "influencers", flag: "🎤", label: "Influencers",
+    targets: [
+      { section: "influencers", note: "Tier 1 APAC attend gets · Tier 2 OSS content fit · Tier 3 amplification channels" },
+    ],
+    audiences: ["attendees", "amplifiers", "content"],
+    points: [
+      "<strong>Split the ask.</strong> APAC-based = attend + amplify; global on-theme = content / remote amplification, not travel pitch.",
+      "<strong>Personalize hard.</strong> Reference their project (Nostr MCP, Lightning AI, mining compute) — generic conference spam gets ignored.",
+      "<strong>Nostr / X DMs</strong> for builders; email for org accounts. Keep it short — they're inbox-heavy.",
+      "<strong>Offer value first.</strong> Comped pass if they can attend, or claim codes for their audience — not \"please retweet our event.\"",
+    ],
+    channel: "X · Nostr · email · Telegram",
+    sample: `Subject: comp passes for your audience? — Bitcoin Asia OSS Hub
+
+Hey [name],
+
+How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug). Your [project / work] is exactly the vibe we're going for.
+
+Simple ask: partner with us and get comp codes for builders who follow you ([CLAIM LINK], code [CODE]). We credit you as a community partner.
+
+No pressure — want me to send details?`,
+  },
+  {
+    id: "opensource-nostr-speakers", flag: "⚡", label: "OSS + Nostr Speakers",
+    targets: [
+      { section: "opensource-nostr-speakers", note: "Hub speakers · Nostr builders · Genesis & Nakamoto stage — already on the program" },
+    ],
+    audiences: ["confirmed speakers", "Nostr builders", "on-stage devs"],
+    points: [
+      "<strong>They're already in.</strong> Lead with logistics + amplification, not a cold pitch — comp passes for their community if relevant.",
+      "<strong>Reference their session.</strong> Hub vs Nostr vs stage track — show you know where they fit.",
+      "<strong>Peer density is the hook.</strong> Core/Lightning/Nostr contributors in the same building all week.",
+      "<strong>Nostr DMs or email</strong> for individuals; keep it short.",
+    ],
+    channel: "Nostr · X · email",
+    sample: `Subject: Open Source Hub @ Bitcoin Asia — your community
+
+Hey [name],
+
+How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug). Great to have you on the program.
+
+If your community should be in the room too, happy to set up comp codes ([CLAIM LINK], code [CODE]) and credit them as partners. Worth a quick thread?`,
+  },
+  {
+    id: "t-bitcoin", flag: "🟠", label: "Track · Bitcoin-native",
+    targets: [
+      { section: "hongkong", note: "BAHK · Lightning Hackday · Bitcoin HK meetups · Bitwork" },
+      { section: "philippines", note: "Philippine Bitcoiners · Bloom / @rtayag network" },
+      { section: "singapore", note: "Singapore Bitcoin Club · BitDevs SG (verify cadence)" },
+      { section: "taiwan", note: "Taiwan BitDevs · BTCStudy diaspora" },
+      { section: "india", note: "Bitshala · BitPlebs / BOSS Summit roster · Bitcoin India Tour" },
+      { section: "japan", note: "Tokyo Bitcoin Space · BTC Japan · Nostr JP builders" },
+      { section: "korea", note: "Korea Bitcoin communities (verify active)" },
+      { section: "influencers", note: "Tier 2 — Abdel Stark · Elizabeth Stark · mining/compute voices" },
+      { section: "opensource-nostr-speakers", note: "Hub + Nostr track speakers" },
+    ],
+    audiences: ["protocol devs", "BitDevs", "Bitcoin communities"],
+    points: [
+      "<strong>Bitcoin-centric belongs here.</strong> Lead with protocol, PRs, sats, sovereignty — this crowd wants depth, not an intro.",
+      "<strong>The give:</strong> peer density with Core/Lightning/Nostr contributors, funder/grant office hours, free dev passes, community partner credit.",
+      "<strong>Regional lists are sourcing pools</strong> — pick Bitcoin-native contacts inside each geography tab.",
+    ],
+    channel: "Telegram · X / Nostr DM · Meetup",
+    sample: `Subject: Open Source Hub @ Bitcoin Asia 2026 — free dev passes
+
+Hey [name],
+
+How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug) — two days of BitDevs-style sessions, project stations, and workshops with Core, Lightning, and Nostr contributors, plus grant office hours with the funders in the room.
+
+I'd love to get [community]'s builders free passes and credit your community on-site. How many would make it? Happy to sort codes this week.`,
+  },
+  {
+    id: "t-ai", flag: "🤖", label: "Track · AI × open-source",
+    targets: [
+      { section: "influencers", note: "Abdel Stark · Maple AI · Yat Siu · AI-agent / private-AI builders" },
+      { section: "hongkong", note: "AI × Web3 campus clubs · Encode · EasyA hackathon alumni" },
+      { section: "taiwan", note: "ETHTaipei · agentic-AI campus chapters" },
+      { section: "singapore", note: "NUS / NTU AI societies · decentralized-AI meetups" },
+    ],
+    audiences: ["decentralized AI", "agentic AI", "private AI"],
+    points: [
+      "<strong>De-Bitcoin the lead.</strong> Open source + AI is the headline; Bitcoin is the rails, mentioned once (\"agents that pay and hold value\").",
+      "<strong>The give:</strong> concentrated niche peers + space to demo their work to a builder audience.",
+      "<strong>Not a general AI pitch</strong> — only decentralized/private/agentic AI + AI-×-Nostr builders.",
+    ],
+    channel: "X / Nostr DM · email",
+    sample: `Subject: Open source + AI at the Open Source Hub (HK, late Aug)
+
+Hey [name],
+
+How's it going? Pedro here. I do experience design for the Open Source Hub in Hong Kong this August — two days for open-source builders, including the crews working on private and agentic AI, agents that pay and hold value, and self-hostable inference.
+
+If that's your world, I'd love to get you a free dev pass and space to show your work. Interested?`,
+  },
+  {
+    id: "t-students", flag: "🎓", label: "Track · Students",
+    targets: [
+      { section: "hongkong", note: "HKU / HKUST / CUHK clubs · GDG chapters · Tecky · bootcamps" },
+      { section: "shenzhen", note: "Campus CS clubs — OSS framing only, warm intros" },
+      { section: "philippines", note: "BSA · UP CURSOR · GDSC · La Salle · bootcamps" },
+      { section: "singapore", note: "NUS Hackers · GDSC · blockchain societies" },
+      { section: "taiwan", note: "TBA · XueDAO · cross-campus hubs · COSCUP crowd" },
+      { section: "india", note: "Bitshala cohorts · campus GDSC chapters" },
+      { section: "japan", note: "University dev circles (verify contact line)" },
+      { section: "korea", note: "Campus dev societies (thin list — verify first)" },
+    ],
+    audiences: ["uni CS / blockchain clubs", "GDG chapters", "bootcamps"],
+    points: [
+      "<strong>Open source + learning, jargon-light.</strong> Barely mention Bitcoin — it's just the event name.",
+      "<strong>The give:</strong> a free pass to a world-class conference is rare for a student — workshops, maintainers, hackathon energy.",
+      "<strong>Ask for the right person</strong> to set up a block for the society.",
+      "<strong>Multi-campus leverage.</strong> One yes from a cross-campus hub fans out fast.",
+    ],
+    channel: "IG DM · society email · Telegram / Discord",
+    sample: `Subject: Free passes for [society] — Open Source Hub, Bitcoin Asia (HK)
+
+Hey [name],
+
+How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia in Hong Kong (late Aug) — hands-on workshops, live demos with the maintainers behind real tools, hackathon energy, and a VR activation on the floor.
+
+A free pass is a rare thing for students, so I'd love to give [society] a block for your members. Who's the right person to set it up?`,
+  },
+  {
+    id: "t-oss", flag: "🐧", label: "Track · OSS communities",
+    targets: [
+      { section: "hongkong", note: "OSHK · HKOSCon · HKPUG · Dim Sum Labs · HKWeb3 Luma" },
+      { section: "shenzhen", note: "SUSTech CRA · GDG Guangzhou · Open Source HK bridge" },
+      { section: "philippines", note: "GDSC hub · multi-campus dev societies" },
+      { section: "singapore", note: "NUS Hackers · open-source meetups" },
+      { section: "taiwan", note: "ETHTaipei · g0v-adjacent · COSCUP timing hook (Aug 8–9)" },
+      { section: "india", note: "OSS educators · Nostr/Lightning tooling builders" },
+      { section: "japan", note: "OSS / Nostr Japan clusters" },
+    ],
+    audiences: ["GDG · g0v · COSCUP", "hackerspaces", "dev meetups"],
+    points: [
+      "<strong>Lead with \"we platform you.\"</strong> Open-source ethos; Bitcoin is the venue, not the pitch.",
+      "<strong>The give:</strong> community-partner program — credit on-site, space to convene, amplification + passes for members.",
+      "<strong>Last mile is theirs:</strong> hand them an adaptable draft to post in their own voice.",
+      "<strong>Regional tabs are where the lists live</strong> — filter for OSS / civic-tech / dev-society tags.",
+    ],
+    channel: "email · Discord · Telegram · Slack",
+    sample: `Subject: Community partnership — Open Source Hub, Bitcoin Asia (HK)
+
+Hey [name],
+
+How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug) — two days celebrating open source and the people who ship it.
+
+I'd love to make [community] a community partner: free dev passes for your members, your name credited on-site, space to convene your people, and we amplify you to everyone who shows up. In return, help spread the word to your members. Open to it?`,
+  },
+  {
+    id: "recognition", flag: "🤝", label: "Partner recognition",
+    targets: [
+      { section: "hongkong", note: "Priority partners · bootcamps · hubs" },
+      { section: "philippines", note: "Meetups · uni societies · bootcamps" },
+      { section: "singapore", note: "Dev societies · meetups" },
+      { section: "taiwan", note: "Cross-campus hubs · BitDevs-adjacent" },
+      { section: "india", note: "Academies · dev communities" },
+      { section: "japan", note: "Meetups · builder communities" },
+      { section: "influencers", note: "Community partners with audiences" },
+    ],
+    audiences: ["community partner", "earned not paid"],
+    points: [
+      "<strong>Partnership, not sponsorship.</strong> Partners don't pay — they bring builders + co-promote, and recognition is earned.",
+      "<strong>On-site:</strong> name on the Community Partners wall, \"[community] delegate\" badge ribbons for members, and a community meetup board to pin their socials.",
+      "<strong>Digital:</strong> listed on the Hub program page + a co-brandable \"proud community partner\" graphic they can reshare.",
+      "<strong>What we don't offer:</strong> workshops, stage time, or paid placement — passes + recognition only.",
+    ],
+    channel: "On-site wall · badge ribbons · program page · partner graphic",
+    sample: `Hey [name],
+
+How's it going? Pedro here — quick rundown on community partner recognition at the Open Source Hub:
+
+As a Community Partner, [community] gets: your name on the Hub partner wall and program page, "[community] delegate" ribbons for your members, a pin on the community meetup board, and a co-brandable graphic to share.
+
+That's it — free passes for your builders, recognition when you bring them. No fees, no stage slots.`,
+  },
+];
+
+const SAMPLE_GRAPHICS = [
+  {
+    id: "partner-wall",
+    title: "Community Partners wall",
+    spec: "1920 × 1080 · On-site panel / screen loop",
+    note: "Entrance wall listing every partner community.",
+    src: "assets/graphics/partner-wall.svg",
+    variant: "",
+  },
+  {
+    id: "partner-social-square",
+    title: "Square post",
+    spec: "1080 × 1080 · IG / Telegram / X",
+    note: "Partner announcement — swap in your community name or logo, plus the pass code.",
+    src: "assets/graphics/partner-social-square.svg",
+    variant: "",
+  },
+  {
+    id: "partner-social-landscape",
+    title: "Landscape / link preview",
+    spec: "1600 × 900 · X / LinkedIn / email header",
+    note: "Wide variant of the partner announcement for posts and email headers.",
+    src: "assets/graphics/partner-social-landscape.svg",
+    variant: "",
+  },
+  {
+    id: "delegate-ribbon",
+    title: "Delegate badge ribbon",
+    spec: "1000 × 340 · Badge add-on",
+    note: "'[Community] delegate' ribbon for members' badges — the on-site belonging signal.",
+    src: "assets/graphics/delegate-ribbon.svg",
+    variant: "",
+  },
+  {
+    id: "meetup-board-header",
+    title: "Meetup board header",
+    spec: "1600 × 400 · Pin-board topper",
+    note: "Header card for the community meetup board where partners pin the week's socials.",
+    src: "assets/graphics/meetup-board-header.svg",
+    variant: "",
+  },
+];
+
+const EVENTS = {
+  "asia-2026": {
+    label: "Bitcoin Asia 2026",
+    logo: "assets/bitcoin-asia-nav-landscape-white.svg",
+    sections: SECTIONS,
+    shortlist: SHORTLIST,
+    strategy: STRATEGY,
+    regionTemplates: REGION_TEMPLATES,
+    sampleGraphics: SAMPLE_GRAPHICS,
+    dataSource: "sales/apac-outreach-contacts.md",
+  },
+  "btc-2027": {
+    label: "Bitcoin 2027",
+    logo: "assets/bitcoin-2027-white-orange.svg",
+    sections: [],
+    shortlist: [],
+    strategy: null,
+    sampleGraphics: null,
+    dataSource: null,
+    emptyMessage: "No contacts yet for Bitcoin 2027. Add a markdown file and wire it into this tool when outreach begins.",
+  },
+};
+
+function activeEvent() { return EVENTS[state.event]; }
+function activeSections() { return activeEvent().sections; }
+function activeShortlist() { return activeEvent().shortlist; }
+function isShortlistItem(item) {
+  return activeShortlist().includes(item.name) || !!item.star;
+}
+
+function renderEventTabs() {
+  document.getElementById("eventTabs").innerHTML = Object.entries(EVENTS).map(([id, ev]) =>
+    `<button type="button" class="event-tab${id === state.event ? " active" : ""}" data-event="${id}" aria-label="${ev.label}">
+      <img class="event-tab-logo" src="${ev.logo}" alt="" />
+    </button>`
+  ).join("");
+}
+
+function updateEventHeader() {
+  const ev = activeEvent();
+  document.title = `Outreach contacts — ${ev.label}`;
+  document.querySelectorAll(".event-tab").forEach(tab => {
+    tab.classList.toggle("active", tab.dataset.event === state.event);
+  });
+  const src = document.getElementById("dataSource");
+  if (src) src.textContent = ev.dataSource || "—";
+  renderSampleGraphics();
+  updateHubPanelsVisibility();
+}
+
+function trackCampaigns() {
+  const strategies = activeEvent().strategy || STRATEGY;
+  return strategies.filter((s) => TRACK_CAMPAIGN_IDS.includes(s.id));
+}
+
+function isTrackCampaignId(id) {
+  return TRACK_CAMPAIGN_IDS.includes(id);
+}
+
+function campaignForSection(sectionId) {
+  const ev = activeEvent();
+  const strategies = ev.strategy || STRATEGY;
+  const seg = strategies.find((s) => s.id === sectionId);
+  if (seg) return seg;
+  const regions = ev.regionTemplates || REGION_TEMPLATES;
+  return regions.find((r) => r.id === sectionId) || null;
+}
+
+function itemBlob(item) {
+  return [item.name, item.org, item.angle, ...(item.tags || [])].join(" ").toLowerCase();
+}
+
+function hasTag(item, ...needles) {
+  const tags = (item.tags || []).map((t) => t.toLowerCase());
+  return needles.some((n) => tags.some((t) => t.includes(n.toLowerCase())));
+}
+
+function blobHas(item, re) {
+  return re.test(itemBlob(item));
+}
+
+function matchesTrackContact(entry, trackId) {
+  const { item, sectionId, groupTitle } = entry;
+  if (item.conf === "dead") return false;
+  const group = (groupTitle || "").toLowerCase();
+
+  switch (trackId) {
+    case "t-bitcoin":
+      if (sectionId === "opensource-nostr-speakers") return true;
+      if (hasTag(item, "bitcoin")) return true;
+      if (blobHas(item, /bitcoin|lightning|nostr|bitdev|bitshala|bitpleb|satoshi|miniscript|damus|fulgur|diamond.?hand|btcstudy|philippine bitcoin|bloom|chamber of commerce|bahk|lightning hackday/i)) return true;
+      if (sectionId === "influencers" && blobHas(item, /bitcoin|lightning|nostr|mining|mcp|btcstudy|bitdev|association of hk/i)) return true;
+      if (sectionId === "india" && blobHas(item, /bitcoin|lightning|nostr|core|protocol|bdk|cln|ldk|fedimint|educator|meetup|community/i)) return true;
+      if (sectionId === "japan") return blobHas(item, /bitcoin|lightning|nostr|btc|ln\/|protocol|bitbank|fulgur/i);
+      if (sectionId === "korea") return blobHas(item, /bitcoin/i);
+      if (sectionId === "taiwan") return blobHas(item, /bitdev|btcstudy|bitcoin/i);
+      if (sectionId === "philippines" && /bitcoin|lightning/.test(group)) return true;
+      if (sectionId === "singapore" && /bitcoin|lightning/.test(group)) return true;
+      if (sectionId === "hongkong" && blobHas(item, /bitcoin|lightning|bitc|bahk/i)) return true;
+      return false;
+    case "t-ai":
+      if (sectionId === "influencers" && blobHas(item, /ai|agent|mcp|animoca|inference|private/i)) return true;
+      if (blobHas(item, /agentic|genai|\bai\b|artificial intelligence|inference|llm|encode|easya|preface ai|hack4sdg|ethtaipei|web3.*ai|fintech.*ai|gdg.*ai/i)) return true;
+      if (hasTag(item, "cross-campus") && blobHas(item, /gdg|ai|hackathon|agentic/i)) return true;
+      return false;
+    case "t-students":
+      if (hasTag(item, "university", "bootcamp", "cross-campus")) return true;
+      return blobHas(item, /student|society|club|campus|gdsc|gdg on campus|hackers|bootcamp|ideathon|ftsa|blockchain club|csess|fintech soc/i);
+    case "t-oss":
+      if (hasTag(item, "open-source", "developers")) return true;
+      if (blobHas(item, /opensource|open.source|hkoscon|hkpug|nus hackers|g0v|coscup|dim sum|python hk|gdsc|hackers|linux/i)) return true;
+      if (sectionId === "india" && blobHas(item, /oss|open.source|educator|nostr|lightning tooling/i)) return true;
+      if (sectionId === "philippines" && hasTag(item, "university") && blobHas(item, /gdsc|gdg|cursor|alliance|society/i)) return true;
+      return false;
+    case "recognition":
+      return isPriorityItem(item) || isShortlistItem(item) || !!item.partnership || hasTag(item, "priority", "community", "hub");
+    default:
+      return true;
+  }
+}
+
+function contactDedupeKey(item) {
+  const email = (item.links || []).find((l) => l.t === "email")?.v?.toLowerCase().trim();
+  if (email) return `email:${email}`;
+  const x = (item.links || []).find((l) => l.t === "x")?.v?.toLowerCase().trim();
+  if (x) return `x:${x}`;
+  const name = (item.name || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return `name:${name}`;
+}
+
+function contactEntryRank(item) {
+  if (isShortlistItem(item)) return 0;
+  if (isPriorityItem(item)) return 1;
+  return 2;
+}
+
+function trackContactEntries(trackId, campaign) {
+  const sectionIds = new Set((campaign.targets || []).map((t) => t.section));
+  const out = [];
+  activeSections().forEach((sec) => {
+    if (!sectionIds.has(sec.id)) return;
+    sec.groups.forEach((g) => {
+      g.items.forEach((item) => {
+        const entry = { item, sectionId: sec.id, sectionTitle: sec.title, groupTitle: g.title };
+        if (matchesTrackContact(entry, trackId)) out.push(entry);
+      });
+    });
+  });
+  const byKey = new Map();
+  out.forEach((entry) => {
+    const key = contactDedupeKey(entry.item);
+    const prev = byKey.get(key);
+    if (!prev) {
+      byKey.set(key, entry);
+      return;
+    }
+    const rankA = contactEntryRank(entry.item);
+    const rankB = contactEntryRank(prev.item);
+    if (rankA < rankB || (rankA === rankB && (entry.item.angle || "").length > (prev.item.angle || "").length)) {
+      byKey.set(key, entry);
+    }
+  });
+  const deduped = [...byKey.values()];
+  deduped.sort((a, b) => {
+    const rank = (it) => (isShortlistItem(it) ? 0 : isPriorityItem(it) ? 1 : 2);
+    const d = rank(a.item) - rank(b.item);
+    return d !== 0 ? d : a.item.name.localeCompare(b.item.name);
+  });
+  return deduped;
+}
+
+function trackContactsHTML(campaign) {
+  if (!isTrackCampaignId(campaign.id)) return "";
+  const entries = trackContactEntries(campaign.id, campaign);
+  const trackId = campaign.id;
+  const grid = entries.map(({ item, sectionId }) => cardHTML(item, sectionId, trackId)).join("");
+  const rows = entries.map(({ item, sectionId }) => rowHTML(item, sectionId, trackId)).join("");
+  return `<div class="track-contacts">
+    <h3 class="track-contacts-title">Who to message</h3>
+    <p class="track-contacts-count">${entries.length} contact${entries.length === 1 ? "" : "s"} for this track</p>
+    <div class="grid">${grid}</div>
+    <div class="table-wrap"><table class="contact-table">
+      <colgroup>
+        <col class="col-star" /><col class="col-name" /><col class="col-org" />
+        <col class="col-angle" /><col class="col-tags" /><col class="col-status" /><col class="col-links" />
+      </colgroup>
+      <thead><tr>
+        <th class="cell-star">★</th><th class="cell-name">Name</th><th class="cell-org">Org</th>
+        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th><th class="cell-status">Status</th><th class="cell-links">Contact</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <div class="no-results hidden" id="noResults-${campaign.id}">No contacts match your filters.</div>
+  </div>`;
+}
+
+function campaignHTML(campaign) {
+  if (!campaign || (!campaign.points?.length && !campaign.sample && !campaign.targets?.length)) return "";
+  const audiences = campaign.audiences || [];
+  const trackContacts = isTrackCampaignId(campaign.id) ? trackContactsHTML(campaign) : "";
+  return `
+    <div class="section-campaign">
+      <h3 class="section-campaign-title">Outreach campaign</h3>
+      <div class="strategy-grid">
+        <div class="strategy-block">
+          <h3>Approach</h3>
+          <ul class="strategy-points">${(campaign.points || []).map((p) => `<li>${p}</li>`).join("")}</ul>
+          ${audiences.length ? `<div class="strategy-audience">${audiences.map((a) => `<span class="strategy-tag">${a}</span>`).join("")}</div>` : ""}
+        </div>
+        <div class="strategy-block">
+          <h3>Sample message</h3>
+          <div class="msg-sample">
+            <pre>${formatTemplatePreview(campaign.sample || "")}</pre>
+            <button type="button" class="msg-copy" data-campaign-id="${campaign.id}">Copy message</button>
+          </div>
+          ${campaign.channel ? `<p class="msg-channel">Best channels: <span>${campaign.channel}</span></p>` : ""}
+        </div>
+      </div>
+      ${trackContacts}
+    </div>`;
+}
+
+function trackPanelHTML(campaignId) {
+  const strategies = activeEvent().strategy || STRATEGY;
+  const campaign = strategies.find((s) => s.id === campaignId);
+  if (!campaign) return "";
+  return `<section class="section section--track" id="sec-${campaignId}">
+    <div class="section-head">
+      <span class="flag">${campaign.flag}</span>
+      <h2>${campaign.label}</h2>
+    </div>
+    ${campaignHTML(campaign)}
+  </section>`;
+}
+
+function hubNavTabButton(id, flag, label, count, active) {
+  return `<button type="button" class="hub-nav-tab${active ? " active" : ""}" data-hub-tab="${id}" role="tab" aria-selected="${active}" title="${escHtml(label)}" onclick="setHubTab('${id}')">
+    <span class="flag">${flag}</span><span class="hub-nav-tab-label">${escHtml(label)}</span>${count != null ? `<span class="hub-nav-count">${count}</span>` : ""}
+  </button>`;
+}
+
+function hubNavItems() {
+  const ev = activeEvent();
+  const items = [];
+  const tracks = trackCampaigns();
+  if (tracks.length) {
+    items.push({ divider: true, label: "By track" });
+    tracks.forEach((track) => {
+      items.push({ id: track.id, flag: track.flag, label: track.label });
+    });
+  }
+  if (ev.sampleGraphics?.length) items.push({ id: "graphics", flag: "🎨", label: "Sample graphics" });
+  const sections = ev.sections || [];
+  if (sections.length) {
+    items.push({ divider: true, label: "Contacts" });
+    sections.forEach((sec) => {
+      const count = sec.groups.reduce((n, g) => n + g.items.length, 0);
+      items.push({ id: sec.id, flag: sec.flag, label: sec.title, count });
+    });
+  }
+  return items;
+}
+
+function isContactHubTab(tab) {
+  return tab !== "graphics";
+}
+
+function setHubTab(tab, { syncUrl = true } = {}) {
+  const items = hubNavItems();
+  if (!items.some((i) => !i.divider && i.id === tab)) {
+    const first = items.find((i) => !i.divider);
+    tab = first ? first.id : tab;
+  }
+  state.hubTab = tab;
+  localStorage.setItem("osh-hub-tab", tab);
+  syncHubPanels(tab);
+  applyFilters();
+  if (syncUrl) syncUrlParams();
+}
+
+function renderHubNav() {
+  const tabsEl = document.getElementById("hubNavTabs");
+  if (!tabsEl) return;
+  const items = hubNavItems();
+  tabsEl.innerHTML = items.map((item) => {
+    if (item.divider) return `<div class="hub-nav-label">${item.label}</div>`;
+    const active = item.id === state.hubTab;
+    return hubNavTabButton(item.id, item.flag, item.label, item.count, active);
+  }).join("");
+  syncHubPanels(state.hubTab);
+}
+
+function syncHubPanels(tab) {
+  document.querySelectorAll(".hub-nav-tab").forEach((btn) => {
+    const active = btn.dataset.hubTab === tab;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  document.querySelectorAll(".hub-panel").forEach((panel) => {
+    const active = panel.dataset.panel === tab;
+    panel.classList.toggle("active", active);
+    panel.setAttribute("aria-hidden", active ? "false" : "true");
+  });
+  const toolbar = document.getElementById("contactToolbar");
+  if (toolbar) toolbar.classList.toggle("hidden", !isContactHubTab(tab));
+}
+
+function updateHubPanelsVisibility() {
+  const ev = activeEvent();
+  const gfxPanel = document.getElementById("panel-graphics");
+  if (gfxPanel) gfxPanel.hidden = !ev.sampleGraphics?.length;
+}
+
+function graphicFrameClass(id) {
+  if (id === "partner-wall" || id === "partner-social-landscape") return "graphic-preview-frame--banner";
+  if (id === "delegate-ribbon" || id === "meetup-board-header") return "graphic-preview-frame--wide";
+  return "graphic-preview-frame--square";
+}
+
+function inlineGraphicSvg(id) {
+  const svgs = typeof SAMPLE_GRAPHIC_SVGS !== "undefined" ? SAMPLE_GRAPHIC_SVGS : {};
+  const raw = svgs[id];
+  if (!raw) return `<p class="graphic-fallback">SVG not loaded</p>`;
+  return raw.replace(/<svg\b([^>]*)>/i, (match, attrs) => {
+    const clean = attrs.replace(/\s(width|height)="[^"]*"/gi, "");
+    return `<svg class="graphic-inline-svg" preserveAspectRatio="xMidYMid meet"${clean}>`;
+  });
+}
+
+function renderSampleGraphics() {
+  const grid = document.getElementById("sampleGraphicsGrid");
+  const graphics = activeEvent().sampleGraphics;
+  if (!graphics?.length) {
+    if (grid) grid.innerHTML = "";
+    return;
+  }
+  grid.innerHTML = graphics.map((g) => `
+    <article class="graphic-card${g.variant ? ` graphic-card--${g.variant}` : ""}">
+      <div class="graphic-preview">
+        <div class="graphic-preview-frame ${graphicFrameClass(g.id)}" role="img" aria-label="${escHtml(g.title)} template preview">
+          <img src="${g.src}" alt="${escHtml(g.title)} template preview" loading="lazy">
+        </div>
+      </div>
+      <div class="graphic-meta">
+        <div class="graphic-spec">${escHtml(g.spec)}</div>
+        <h3>${escHtml(g.title)}</h3>
+        <p>${escHtml(g.note)}</p>
+        <div class="graphic-actions">
+          <a class="graphic-dl" href="${g.src}" download="${g.id}.svg">Download SVG</a>
+          <a class="graphic-dl" href="${g.src}" target="_blank" rel="noopener">Open file</a>
+        </div>
+      </div>
+    </article>`
+  ).join("");
+}
+
+function sectionById(sectionId) {
+  return activeSections().find((s) => s.id === sectionId);
+}
+
+function escHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function highlightTemplateVarsHtml(escaped) {
+  return escaped.replace(/(\[[^\]]+\]|\{\{[^}]+\}\})/g, '<span class="template-var">$1</span>');
+}
+
+function formatTemplatePreview(text) {
+  return highlightTemplateVarsHtml(escHtml(text || ""));
+}
+
+function fillOutreachTemplateHtml(text, item) {
+  if (!text) return "";
+  const community = item.org || item.name;
+  const project = item.angle || item.org || "work";
+  const greetingName = outreachGreetingName(item);
+  const wrap = (v) => `<span class="template-var">${escHtml(v)}</span>`;
+  const entries = [
+    [/\[name\]/gi, greetingName],
+    [/\{\{name\}\}/gi, greetingName],
+    [/\[society\]/gi, community],
+    [/\[community\]/gi, community],
+    [/\[club\]/gi, item.name],
+    [/\[NUS Hackers \/ your society\]/gi, item.name],
+    [/\[project \/ work\]/gi, project],
+    [/\[CLAIM LINK\]/g, OUTREACH_DEFAULTS.claimLink],
+    [/\[CODE\]/g, OUTREACH_DEFAULTS.code],
+  ];
+  const tokens = new Map();
+  let i = 0;
+  let work = text;
+  for (const [re, val] of entries) {
+    work = work.replace(re, () => {
+      const token = `@@VAR${i++}@@`;
+      tokens.set(token, wrap(val));
+      return token;
+    });
+  }
+  let html = escHtml(work);
+  for (const [token, replacement] of tokens) {
+    html = html.split(token).join(replacement);
+  }
+  return highlightTemplateVarsHtml(html);
+}
+
+function bindMsgCopy() {
+  document.querySelectorAll(".msg-copy[data-campaign-id]").forEach((btn) => {
+    btn.onclick = async () => {
+      const campaign = campaignForSection(btn.dataset.campaignId);
+      if (!campaign?.sample) return;
+      try {
+        await navigator.clipboard.writeText(campaign.sample);
+        btn.classList.add("copied");
+        btn.textContent = "Copied";
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = "Copy message";
+        }, 1600);
+      } catch (_) {}
+    };
+  });
+}
+
+function normalizeHubTab(tab) {
+  const items = hubNavItems();
+  if (items.some((i) => !i.divider && i.id === tab)) return tab;
+  const first = items.find((i) => !i.divider);
+  return first ? first.id : tab;
+}
+
+function switchEvent(eventId) {
+  if (!EVENTS[eventId] || state.event === eventId) return;
+  state.event = eventId;
+  state.q = "";
+  state.hubTab = normalizeHubTab(localStorage.getItem("osh-hub-tab") || "influencers");
+  document.getElementById("search").value = "";
+  localStorage.setItem("osh-event", eventId);
+  updateEventHeader();
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ---------- link helpers ---------- */
+const ICONS = {
+  x:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.6h3.5l-7.6 8.7L23.7 22h-7l-5.5-7.2L4.9 22H1.4l8.1-9.3L.7 1.6h7.2l4.9 6.5zm-1.2 18.3h1.9L6.4 3.6H4.3z"/></svg>`,
+  github:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>`,
+  telegram:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M22 3 2.5 10.5c-1.3.5-1.3 1.3-.2 1.6l5 1.6 1.9 6c.2.7.1 1 .8 1 .5 0 .7-.2 1-.5l2.4-2.3 5 3.7c.9.5 1.6.2 1.8-.9L23.9 4.6c.3-1.3-.5-1.9-1.9-1.6zM7.6 13.5l9.9-6.2c.5-.3.9-.1.5.2l-8 7.2-.3 3.3z"/></svg>`,
+  discord:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4.4A19 19 0 0 0 15.4 3l-.3.5a14 14 0 0 1 4 2 13 13 0 0 0-11.2 0 14 14 0 0 1 4-2L11.6 3A19 19 0 0 0 7 4.4C3.8 9 3 13.5 3.3 17.9A19 19 0 0 0 8.9 21l.4-.6a12 12 0 0 1-2-1l.5-.4a13 13 0 0 0 11 0l.5.4a12 12 0 0 1-2 1l.4.6a19 19 0 0 0 5.6-3c.4-5.2-.7-9.6-3.7-13.6zM9.5 15.3c-.9 0-1.7-.9-1.7-2s.8-2 1.7-2 1.7.9 1.7 2-.8 2-1.7 2zm5 0c-.9 0-1.7-.9-1.7-2s.8-2 1.7-2 1.7.9 1.7 2-.7 2-1.7 2z"/></svg>`,
+  facebook:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>`,
+  instagram:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`,
+  threads:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 3 5.6 3 12s3.5 10 9 10c4.7 0 7.6-2.6 8.4-6l-1.9-.5c-.6 2.5-2.6 4.4-6.5 4.4-4.2 0-6.9-2.7-6.9-7.9S7.8 4 12 4c3.8 0 6 2 6.4 5 .1.6.1 1.1.1 1.6 0 2.7-1.4 4.4-3.6 4.4-1 0-1.8-.5-2-1.4.6-.4 1-1 1-1.9 0-1.1-.8-1.9-1.9-1.9-1.2 0-2 1-2 2.3 0 1.9 1.5 3.2 3.6 3.2 3.2 0 5.3-2.4 5.3-5.7 0-.6 0-1.2-.2-1.9C18.9 4.7 15.9 2 12 2z"/></svg>`,
+  youtube:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.7 15.4V8.6l5.9 3.4z"/></svg>`,
+  email:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></svg>`,
+  web:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.6 3.6 6 3.6 9.2s-1 6.6-3.6 9.2c-2.6-2.6-3.6-6-3.6-9.2S9.4 5.4 12 2.8z"/></svg>`,
+  meetup:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 13.6c.2 1-.3 2-1.2 2.5.3.9-.1 1.9-1 2.4-.4.2-.9.3-1.3.2-.5.7-1.5 1-2.4.6l-.3-.2c-.6.5-1.5.6-2.3.2-.4-.2-.7-.6-.9-1-.9.1-1.8-.4-2.1-1.3-.9-.1-1.7-.8-1.8-1.8-.9-.4-1.4-1.4-1.1-2.3-.7-.7-.8-1.8-.2-2.6-.4-.9-.1-1.9.7-2.4-.1-1 .5-1.9 1.4-2.2.2-.9 1.1-1.5 2-1.4.5-.8 1.5-1.1 2.4-.7.7-.6 1.8-.6 2.5.1.9-.2 1.9.3 2.2 1.2 1 0 1.8.8 1.9 1.7.9.3 1.4 1.2 1.2 2.1.7.6.9 1.6.4 2.4.4.7.4 1.6-.2 2.2z"/></svg>`,
+  luma:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9h17M8 2.5v3M16 2.5v3"/></svg>`,
+  wechat:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3C4.9 3 1.5 5.8 1.5 9.2c0 1.9 1.1 3.6 2.8 4.8L3.5 16l2.5-1.3c.8.2 1.5.4 2.3.4h.6a5.5 5.5 0 0 1-.2-1.5c0-3.2 3.1-5.7 6.9-5.7h.6C15.6 5 12.6 3 9 3zM6.4 8.1a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm5.2 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM22.5 14c0-2.8-2.8-5-6.2-5s-6.2 2.2-6.2 5 2.8 5 6.2 5c.7 0 1.4-.1 2-.3l2 1-.5-1.7c1.6-1 2.7-2.4 2.7-4zm-8.2-.8a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6zm4 0a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6z"/></svg>`,
+  qq:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5.5 4.8 5.5 8.2c0 1.1-.3 1.8-.8 2.7-.6 1-1.4 2.3-1.4 4.3 0 .8.3 1.3.7 1.3.5 0 1-.6 1.4-1.5.2 1.4.9 2.7 1.9 3.5-.7.3-1.2.8-1.2 1.3 0 .9 1.7 1.6 3.9 1.6h1c2.2 0 3.9-.7 3.9-1.6 0-.5-.5-1-1.2-1.3 1-.8 1.7-2.1 1.9-3.5.4.9.9 1.5 1.4 1.5.4 0 .7-.5.7-1.3 0-2-.8-3.3-1.4-4.3-.5-.9-.8-1.6-.8-2.7C18.5 4.8 16 2 12 2z"/></svg>`,
+  phone:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v3a1 1 0 0 1-1 1A16 16 0 0 1 3 5a1 1 0 0 1 1-1z"/></svg>`,
+  linkedin:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.2 6.5a1.75 1.75 0 0 1-1.7 1.75zM19 19h-3v-4.6c0-1.1-.02-2.5-1.5-2.5-1.5 0-1.7 1.2-1.7 2.4V19h-3v-9h2.9v1.2h.04a3.2 3.2 0 0 1 2.88-1.58c3.08 0 3.65 2 3.65 4.66z"/></svg>`,
+  linktree:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+  whatsapp:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>`,
+  nostr:`<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3-4-3V5a2 2 0 0 1 2-2z"/></svg>`,
+  message:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+};
+
+function buildLink(l) {
+  const t = l.t;
+  const v = l.v;
+  let url = "#", label = l.label || v, kind = t, icon = ICONS.web;
+  switch (t) {
+    case "x": url = `https://x.com/${v}`; label = l.label || `@${v}`; icon = ICONS.x; break;
+    case "github": url = `https://github.com/${v}`; label = l.label || v; icon = ICONS.github; break;
+    case "telegram": url = `https://t.me/${v}`; label = l.label || `@${v}`; icon = ICONS.telegram; break;
+    case "telegram_url": url = v; icon = ICONS.telegram; kind = "telegram"; break;
+    case "discord": url = `https://discord.gg/${v}`; label = l.label || "Discord"; icon = ICONS.discord; break;
+    case "facebook": url = `https://facebook.com/${v}`; label = l.label || "Facebook"; icon = ICONS.facebook; break;
+    case "instagram": url = `https://instagram.com/${v}`; label = l.label || `@${v}`; icon = ICONS.instagram; break;
+    case "threads": url = `https://threads.net/@${v}`; label = l.label || `@${v}`; icon = ICONS.threads; break;
+    case "youtube": url = `https://youtube.com/@${v}`; label = l.label || v; icon = ICONS.youtube; break;
+    case "meetup": url = `https://meetup.com/${v}`; label = l.label || "Meetup"; icon = ICONS.meetup; break;
+    case "luma": url = `https://luma.com/${v}`; label = l.label || "Luma"; icon = ICONS.luma; break;
+    case "web": url = `https://${v}`; label = l.label || v; icon = ICONS.web; break;
+    case "web_url": url = v; icon = ICONS.web; kind = "web"; break;
+    case "email": url = `mailto:${v}`; label = l.label || v; icon = ICONS.email; break;
+    case "phone": url = `tel:${v}`; label = l.label || v; icon = ICONS.phone; break;
+    case "linkedin": url = `https://linkedin.com/${v}`; label = l.label || "LinkedIn"; icon = ICONS.linkedin; break;
+    case "linktree": url = `https://linktr.ee/${v}`; label = l.label || "Linktree"; icon = ICONS.linktree; break;
+    case "whatsapp": url = `https://wa.me/${v.replace(/\D/g,'')}`; label = l.label || v; icon = ICONS.whatsapp; break;
+    case "nostr": url = `https://njump.me/${v}`; label = l.label || v.slice(0, 16) + "…"; icon = ICONS.nostr; break;
+    case "wechat": return `<span class="link copy" data-copy="${v}" title="Copy WeChat ID">${ICONS.wechat}<span>WeChat: ${v}</span></span>`;
+    case "qq": return `<span class="link copy" data-copy="${v}" title="Copy QQ">${ICONS.qq}<span>QQ: ${v}</span></span>`;
+  }
+  if (t === "email") {
+    return `<a class="link" href="${url}">${icon}<span>${label}</span></a>`;
+  }
+  return `<a class="link" href="${url}" target="_blank" rel="noopener">${icon}<span>${label}</span></a>`;
+}
+
+function partnershipMailto(item) {
+  const p = item.partnership;
+  if (!p) return null;
+  const to = p.to || primaryEmail(item);
+  if (!to) return null;
+  return buildMailtoUrl({ to, subject: p.subject || "", body: p.body || "" });
+}
+
+const OUTREACH_DEFAULTS = {
+  claimLink: "https://asia.b.tc/claim",
+  code: "OSH2026",
+};
+
+
+function primaryEmail(item) {
+  return (item.links || []).find((l) => l.t === "email")?.v || "";
+}
+
+function strategyForSection(sectionId) {
+  return campaignForSection(sectionId) || (activeEvent().regionTemplates || REGION_TEMPLATES)[0];
+}
+
+function outreachGreetingName(item) {
+  const name = (item.name || "").trim();
+  if (!name) return "there";
+  const nickMatch = name.match(/"([^"]+)"/);
+  if (nickMatch) return nickMatch[1];
+  const handle = name.match(/^([^(]+)\s*\(/);
+  if (handle && !handle[1].includes(" ")) return handle[1].trim();
+  const base = name.split(/[,(]/)[0].trim();
+  const honorific = base.replace(/^(Dr\.|Mr\.|Ms\.|Prof\.)\s+/i, "");
+  const parts = honorific.split(/\s+/).filter(Boolean);
+  if (parts.length <= 1) return parts[0] || name;
+  const orgSecond = /^(Hackers|Bitcoiners|Meetup|Academy|Association|Alliance|Society|Club|DAO|Devs|Summit|Space|Base|Garage|Ventures|Hub|Foundation|Chamber|Hackathon|Bitcoiners|Ideathon|Enthusiasts|Academia|Bitcoiners)$/i;
+  if (parts.length >= 3 || (parts.length === 2 && orgSecond.test(parts[1]))) return base;
+  return parts[0];
+}
+
+function fillOutreachTemplate(text, item) {
+  const community = item.org || item.name;
+  const project = item.angle || item.org || "work";
+  const greetingName = outreachGreetingName(item);
+  return text
+    .replace(/\[name\]/gi, greetingName)
+    .replace(/\{\{name\}\}/gi, greetingName)
+    .replace(/\[society\]/gi, community)
+    .replace(/\[community\]/gi, community)
+    .replace(/\[club\]/gi, item.name)
+    .replace(/\[NUS Hackers \/ your society\]/gi, item.name)
+    .replace(/\[project \/ work\]/gi, project)
+    .replace(/\[CLAIM LINK\]/g, OUTREACH_DEFAULTS.claimLink)
+    .replace(/\[CODE\]/g, OUTREACH_DEFAULTS.code);
+}
+
+function parseOutreachSample(sample) {
+  const match = sample.match(/^Subject:\s*(.+)\n\n([\s\S]*)$/);
+  if (match) return { subject: match[1].trim(), body: match[2].trim() };
+  const loose = sample.match(/^Subject:\s*(.+)\n([\s\S]*)$/);
+  if (loose) return { subject: loose[1].trim(), body: loose[2].trim() };
+  return { subject: "", body: sample.trim() };
+}
+
+function buildTemplateOutreach(item, sectionId) {
+  const strategy = strategyForSection(sectionId);
+  const filled = fillOutreachTemplate(strategy.sample, item);
+  const { subject, body } = parseOutreachSample(filled);
+  const raw = parseOutreachSample(strategy.sample);
+  return {
+    to: primaryEmail(item),
+    subject,
+    body,
+    subjectHtml: raw.subject ? fillOutreachTemplateHtml(raw.subject, item) : "",
+    bodyHtml: fillOutreachTemplateHtml(raw.body || strategy.sample, item),
+    label: "Outreach message",
+    name: item.name,
+    channel: strategy.channel || "",
+  };
+}
+
+const outreachStore = new Map();
+let outreachSeq = 0;
+
+function registerOutreachMessage(data) {
+  const id = `o${++outreachSeq}`;
+  outreachStore.set(id, data);
+  return id;
+}
+
+function buildMailtoUrl({ to, subject, body }) {
+  const qs = [];
+  if (subject) qs.push(`subject=${encodeURIComponent(subject)}`);
+  if (body) qs.push(`body=${encodeURIComponent(body)}`);
+  return `mailto:${to}${qs.length ? `?${qs.join("&")}` : ""}`;
+}
+
+function buildTrackTemplateOutreach(item, trackId, sectionId) {
+  const strategies = activeEvent().strategy || STRATEGY;
+  const strategy = strategies.find((s) => s.id === trackId);
+  if (!strategy?.sample) return buildTemplateOutreach(item, sectionId);
+  const filled = fillOutreachTemplate(strategy.sample, item);
+  const { subject, body } = parseOutreachSample(filled);
+  const raw = parseOutreachSample(strategy.sample);
+  return {
+    to: primaryEmail(item),
+    subject,
+    body,
+    subjectHtml: raw.subject ? fillOutreachTemplateHtml(raw.subject, item) : "",
+    bodyHtml: fillOutreachTemplateHtml(raw.body || strategy.sample, item),
+    label: "Outreach message",
+    name: item.name,
+    channel: strategy.channel || "",
+  };
+}
+
+function messageCTAHTML(item, sectionId, trackId) {
+  const data = trackId
+    ? buildTrackTemplateOutreach(item, trackId, sectionId)
+    : buildTemplateOutreach(item, sectionId);
+  const id = registerOutreachMessage(data);
+  return `<button type="button" class="outreach-msg-cta" data-outreach-id="${id}">${ICONS.message}<span>Message</span></button>`;
+}
+
+function partnershipCTAHTML(item) {
+  const p = item.partnership;
+  if (!p) return "";
+  const to = p.to || primaryEmail(item);
+  if (!to) return "";
+  const id = registerOutreachMessage({
+    to,
+    subject: fillOutreachTemplate(p.subject || "", item),
+    body: fillOutreachTemplate(p.body || "", item),
+    subjectHtml: p.subject ? fillOutreachTemplateHtml(p.subject, item) : "",
+    bodyHtml: fillOutreachTemplateHtml(p.body || "", item),
+    label: p.label || "Partnership proposal",
+    name: item.name,
+    channel: "",
+  });
+  return `<button type="button" class="partnership-cta" data-outreach-id="${id}">${ICONS.email}<span>${escHtml(p.label || "Partnership proposal")}</span></button>`;
+}
+
+let outreachModalData = null;
+
+function openOutreachModal(id) {
+  const data = outreachStore.get(id);
+  if (!data) return;
+  outreachModalData = data;
+  const modal = document.getElementById("partnershipModal");
+  document.getElementById("partnershipModalTitle").textContent = data.label;
+  const meta = data.to
+    ? `${data.name} · ${data.to}`
+    : [data.name, data.channel].filter(Boolean).join(" · ");
+  document.getElementById("partnershipModalMeta").textContent = meta;
+  document.getElementById("partnershipModalSubject").innerHTML = data.subject
+    ? `<strong>Subject:</strong> ${data.subjectHtml || escHtml(data.subject)}`
+    : "";
+  document.getElementById("partnershipModalBody").innerHTML = data.bodyHtml || formatTemplatePreview(data.body);
+  const sendBtn = document.getElementById("partnershipModalSend");
+  if (data.to) {
+    sendBtn.href = buildMailtoUrl(data);
+    sendBtn.hidden = false;
+  } else {
+    sendBtn.hidden = true;
+  }
+  const copyBtn = document.getElementById("partnershipModalCopy");
+  copyBtn.classList.remove("copied");
+  copyBtn.textContent = "Copy message";
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeOutreachModal() {
+  const modal = document.getElementById("partnershipModal");
+  if (!modal || modal.hidden) return;
+  modal.hidden = true;
+  document.body.style.overflow = "";
+  outreachModalData = null;
+}
+
+function bindOutreachModal() {
+  if (bindOutreachModal.done) return;
+  bindOutreachModal.done = true;
+  document.addEventListener("click", (e) => {
+    const hubTabBtn = e.target.closest(".hub-nav-tab");
+    if (hubTabBtn?.dataset.hubTab) {
+      setHubTab(hubTabBtn.dataset.hubTab);
+      return;
+    }
+    const openBtn = e.target.closest("[data-outreach-id]");
+    if (openBtn) {
+      e.preventDefault();
+      openOutreachModal(openBtn.dataset.outreachId);
+      return;
+    }
+    if (e.target.closest("[data-close-partnership-modal]")) {
+      closeOutreachModal();
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeOutreachModal();
+  });
+  document.getElementById("partnershipModalCopy")?.addEventListener("click", async () => {
+    if (!outreachModalData) return;
+    const text = outreachModalData.subject
+      ? `Subject: ${outreachModalData.subject}\n\n${outreachModalData.body}`
+      : outreachModalData.body;
+    const btn = document.getElementById("partnershipModalCopy");
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.classList.add("copied");
+      btn.textContent = "Copied";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.textContent = "Copy message";
+      }, 1600);
+    } catch (_) {}
+  });
+}
+
+/* ---------- avatar sourcing ---------- */
+function avatarSources(item) {
+  const srcs = [];
+  if (item.picture) srcs.push(item.picture);
+  const pref = ["x","github","instagram","facebook","telegram","youtube","nostr","web","web_url","email"];
+  const byType = {};
+  item.links.forEach(l => { if (!byType[l.t]) byType[l.t] = l.v; });
+  for (const t of pref) {
+    const v = byType[t];
+    if (!v) continue;
+    if (t === "x") srcs.push(`https://unavatar.io/x/${v}?fallback=false`);
+    else if (t === "github") srcs.push(`https://unavatar.io/github/${v}?fallback=false`);
+    else if (t === "instagram") srcs.push(`https://unavatar.io/instagram/${v}?fallback=false`);
+    else if (t === "telegram") srcs.push(`https://unavatar.io/telegram/${v}?fallback=false`);
+    else if (t === "youtube") srcs.push(`https://unavatar.io/youtube/${v}?fallback=false`);
+    else if (t === "nostr") srcs.push(`https://unavatar.io/nostr/${v}?fallback=false`);
+    else if (t === "email") srcs.push(`https://unavatar.io/${v}?fallback=false`);
+    else if (t === "web" || t === "web_url") {
+      let host = v.replace(/^https?:\/\//,'').split('/')[0];
+      srcs.push(`https://unavatar.io/${host}?fallback=false`);
+      srcs.push(`https://www.google.com/s2/favicons?domain=${host}&sz=128`);
+    }
+    // facebook numeric ids don't resolve well on unavatar; skip
+  }
+  return srcs;
+}
+
+const PALETTE = ["#f7931a","#3ecf8e","#5b8def","#c678dd","#e8b93b","#ef7d7d","#4ec9c9","#d98adb"];
+function colorFor(name){ let h=0; for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))>>>0; return PALETTE[h%PALETTE.length]; }
+function initials(name){
+  const clean = name.replace(/[#@]/g,'').trim();
+  const parts = clean.split(/[\s/]+/).filter(Boolean);
+  if (parts.length === 1) return parts[0].slice(0,2).toUpperCase();
+  return (parts[0][0]+parts[1][0]).toUpperCase();
+}
+
+const CONF_LABEL = { ok:"Verified", warn:"Verify", dead:"Dead" };
+
+function itemSearchText(item) {
+  return [item.name, item.org||"", item.angle||"", ...(item.tags||[]),
+    ...item.links.map(l=>l.v)].join(" ").toLowerCase();
+}
+
+function avatarHTML(item) {
+  const srcs = avatarSources(item);
+  const color = colorFor(item.name);
+  const fallback = `<div class="avatar-fallback" style="background:${color}">${initials(item.name)}</div>`;
+  if (!srcs.length) return fallback;
+  const chain = JSON.stringify(srcs);
+  return `<img class="avatar" alt="${item.name}" src="${srcs[0]}"
+    data-srcs='${chain}' data-i="0"
+    data-fallback='${fallback.replace(/'/g,"&#39;")}'
+    onerror="avatarError(this)">`;
+}
+
+function isPriorityItem(item) {
+  return item.priority || (item.tags || []).includes("priority");
+}
+
+function displayTags(tags) {
+  return (tags || []).filter(t => t !== "priority");
+}
+
+function tagHTML(tag) {
+  const cls = tag.toLowerCase() === "speaker" ? "tag tag--speaker" : "tag";
+  return `<span class="${cls}">${tag}</span>`;
+}
+
+function tagsHTML(tags, { priority = false } = {}) {
+  const parts = [...(priority ? ["Hit first"] : []), ...displayTags(tags)];
+  if (!parts.length) return "—";
+  return parts.map(tagHTML).join("");
+}
+
+function cardHTML(item, sectionId, trackId) {
+  const star = isShortlistItem(item);
+  const isPriority = isPriorityItem(item);
+  const avatar = avatarHTML(item);
+  const angle = item.angle ? `<div class="card-angle">${item.angle}</div>` : "";
+  const org = item.org ? ` <span style="color:var(--ink-muted);font-weight:400;font-size:13px">· ${item.org}</span>` : "";
+  const tags = tagsHTML(item.tags);
+  const hitBadge = isPriority ? `<span class="hit-badge">Hit first</span>` : "";
+  const messageBtn = messageCTAHTML(item, sectionId, trackId);
+  const partnership = partnershipCTAHTML(item);
+  const links = item.links.map(buildLink).join("");
+  const search = itemSearchText(item);
+  const pubkeyAttr = item.pubkey ? ` data-pubkey="${item.pubkey}"` : "";
+  return `<div class="contact-item card ${star?'star':''}" data-conf="${item.conf}" data-shortlist="${star ? "1" : "0"}" data-search="${search.replace(/"/g,'')}" data-section="${sectionId}"${pubkeyAttr}>
+    ${avatar}
+    <div class="card-body">
+      <div class="card-name">${item.name}${org}${hitBadge}<span class="conf-badge ${item.conf}">${CONF_LABEL[item.conf]}</span></div>
+      ${angle}
+      ${tags !== "—" ? `<div class="card-tags">${tags}</div>` : ""}
+      ${messageBtn}
+      ${partnership}
+      ${links?`<div class="links">${links}</div>`:""}
+    </div>
+  </div>`;
+}
+
+function rowHTML(item, sectionId, trackId) {
+  const star = isShortlistItem(item);
+  const isPriority = isPriorityItem(item);
+  const avatar = avatarHTML(item);
+  const org = item.org || "—";
+  const angle = item.angle || "—";
+  const tags = tagsHTML(item.tags, { priority: isPriority });
+  const messageBtn = messageCTAHTML(item, sectionId, trackId);
+  const partnership = partnershipCTAHTML(item);
+  const linkBits = item.links.map(buildLink).join("");
+  const links = (messageBtn || partnership || linkBits)
+    ? `<div class="links">${messageBtn}${partnership}${linkBits}</div>`
+    : "—";
+  const search = itemSearchText(item);
+  const pubkeyAttr = item.pubkey ? ` data-pubkey="${item.pubkey}"` : "";
+  return `<tr class="contact-item ${star?'star':''}" data-conf="${item.conf}" data-shortlist="${star ? "1" : "0"}" data-search="${search.replace(/"/g,'')}" data-section="${sectionId}"${pubkeyAttr}>
+    <td class="cell-star">${star ? "★" : ""}</td>
+    <td class="cell-name"><div class="cell-name-inner">${avatar}<span>${item.name}</span></div></td>
+    <td class="cell-org">${org}</td>
+    <td class="cell-angle">${angle}</td>
+    <td class="cell-tags">${tags}</td>
+    <td class="cell-status"><span class="conf-badge ${item.conf}">${CONF_LABEL[item.conf]}</span></td>
+    <td class="cell-links">${links !== "—" ? links : "—"}</td>
+  </tr>`;
+}
+
+function avatarError(img){
+  const srcs = JSON.parse(img.getAttribute('data-srcs'));
+  let i = parseInt(img.getAttribute('data-i'),10) + 1;
+  if (i < srcs.length) {
+    img.setAttribute('data-i', i);
+    img.src = srcs[i];
+  } else {
+    const fb = img.getAttribute('data-fallback').replace(/&#39;/g,"'");
+    img.outerHTML = fb;
+  }
+}
+
+/* ---------- render ---------- */
+function sectionHTML(sec) {
+  const count = sec.groups.reduce((n, g) => n + g.items.length, 0);
+  const campaign = campaignForSection(sec.id);
+  let html = `<section class="section" id="sec-${sec.id}">
+    <div class="section-head">
+      <span class="flag">${sec.flag}</span>
+      <h2>${sec.title}</h2>
+      <span class="count">${count}</span>
+    </div>`;
+  if (sec.note) html += `<div class="section-note ${sec.caveat ? "caveat" : ""}">${sec.note}</div>`;
+  html += campaignHTML(campaign);
+  sec.groups.forEach(g => {
+    if (g.title) html += `<div class="subsection-title">${g.title}</div>`;
+    html += `<div class="grid">`;
+    html += g.items.map(it => cardHTML(it, sec.id)).join("");
+    html += `</div>`;
+    html += `<div class="table-wrap"><table class="contact-table">
+      <colgroup>
+        <col class="col-star" /><col class="col-name" /><col class="col-org" />
+        <col class="col-angle" /><col class="col-tags" /><col class="col-status" /><col class="col-links" />
+      </colgroup>
+      <thead><tr>
+        <th class="cell-star">★</th><th class="cell-name">Name</th><th class="cell-org">Org</th>
+        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th><th class="cell-status">Status</th><th class="cell-links">Contact</th>
+      </tr></thead><tbody>`;
+    html += g.items.map(it => rowHTML(it, sec.id)).join("");
+    html += `</tbody></table></div>`;
+  });
+  html += `<div class="no-results hidden" id="noResults-${sec.id}">No contacts match your filters.</div>`;
+  html += `</section>`;
+  return html;
+}
+
+function render() {
+  outreachStore.clear();
+  outreachSeq = 0;
+  const sections = activeSections();
+  const ev = activeEvent();
+  const hubLayout = document.getElementById("hubLayout");
+  const emptyEvent = document.getElementById("emptyEvent");
+  const statsEl = document.getElementById("stats");
+  const hubSectionPanels = document.getElementById("hubSectionPanels");
+
+  if (!sections.length) {
+    if (hubLayout) hubLayout.hidden = true;
+    if (emptyEvent) {
+      emptyEvent.hidden = false;
+      emptyEvent.textContent = ev.emptyMessage;
+    }
+    statsEl.innerHTML = `
+      <div class="stat"><div class="num">0</div><div class="lbl">Total contacts</div></div>
+      <div class="stat ok"><div class="num">0</div><div class="lbl">Verified</div></div>
+      <div class="stat warn"><div class="num">0</div><div class="lbl">Verify first</div></div>
+      <div class="stat accent"><div class="num">0</div><div class="lbl">★ Shortlist</div></div>
+      <div class="stat"><div class="num">0</div><div class="lbl">Regions</div></div>`;
+    document.getElementById("contactToolbar")?.classList.add("hidden");
+    bindCopyLinks();
+    return;
+  }
+
+  if (hubLayout) hubLayout.hidden = false;
+  if (emptyEvent) emptyEvent.hidden = true;
+
+  let allItems = [];
+  sections.forEach(sec => {
+    sec.groups.forEach(g => g.items.forEach(it => allItems.push({ ...it, sectionId: sec.id })));
+  });
+
+  if (hubSectionPanels) {
+    const sectionPanels = sections.map((sec) =>
+      `<div class="hub-panel" data-panel="${sec.id}" id="panel-${sec.id}">${sectionHTML(sec)}</div>`
+    ).join("");
+    const trackPanels = trackCampaigns().map((t) =>
+      `<div class="hub-panel" data-panel="${t.id}" id="panel-${t.id}">${trackPanelHTML(t.id)}</div>`
+    ).join("");
+    hubSectionPanels.innerHTML = sectionPanels + trackPanels;
+  }
+
+  const total = allItems.length;
+  const ok = allItems.filter(i => i.conf === "ok").length;
+  const warn = allItems.filter(i => i.conf === "warn").length;
+  const star = allItems.filter(i => isShortlistItem(i)).length;
+  statsEl.innerHTML = `
+    <div class="stat"><div class="num">${total}</div><div class="lbl">Total contacts</div></div>
+    <div class="stat ok"><div class="num">${ok}</div><div class="lbl">Verified</div></div>
+    <div class="stat warn"><div class="num">${warn}</div><div class="lbl">Verify first</div></div>
+    <div class="stat accent"><div class="num">${star}</div><div class="lbl">★ Shortlist</div></div>
+    <div class="stat"><div class="num">${sections.length}</div><div class="lbl">Regions</div></div>`;
+
+  updateHubPanelsVisibility();
+  renderHubNav();
+  setHubTab(normalizeHubTab(state.hubTab));
+  applyFilters();
+  bindCopyLinks();
+  bindMsgCopy();
+  hydrateNostrPictures();
+}
+
+const NOSTR_RELAYS = [
+  "wss://relay.damus.io",
+  "wss://nos.lol",
+  "wss://relay.primal.net",
+  "wss://purplepag.es",
+];
+
+function fetchKind0Profile(pubkey) {
+  return new Promise((resolve) => {
+    let pending = NOSTR_RELAYS.length;
+    let resolved = false;
+    const finish = (profile) => {
+      if (resolved) return;
+      if (profile) {
+        resolved = true;
+        resolve(profile);
+      } else if (--pending === 0) {
+        resolve(null);
+      }
+    };
+    for (const relay of NOSTR_RELAYS) {
+      try {
+        const ws = new WebSocket(relay);
+        const sub = "osh" + Math.random().toString(36).slice(2, 10);
+        const timer = setTimeout(() => {
+          try { ws.close(); } catch (_) {}
+          finish(null);
+        }, 5000);
+        ws.onopen = () => {
+          ws.send(JSON.stringify(["REQ", sub, { kinds: [0], authors: [pubkey], limit: 1 }]));
+        };
+        ws.onmessage = (ev) => {
+          let msg;
+          try { msg = JSON.parse(ev.data); } catch { return; }
+          if (msg[0] === "EVENT" && msg[2]?.kind === 0) {
+            clearTimeout(timer);
+            try {
+              const meta = JSON.parse(msg[2].content);
+              ws.send(JSON.stringify(["CLOSE", sub]));
+              ws.close();
+              finish(meta);
+            } catch {
+              finish(null);
+            }
+          } else if (msg[0] === "EOSE") {
+            clearTimeout(timer);
+            try { ws.close(); } catch (_) {}
+            finish(null);
+          }
+        };
+        ws.onerror = () => {
+          clearTimeout(timer);
+          finish(null);
+        };
+      } catch {
+        finish(null);
+      }
+    }
+  });
+}
+
+function setAvatarForPubkey(pubkey, url) {
+  if (!pubkey || !url) return;
+  document.querySelectorAll(`.contact-item[data-pubkey="${pubkey}"] .avatar`).forEach((img) => {
+    img.src = url;
+    img.removeAttribute("onerror");
+  });
+}
+
+function hydrateNostrPictures() {
+  const speakers = typeof OPEN_SOURCE_NOSTR_SPEAKERS !== "undefined" ? OPEN_SOURCE_NOSTR_SPEAKERS : [];
+  speakers
+    .filter((s) => s.pubkey && !s.picture)
+    .forEach(async (speaker) => {
+      const meta = await fetchKind0Profile(speaker.pubkey);
+      if (meta?.picture) setAvatarForPubkey(speaker.pubkey, meta.picture);
+    });
+}
+
+/* ---------- filtering & view ---------- */
+const urlParams = new URLSearchParams(window.location.search);
+
+function syncUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  params.set("view", state.view);
+  params.set("location", state.hubTab);
+  const qs = params.toString();
+  const next = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+  const current = `${window.location.pathname}${window.location.search}`;
+  if (current !== next) history.replaceState({ view: state.view, location: state.hubTab }, "", next);
+}
+
+const state = {
+  event: localStorage.getItem("osh-event") || "asia-2026",
+  hubTab: urlParams.get("location") || localStorage.getItem("osh-hub-tab") || "influencers",
+  q: "",
+  view: (() => {
+    const v = urlParams.get("view");
+    if (v === "table" || v === "grid") return v;
+    return localStorage.getItem("outreach-view") || localStorage.getItem("apac-view") || "table";
+  })(),
+  theme: document.documentElement.getAttribute("data-theme") || "dark",
+  conf: { ok: true, warn: true, dead: false },
+  shortlistOnly: localStorage.getItem("osh-shortlist-only") === "1",
+};
+if (!EVENTS[state.event]) state.event = "asia-2026";
+state.hubTab = normalizeHubTab(state.hubTab);
+
+function setTheme(theme) {
+  state.theme = theme;
+  localStorage.setItem("osh-theme", theme);
+  document.documentElement.setAttribute("data-theme", theme);
+  const btn = document.getElementById("themeToggle");
+  if (btn) btn.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+}
+
+function toggleTheme() {
+  setTheme(state.theme === "dark" ? "light" : "dark");
+}
+
+function setHubNavCollapsed(collapsed, { persist = true } = {}) {
+  const layout = document.getElementById("hubLayout");
+  const btn = document.getElementById("hubNavCollapse");
+  if (!layout || !btn) return;
+  layout.classList.toggle("hub-nav-collapsed", collapsed);
+  btn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+  btn.setAttribute("aria-label", collapsed ? "Expand sidebar" : "Collapse sidebar");
+  btn.title = collapsed ? "Expand sidebar" : "Collapse sidebar";
+  if (persist) localStorage.setItem("osh-hub-nav-collapsed", collapsed ? "1" : "0");
+}
+
+function toggleHubNavCollapsed() {
+  const layout = document.getElementById("hubLayout");
+  setHubNavCollapsed(!layout?.classList.contains("hub-nav-collapsed"));
+}
+
+function setView(view, { syncUrl = true } = {}) {
+  state.view = view;
+  localStorage.setItem("outreach-view", view);
+  document.body.classList.remove("view-grid", "view-table");
+  document.body.classList.add("view-" + view);
+  document.querySelectorAll(".view-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.view === view);
+  });
+  if (syncUrl) syncUrlParams();
+}
+
+function applyFilters() {
+  const panel = document.getElementById("panel-" + state.hubTab);
+  if (!panel) return;
+  const items = panel.querySelectorAll(".contact-item");
+  let visible = 0;
+  items.forEach(c => {
+    const confOk = state.conf[c.dataset.conf];
+    const qOk = !state.q || c.dataset.search.includes(state.q);
+    const starOk = !state.shortlistOnly || c.dataset.shortlist === "1";
+    const show = confOk && qOk && starOk;
+    c.classList.toggle("hidden", !show);
+    if (show) visible++;
+  });
+  panel.querySelectorAll(".grid, .table-wrap").forEach(block => {
+    const gv = block.querySelectorAll(".contact-item:not(.hidden)").length > 0;
+    block.classList.toggle("hidden", !gv);
+    const prev = block.previousElementSibling;
+    if (prev && prev.classList.contains("subsection-title")) prev.classList.toggle("hidden", !gv);
+  });
+  const noResults = panel.querySelector("#noResults-" + state.hubTab);
+  if (noResults) noResults.classList.toggle("hidden", visible > 0);
+}
+
+function bindCopyLinks() {
+  document.querySelectorAll(".link.copy").forEach(el => {
+    el.addEventListener("click", () => {
+      navigator.clipboard?.writeText(el.dataset.copy);
+      const span = el.querySelector("span");
+      const orig = span.textContent;
+      el.classList.add("copied"); span.textContent = "Copied!";
+      setTimeout(() => { el.classList.remove("copied"); span.textContent = orig; }, 1200);
+    });
+  });
+}
+
+let eventsInitialized = false;
+function bindEvents() {
+  if (eventsInitialized) return;
+  eventsInitialized = true;
+
+  setView(state.view);
+  setHubNavCollapsed(localStorage.getItem("osh-hub-nav-collapsed") === "1", { persist: false });
+  renderEventTabs();
+  updateEventHeader();
+  bindOutreachModal();
+
+  document.querySelectorAll(".view-btn").forEach(btn => {
+    btn.addEventListener("click", () => setView(btn.dataset.view));
+  });
+  document.getElementById("eventTabs")?.addEventListener("click", e => {
+    const tab = e.target.closest(".event-tab");
+    if (tab) switchEvent(tab.dataset.event);
+  });
+  document.querySelectorAll(".conf-toggle").forEach(btn => {
+    const k = btn.dataset.conf;
+    btn.classList.toggle("off", !state.conf[k]);
+    btn.addEventListener("click", () => {
+      state.conf[k] = !state.conf[k];
+      btn.classList.toggle("off", !state.conf[k]);
+      applyFilters();
+    });
+  });
+  const shortlistBtn = document.getElementById("shortlistToggle");
+  if (shortlistBtn) {
+    shortlistBtn.classList.toggle("active", state.shortlistOnly);
+    shortlistBtn.setAttribute("aria-pressed", state.shortlistOnly ? "true" : "false");
+    shortlistBtn.addEventListener("click", () => {
+      state.shortlistOnly = !state.shortlistOnly;
+      localStorage.setItem("osh-shortlist-only", state.shortlistOnly ? "1" : "0");
+      shortlistBtn.classList.toggle("active", state.shortlistOnly);
+      shortlistBtn.setAttribute("aria-pressed", state.shortlistOnly ? "true" : "false");
+      applyFilters();
+    });
+  }
+  document.getElementById("search")?.addEventListener("input", e => {
+    state.q = e.target.value.trim().toLowerCase();
+    applyFilters();
+  });
+  document.getElementById("themeToggle")?.addEventListener("click", toggleTheme);
+  document.getElementById("hubNavCollapse")?.addEventListener("click", toggleHubNavCollapsed);
+
+  window.addEventListener("popstate", () => {
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get("view");
+    if (view === "table" || view === "grid") setView(view, { syncUrl: false });
+    const location = params.get("location");
+    if (location) setHubTab(location, { syncUrl: false });
+  });
+
+  syncUrlParams();
+}
+
+bindEvents();
+render();
+window.setHubTab = setHubTab;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="scripts/status-tracker.js"></script>
+</body>
+</html>
