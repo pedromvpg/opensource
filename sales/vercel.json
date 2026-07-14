@@ -1,6 +1,6 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/outreach-contacts.html" }
+    { "source": "/", "destination": "/outreach-contacts" }
   ]
 }

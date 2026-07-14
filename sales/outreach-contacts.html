@@ -937,6 +937,12 @@
     font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
     padding: 2px 7px; flex-shrink: 0;
   }
+  .conf-badge.icon-only {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 3px; width: 20px; height: 20px;
+    font-size: 0; text-transform: none; letter-spacing: 0;
+  }
+  .conf-badge.icon-only svg { width: 12px; height: 12px; flex-shrink: 0; }
   .conf-badge.ok { background: rgba(62,207,142,0.14); color: var(--ok); }
   .conf-badge.warn { background: rgba(232,185,59,0.14); color: var(--warn); }
   .conf-badge.dead { background: rgba(239,95,95,0.14); color: var(--dead); }
@@ -1083,12 +1089,12 @@
     background: var(--surface-subtle);
   }
   .contact-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; }
-  .contact-table col.col-star { width: 32px; }
+  .contact-table col.col-star { width: 20px; }
   .contact-table col.col-name { width: 18%; }
   .contact-table col.col-org { width: 10%; }
   .contact-table col.col-angle { width: 20%; }
   .contact-table col.col-tags { width: 10%; }
-  .contact-table col.col-status { width: 86px; }
+  .contact-table col.col-status { width: 28px; }
   .contact-table col.col-links { width: 24%; }
   .contact-table th {
     font-family: var(--font-mono);
@@ -1102,14 +1108,21 @@
   .contact-table tr:last-child td { border-bottom: none; }
   .contact-table tr:hover td { background: var(--surface-hover); }
   .contact-table tr.hidden { display: none; }
-  .cell-star { width: 32px; text-align: center; color: var(--star); font-size: 12px; }
+  .cell-star {
+    width: 20px; text-align: center; color: var(--star); font-size: 12px;
+  }
+  .contact-table th.cell-star,
+  .contact-table td.cell-star { padding-left: 2px; padding-right: 2px; }
   .cell-name { font-family: var(--font-display); font-weight: 600; overflow-wrap: anywhere; }
   .cell-name-inner { display: flex; align-items: center; gap: 10px; min-width: 0; }
   .cell-name .avatar, .cell-name .avatar-fallback { width: 30px; height: 30px; font-size: 11px; flex-shrink: 0; }
   .cell-name-inner > span { min-width: 0; overflow-wrap: anywhere; }
   .cell-org, .cell-angle { color: var(--ink-soft); overflow-wrap: anywhere; }
   .cell-tags { font-family: var(--font-mono); color: var(--ink-muted); font-size: 11px; overflow-wrap: anywhere; }
-  .cell-status { white-space: nowrap; }
+  .cell-status { white-space: nowrap; width: 28px; text-align: center; }
+  .contact-table th.cell-status,
+  .contact-table td.cell-status { padding-left: 4px; padding-right: 4px; }
+  .contact-table th.cell-status svg { width: 12px; height: 12px; display: block; margin: 0 auto; opacity: 0.55; }
   .contact-table td.cell-links {
     min-width: 220px;
     overflow-wrap: normal;
@@ -2179,6 +2192,8 @@ function trackContactEntries(trackId, campaign) {
   return deduped;
 }
 
+const STATUS_COL_HEAD = '<th class="cell-status" title="Status" aria-label="Status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></th>';
+
 function trackContactsHTML(campaign) {
   if (!isTrackCampaignId(campaign.id)) return "";
   const entries = trackContactEntries(campaign.id, campaign);
@@ -2196,7 +2211,7 @@ function trackContactsHTML(campaign) {
       </colgroup>
       <thead><tr>
         <th class="cell-star">★</th><th class="cell-name">Name</th><th class="cell-org">Org</th>
-        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th><th class="cell-status">Status</th><th class="cell-links">Contact</th>
+        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th>${STATUS_COL_HEAD}<th class="cell-links">Contact</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table></div>
@@ -2763,6 +2778,19 @@ function initials(name){
 }
 
 const CONF_LABEL = { ok:"Verified", warn:"Verify", dead:"Dead" };
+const CONF_ICON = {
+  ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-4-4"/></svg>',
+  warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>',
+  dead: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>'
+};
+
+function confBadgeHTML(conf, { iconOnly = false } = {}) {
+  const label = CONF_LABEL[conf] || conf;
+  if (iconOnly) {
+    return `<span class="conf-badge ${conf} icon-only" title="${label}" aria-label="${label}">${CONF_ICON[conf] || ""}</span>`;
+  }
+  return `<span class="conf-badge ${conf}">${label}</span>`;
+}
 
 function itemSearchText(item) {
   return [item.name, item.org||"", item.angle||"", ...(item.tags||[]),
@@ -2816,7 +2844,7 @@ function cardHTML(item, sectionId, trackId) {
   return `<div class="contact-item card ${star?'star':''}" data-conf="${item.conf}" data-shortlist="${star ? "1" : "0"}" data-search="${search.replace(/"/g,'')}" data-section="${sectionId}"${pubkeyAttr}>
     ${avatar}
     <div class="card-body">
-      <div class="card-name">${item.name}${org}${hitBadge}<span class="conf-badge ${item.conf}">${CONF_LABEL[item.conf]}</span></div>
+      <div class="card-name">${item.name}${org}${hitBadge}${confBadgeHTML(item.conf)}</div>
       ${angle}
       ${tags !== "—" ? `<div class="card-tags">${tags}</div>` : ""}
       ${messageBtn}
@@ -2847,7 +2875,7 @@ function rowHTML(item, sectionId, trackId) {
     <td class="cell-org">${org}</td>
     <td class="cell-angle">${angle}</td>
     <td class="cell-tags">${tags}</td>
-    <td class="cell-status"><span class="conf-badge ${item.conf}">${CONF_LABEL[item.conf]}</span></td>
+    <td class="cell-status">${confBadgeHTML(item.conf, { iconOnly: true })}</td>
     <td class="cell-links">${links !== "—" ? links : "—"}</td>
   </tr>`;
 }
@@ -2888,7 +2916,7 @@ function sectionHTML(sec) {
       </colgroup>
       <thead><tr>
         <th class="cell-star">★</th><th class="cell-name">Name</th><th class="cell-org">Org</th>
-        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th><th class="cell-status">Status</th><th class="cell-links">Contact</th>
+        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th>${STATUS_COL_HEAD}<th class="cell-links">Contact</th>
       </tr></thead><tbody>`;
     html += g.items.map(it => rowHTML(it, sec.id)).join("");
     html += `</tbody></table></div>`;
