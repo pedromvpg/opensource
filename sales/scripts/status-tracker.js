@@ -107,11 +107,30 @@
     }
   });
 
+  window.OSHStatus = {
+    keyFor(sectionId, name) {
+      return slug((sectionId || "") + "|" + (name || ""));
+    },
+    get(sectionId, name) {
+      const key = this.keyFor(sectionId, name);
+      const sels = document.querySelectorAll(".status-select");
+      for (const sel of sels) {
+        if (sel.dataset.key === key) return sel.value || "";
+      }
+      return cache[key] || "";
+    },
+    getAll() {
+      return { ...cache };
+    },
+  };
+
   function start() {
     loadAll().then(() => {
       injectAll();
-      const content = document.getElementById("content");
-      if (content) new MutationObserver(injectAll).observe(content, { childList: true, subtree: true });
+      const root = document.getElementById("hubSectionPanels")
+        || document.getElementById("hubLayout")
+        || document.body;
+      if (root) new MutationObserver(injectAll).observe(root, { childList: true, subtree: true });
       console.log("[status] tracking mode:", mode);
     });
   }

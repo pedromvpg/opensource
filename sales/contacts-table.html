@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contacts table</title>
+<style>
+  body {
+    margin: 24px;
+    font: 14px/1.4 system-ui, sans-serif;
+    color: #111;
+    background: #fff;
+  }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 4px; }
+  .meta {
+    color: #555;
+    margin: 0 0 16px;
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+  }
+  .meta-text { flex: 1 1 auto; }
+  .empty { color: #555; max-width: 40em; }
+  .copy-cells {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .copy-cells:hover { background: #eaeaea; }
+  .copy-cells.copied {
+    color: #0a7a32;
+    border-color: #0a7a32;
+    background: #e8f7ee;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f3f3f3;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  tr:nth-child(even) td { background: #fafafa; }
+  a { color: #0b57d0; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const STORAGE_KEY = "osh-table-view";
+    const HEADERS = [
+      ["status", "Status"],
+      ["section", "Section"],
+      ["group", "Group"],
+      ["name", "Name"],
+      ["org", "Org"],
+      ["notes", "Notes"],
+      ["tags", "Tags"],
+      ["confidence", "Confidence"],
+      ["shortlist", "Shortlist"],
+      ["priority", "Priority"],
+      ["email", "Email"],
+      ["links", "Links"],
+    ];
+
+    let currentPayload = null;
+
+    function esc(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function cellText(row, key) {
+      return String(row[key] ?? "");
+    }
+
+    function renderLinks(value) {
+      const text = String(value || "");
+      if (!text) return "";
+      return text.split(" | ").map((part) => {
+        const idx = part.indexOf(":");
+        if (idx === -1) return esc(part);
+        const kind = part.slice(0, idx);
+        const rest = part.slice(idx + 1);
+        if (/^https?:\/\//i.test(rest) || rest.startsWith("mailto:") || rest.startsWith("tel:")) {
+          return `${esc(kind)}:<a href="${esc(rest)}">${esc(rest)}</a>`;
+        }
+        return esc(part);
+      }).join(" | ");
+    }
+
+    function readPayload() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function tsvEscape(value) {
+      const str = String(value ?? "").replace(/\r\n|\r|\n/g, " ");
+      if (/[\t"]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
+      return str;
+    }
+
+    function contactsToTsv(payload) {
+      const lines = [HEADERS.map(([, label]) => label).join("\t")];
+      payload.rows.forEach((row) => {
+        lines.push(HEADERS.map(([key]) => tsvEscape(cellText(row, key))).join("\t"));
+      });
+      return lines.join("\n");
+    }
+
+    function contactsToHtmlTable(payload) {
+      const head = HEADERS.map(([, label]) => `<th>${esc(label)}</th>`).join("");
+      const body = payload.rows.map((row) => {
+        const cells = HEADERS.map(([key]) => `<td>${esc(cellText(row, key))}</td>`).join("");
+        return `<tr>${cells}</tr>`;
+      }).join("");
+      // Minimal table HTML — Google Docs pastes this as a real table.
+      return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    async function copyCells() {
+      if (!currentPayload?.rows?.length) return;
+      const btn = document.getElementById("copyCells");
+      const tsv = contactsToTsv(currentPayload);
+      const html = contactsToHtmlTable(currentPayload);
+      try {
+        if (navigator.clipboard?.write && window.ClipboardItem) {
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              "text/plain": new Blob([tsv], { type: "text/plain" }),
+              "text/html": new Blob([html], { type: "text/html" }),
+            }),
+          ]);
+        } else {
+          await navigator.clipboard.writeText(tsv);
+        }
+        if (btn) {
+          const prev = btn.textContent;
+          btn.classList.add("copied");
+          btn.textContent = "Copied — paste into Docs";
+          setTimeout(() => {
+            btn.classList.remove("copied");
+            btn.textContent = prev;
+          }, 1800);
+        }
+      } catch (_) {
+        // Fallback for stricter clipboard permissions
+        const ta = document.createElement("textarea");
+        ta.value = tsv;
+        ta.style.cssText = "position:fixed;left:-9999px;top:0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          if (btn) {
+            btn.classList.add("copied");
+            btn.textContent = "Copied — paste into Docs";
+            setTimeout(() => {
+              btn.classList.remove("copied");
+              btn.textContent = "Copy cells";
+            }, 1800);
+          }
+        } catch (err) {
+          console.error("[table-view] copy failed", err);
+          if (btn) btn.textContent = "Copy failed";
+        }
+        ta.remove();
+      }
+    }
+
+    function render() {
+      const root = document.getElementById("root");
+      const payload = readPayload();
+      const wanted = new URLSearchParams(location.search).get("section");
+      currentPayload = null;
+
+      if (!payload || !Array.isArray(payload.rows) || !payload.rows.length) {
+        root.innerHTML = `<p class="empty">No table data loaded. Open a section from <a href="outreach-contacts.html">outreach contacts</a> and click <strong>View table</strong>.</p>`;
+        return;
+      }
+
+      if (wanted && payload.sectionId && payload.sectionId !== wanted) {
+        root.innerHTML = `<p class="empty">Stored table is for <strong>${esc(payload.title || payload.sectionId)}</strong>, not <strong>${esc(wanted)}</strong>. Go back to <a href="outreach-contacts.html">outreach contacts</a> and click <strong>View table</strong> again.</p>`;
+        return;
+      }
+
+      currentPayload = payload;
+      document.title = `${payload.title} — table`;
+      const when = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString() : "";
+      const head = HEADERS.map(([, label]) => `<th>${esc(label)}</th>`).join("");
+      const body = payload.rows.map((row) => {
+        const cells = HEADERS.map(([key]) => {
+          if (key === "links") return `<td>${renderLinks(row[key])}</td>`;
+          if (key === "email" && row.email) {
+            return `<td>${String(row.email).split("; ").map((e) =>
+              `<a href="mailto:${esc(e)}">${esc(e)}</a>`
+            ).join("; ")}</td>`;
+          }
+          return `<td>${esc(row[key])}</td>`;
+        }).join("");
+        return `<tr>${cells}</tr>`;
+      }).join("");
+
+      root.innerHTML = `
+        <h1>${esc(payload.title)}</h1>
+        <p class="meta">
+          <span class="meta-text">${esc(payload.eventLabel || "")}${when ? ` · ${esc(when)}` : ""} · ${payload.rows.length} row${payload.rows.length === 1 ? "" : "s"} · <a href="outreach-contacts.html">Back to hub</a></span>
+          <button type="button" class="copy-cells" id="copyCells" title="Copy table for Google Docs / Sheets">Copy cells</button>
+        </p>
+        <table id="contactsTable">
+          <thead><tr>${head}</tr></thead>
+          <tbody>${body}</tbody>
+        </table>`;
+
+      document.getElementById("copyCells")?.addEventListener("click", copyCells);
+    }
+
+    render();
+  </script>
+</body>
+</html>

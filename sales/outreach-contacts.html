@@ -3308,14 +3308,30 @@ function allContactRows() {
   return activeSections().flatMap(sectionContactRows);
 }
 
+function contactStatusSlug(value) {
+  return String(value || "").toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9/|_-]/g, "");
+}
+
+function contactStatus(sectionId, name) {
+  if (window.OSHStatus?.get) return window.OSHStatus.get(sectionId, name) || "";
+  try {
+    const key = contactStatusSlug((sectionId || "") + "|" + (name || ""));
+    const map = JSON.parse(localStorage.getItem("osh-status") || "{}");
+    return map[key] || "";
+  } catch (_) {
+    return "";
+  }
+}
+
 function contactsToCsv(rows) {
   const headers = [
-    "Section", "Group", "Name", "Org", "Notes", "Tags", "Confidence",
+    "Status", "Section", "Group", "Name", "Org", "Notes", "Tags", "Confidence",
     "Shortlist", "Priority", "Email", "Links",
   ];
   const lines = [headers.map(csvEscape).join(",")];
-  rows.forEach(({ sectionTitle, group, item }) => {
+  rows.forEach(({ sectionId, sectionTitle, group, item }) => {
     lines.push([
+      contactStatus(sectionId, item.name),
       sectionTitle,
       group,
       item.name || "",
@@ -3373,7 +3389,8 @@ function contactTablePayload(sectionId) {
     title: sectionExportTitle(sectionId),
     eventLabel: activeEvent().label || "",
     generatedAt: new Date().toISOString(),
-    rows: rowsForSectionExport(sectionId).map(({ sectionTitle, group, item }) => ({
+    rows: rowsForSectionExport(sectionId).map(({ sectionId: rowSectionId, sectionTitle, group, item }) => ({
+      status: contactStatus(rowSectionId, item.name),
       section: sectionTitle,
       group,
       name: item.name || "",
@@ -3393,11 +3410,18 @@ function openSectionTable(sectionId) {
   const payload = contactTablePayload(sectionId);
   if (!payload.rows.length) return;
   try {
-    sessionStorage.setItem("osh-table-view", JSON.stringify(payload));
-  } catch (_) {
+    // localStorage (not sessionStorage): new tabs opened with noopener do not
+    // inherit sessionStorage, so the table page would load empty.
+    localStorage.setItem("osh-table-view", JSON.stringify(payload));
+  } catch (err) {
+    console.error("[table-view] could not store payload", err);
     return;
   }
-  window.open(`contacts-table.html?section=${encodeURIComponent(sectionId)}`, "_blank", "noopener");
+  // Keep the .html suffix so local python -m http.server works;
+  // Vercel cleanUrls serves this path as well.
+  const url = `contacts-table.html?section=${encodeURIComponent(sectionId)}`;
+  const win = window.open(url, "_blank");
+  if (!win) location.assign(url);
 }
 
 function sectionExportButtons(sectionId) {
