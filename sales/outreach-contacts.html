@@ -662,6 +662,242 @@
     .hub-nav-tab .hub-nav-count { display: none; }
   }
 
+  /* ---------- Conversation rehearsal ---------- */
+  .rehearsal {
+    min-height: 100%;
+    background: var(--panel);
+  }
+  .rehearsal-head {
+    padding: 24px 22px 20px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .rehearsal-kicker {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .rehearsal-head h2 {
+    margin-top: 8px;
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+  .rehearsal-head p {
+    max-width: 760px;
+    margin-top: 8px;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .rehearsal-principles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 16px;
+  }
+  .rehearsal-principle {
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-subtle);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .rehearsal-layout {
+    display: grid;
+    grid-template-columns: minmax(180px, 230px) minmax(0, 1fr);
+    min-height: 600px;
+  }
+  .rehearsal-scenarios {
+    padding: 16px 12px;
+    border-right: 1px solid var(--border-soft);
+    background: var(--surface-subtle);
+  }
+  .rehearsal-scenarios-label,
+  .rehearsal-path-label {
+    padding: 0 8px 8px;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .scenario-button {
+    display: block;
+    width: 100%;
+    padding: 11px 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--ink-muted);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+  }
+  .scenario-button:hover { color: var(--ink); background: var(--surface-hover); }
+  .scenario-button.active {
+    color: var(--ink);
+    border-color: var(--border);
+    background: var(--panel);
+  }
+  .scenario-button small {
+    display: block;
+    margin-top: 3px;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .rehearsal-stage { padding: 22px; min-width: 0; }
+  .rehearsal-path {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .rehearsal-path-label { width: 100%; padding-left: 0; }
+  .path-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .path-step::after { content: "→"; color: var(--ink-faint); }
+  .path-step:last-child { color: var(--accent); }
+  .path-step:last-child::after { display: none; }
+  .chat-thread {
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .chat-message {
+    width: min(82%, 620px);
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .chat-message--us {
+    align-self: flex-end;
+    border-color: rgba(255,149,0,0.35);
+    background: rgba(255,149,0,0.09);
+  }
+  .chat-message--them {
+    align-self: flex-start;
+    background: var(--surface-subtle);
+  }
+  .chat-speaker {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .chat-note {
+    max-width: 680px;
+    padding: 10px 12px;
+    border-left: 2px solid var(--ok);
+    color: var(--ink-muted);
+    font-size: 12.5px;
+  }
+  .decision-card {
+    max-width: 780px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .decision-card h3 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .decision-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .decision-option {
+    min-height: 64px;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--ink-soft);
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  .decision-option:hover,
+  .decision-option:focus-visible {
+    border-color: var(--accent);
+    background: rgba(255,149,0,0.07);
+    color: var(--ink);
+    outline: none;
+  }
+  .decision-option span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rehearsal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .rehearsal-reset,
+  .rehearsal-copy {
+    padding: 8px 11px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--ink-muted);
+    font-family: var(--font-display);
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .rehearsal-reset:hover,
+  .rehearsal-copy:hover { color: var(--ink); border-color: var(--card-hover-border); }
+  @media (max-width: 760px) {
+    .rehearsal-layout { grid-template-columns: 1fr; }
+    .rehearsal-scenarios {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .rehearsal-scenarios-label { display: none; }
+    .scenario-button { width: auto; min-width: 150px; flex-shrink: 0; }
+    .rehearsal-stage { padding: 18px 14px; }
+    .chat-message { width: 92%; }
+  }
+
   /* ---------- Sample graphics ---------- */
   .sample-graphics {
     margin-top: 16px;
@@ -954,6 +1190,21 @@
   }
 
   .card-angle { color: var(--ink-soft); font-size: 13px; margin-top: 5px; font-weight: 300; }
+  .contact-prep {
+    margin-top: 7px; color: var(--ink-muted); font-size: 11px; line-height: 1.4;
+    font-family: var(--font-mono);
+  }
+  .contact-prep strong { color: var(--ink-soft); font-weight: 500; }
+  .personalization-badges {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px;
+  }
+  .personalization-badge {
+    display: inline-flex; align-items: center;
+    padding: 2px 6px; border: 1px solid var(--border-soft);
+    background: var(--surface-subtle); color: var(--ink-muted);
+    font-family: var(--font-mono); font-size: 9px; line-height: 1.3;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
   .card-tags { display: flex; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
   .tag {
     font-family: var(--font-mono);
@@ -1011,7 +1262,7 @@
   }
   .partnership-modal-panel {
     position: relative; z-index: 1;
-    width: min(560px, 100%); max-height: min(88vh, 720px);
+    width: min(760px, 100%); max-height: min(92vh, 860px);
     display: flex; flex-direction: column;
     background: var(--panel); border: 1px solid var(--border);
     box-shadow: 0 24px 80px rgba(0,0,0,0.45);
@@ -1042,6 +1293,24 @@
     font-family: var(--font-mono);
   }
   .partnership-modal-subject strong { color: var(--ink); font-weight: 500; }
+  .outreach-prep[hidden] { display: none; }
+  .outreach-prep {
+    margin: 12px 22px 0; padding: 12px 14px;
+    border: 1px solid var(--border); background: var(--surface-subtle);
+    color: var(--ink-soft); font-size: 12px; line-height: 1.45;
+  }
+  .outreach-prep-title {
+    font-family: var(--font-mono); color: var(--ink); font-size: 10px;
+    font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .outreach-prep-note { margin-top: 5px; }
+  .outreach-prep .personalization-badges { margin-top: 8px; }
+  .outreach-prep-warning {
+    display: inline-flex; margin-top: 9px; padding: 4px 7px;
+    border: 1px solid rgba(232,185,59,.45); background: rgba(232,185,59,.12);
+    color: var(--warn); font-family: var(--font-mono); font-size: 10px;
+    font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  }
   .partnership-modal-body {
     margin: 12px 22px 0;
     padding: 14px 16px;
@@ -1051,7 +1320,7 @@
     font-size: 13.5px; line-height: 1.55;
     color: #1a1a1a;
     white-space: pre-wrap; word-break: break-word;
-    overflow: auto; flex: 1; min-height: 120px; max-height: 42vh;
+    overflow: auto; flex: 1; min-height: min(420px, 50vh); max-height: 58vh;
   }
   .partnership-modal-actions {
     display: flex; flex-wrap: wrap; gap: 10px;
@@ -1245,6 +1514,33 @@
         </div>
       </div>
       <div class="hub-panels" id="hubPanels">
+        <div class="hub-panel" data-panel="rehearsal" id="panel-rehearsal">
+          <section class="rehearsal" aria-labelledby="rehearsalTitle">
+            <div class="rehearsal-head">
+              <div class="rehearsal-kicker">Conversation simulator</div>
+              <h2 id="rehearsalTitle">Practice the next reply, not a perfect pitch.</h2>
+              <p>Pick a target, send the opener, then follow the path they give you. Each branch keeps the offer concrete, makes the next step easy, and leaves room for a genuine no.</p>
+              <div class="rehearsal-principles" aria-label="Conversation principles">
+                <span class="rehearsal-principle">Discover before package</span>
+                <span class="rehearsal-principle">One easy next step</span>
+                <span class="rehearsal-principle">Specific, not breathless</span>
+                <span class="rehearsal-principle">No fake urgency</span>
+              </div>
+            </div>
+            <div class="rehearsal-layout">
+              <div class="rehearsal-scenarios" id="rehearsalScenarios" role="tablist" aria-label="Target scenarios"></div>
+              <div class="rehearsal-stage">
+                <div class="rehearsal-path" id="rehearsalPath"></div>
+                <div class="chat-thread" id="rehearsalThread" aria-live="polite"></div>
+                <div class="decision-card" id="rehearsalDecision"></div>
+                <div class="rehearsal-actions">
+                  <button type="button" class="rehearsal-reset" id="rehearsalReset">Start over</button>
+                  <button type="button" class="rehearsal-copy" id="rehearsalCopy">Copy our latest reply</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
         <div class="hub-panel" data-panel="graphics" id="panel-graphics">
           <section class="sample-graphics" id="sampleGraphics">
             <div class="sample-graphics-head">
@@ -1271,6 +1567,12 @@
       <h2 id="partnershipModalTitle">Partnership proposal</h2>
       <p class="partnership-modal-meta" id="partnershipModalMeta"></p>
     </div>
+    <aside class="outreach-prep" id="outreachPrep" aria-label="Internal preparation context" hidden>
+      <div class="outreach-prep-title">Internal prep · not included in message</div>
+      <div class="outreach-prep-note" id="outreachPrepNote"></div>
+      <div class="personalization-badges" id="outreachPrepBadges"></div>
+      <div class="outreach-prep-warning" id="outreachPrepWarning" hidden>Verify before send</div>
+    </aside>
     <div class="partnership-modal-subject" id="partnershipModalSubject"></div>
     <pre class="partnership-modal-body" id="partnershipModalBody"></pre>
     <div class="partnership-modal-actions">
@@ -1281,6 +1583,7 @@
 </div>
 
 <script src="scripts/open-source-nostr-speakers.js"></script>
+<script src="scripts/outreach-personalization.js"></script>
 <script src="scripts/sample-graphics-svgs.js"></script>
 <script>
 /* ============================================================
@@ -1297,12 +1600,12 @@ const HUB_SPEAKERS_SECTION = (() => {
   const groups = [];
   if (hubItems.length) groups.push({ title: "Open Source Hub", items: hubItems });
   if (nostrItems.length) groups.push({ title: "Nostr", items: nostrItems });
-  if (stageItems.length) groups.push({ title: "Genesis & Nakamoto stage", items: stageItems });
+  if (stageItems.length) groups.push({ title: "Other Bitcoin Asia program speakers", items: stageItems });
   return {
     id: "opensource-nostr-speakers",
     flag: "⚡",
-    title: "Open Source + Nostr Speakers",
-    note: "Confirmed Bitcoin Asia 2026 speakers on the Open Source Hub, Nostr, and open-source/dev tracks. Session times are HK local. Avatars from Nostr kind 0 profile metadata where available.",
+    title: "Bitcoin Asia 2026 Speakers",
+    note: "Confirmed and listed Bitcoin Asia 2026 speakers are kept separate from partnership prospects so outreach can acknowledge their existing role. Session times are HK local. Avatars from Nostr kind 0 profile metadata where available.",
     groups: groups.length ? groups : [{ title: "", items: [] }],
   };
 })();
@@ -1316,23 +1619,21 @@ const SECTIONS = [
         { name:"Yat Siu", org:"Animoca", angle:"AI × crypto headline voice", tags:["Hong Kong"], conf:"ok", links:[{t:"x",v:"ysiu"}] },
         { name:"keypleb", org:"Code Orange Dev School", angle:"Bitcoin/Lightning/Rust OSS education · Bali / SEA · Bitcoin House Bali", tags:["Bali / SEA"], conf:"ok", links:[{t:"email",v:"keypleb@blink.sv"},{t:"email",v:"hello@codeorange.dev",label:"school"},{t:"x",v:"CodeOrangeDevs"},{t:"web",v:"codeorange.dev"}], partnership:{
           to:"keypleb@blink.sv",
-          subject:"comp passes for Code Orange crew?",
+          subject:"Code Orange × Open Source Hub?",
           label:"Partnership proposal",
           body:`Hey [name],
 
-How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug).
+How's it going? Pedro here — I'm shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
 
-What Code Orange is doing — training devs into real OSS contributors, Lightning/Rust on actual Bitcoin code — is exactly our crowd.
+What Code Orange is doing — training developers into real Bitcoin, Lightning, Rust, and open-source contribution — is unusually close to the builders we want around the Hub.
 
-Simple ask: list Code Orange as a community partner + comp passes for your cohort and Bali/SEA network ([CLAIM LINK], code [CODE]). Good amplification either way even if you're not in town.
+We're looking for partners and would love to have you and the Code Orange community involved.
 
-Up for a quick thread to set it up?
+What would genuinely help your cohort and Bali/SEA network? We can shape support around access, visibility, connections, or a way to participate.
 
-Pedro
-pedro@btcmedia.org`
+What would make the biggest difference for your people? Happy to compare notes in a quick thread.`
         }},
         { name:"Jihan Wu", org:"Bitdeer", angle:"Bitcoin mining → AI compute", tags:["Singapore"], conf:"ok", links:[{t:"x",v:"JihanWu"},{t:"web",v:"bitdeer.com"}] },
-        { name:"Dr. Qiwei Chen", org:"Bitdeer", angle:"AI datacenter infra · listed speaker", tags:["Singapore","speaker"], conf:"ok", links:[{t:"web",v:"bitdeer.com"}] },
       ]},
       { title: "Tier 2 — Best Open Source Hub content fit", items: [
         { name:"Abdel Stark", angle:"nostr-mcp + lightning-mcp (AI agents → Nostr/Lightning)", tags:["non-APAC"], conf:"ok", star:true, links:[{t:"x",v:"AbdelStark"},{t:"github",v:"AbdelStark"}] },
@@ -1553,7 +1854,6 @@ pedro@btcmedia.org`
         { name:"Harsh Dev Pathak", angle:"Fedimint / Chaumian Ecash (haze-wallet) — Bitcoin-adjacent, not core protocol · Bitshala fellow", tags:["India","Fedimint"], conf:"warn", links:[{t:"x",v:"Harsh_dev098"},{t:"github",v:"Harshdev098"}] },
       ]},
       { title: "Educators / content & Summer of Bitcoin (attend / amplify)", items: [
-        { name:"Aditya Ranjan", org:"Bitcoin Bharat", angle:"Grassroots Bitcoin-only literacy, India Tour (50+ cities) · already speaking at Bitcoin Asia 2026", tags:["India","educator"], conf:"ok", star:true, links:[{t:"x",v:"bitcoinbharat_"},{t:"instagram",v:"bitcoinbhar.at"},{t:"web",v:"bitcoinbhar.at"}] },
         { name:"Adi Shankara", angle:"Founder Summer of Bitcoin; PM Greenlight/CLN @ Blockstream; Bitshala co-founder", tags:["India","SoB"], conf:"ok", star:true, links:[{t:"x",v:"adibitcoin"},{t:"github",v:"adi-shankara"}] },
         { name:"Sandeep Goenka", angle:"Bitcoin-only educator/author (Penguin 2024), corporate/YPO workshops", tags:["India","educator"], conf:"ok", links:[{t:"x",v:"goenkasandeep"}] },
         { name:"Anil Patel (\"Anil SaidSo\")", angle:"Respected Bitcoin-only educator, The Bitcoin Handbook (~250k X) · diaspora (UK/Canada)", tags:["diaspora","educator"], conf:"ok", links:[{t:"x",v:"anilsaidso"}] },
@@ -1644,15 +1944,15 @@ const REGION_TEMPLATES = [
       "<strong>Bitcoin-native channels.</strong> Telegram, Meetup DM, Instagram DM for societies; email for org accounts.",
     ],
     channel: "Telegram · email · Meetup DM · Instagram DM · Luma",
-    sample: `Subject: free passes for your members — Bitcoin Asia OSS Hub
+    sample: `Subject: [society] × Open Source Hub?
 
 Hey [name],
 
-How's it going? Pedro here. I'm working on the Open Source Hub at Bitcoin Asia in HK this August — the builder floor at the conference, good for members who actually ship.
+Pedro here — I'm putting together the Open Source Hub at Bitcoin Asia in HK this August. [society] feels like a natural fit because your members actually build, not just watch from the sidelines.
 
-Want to set [society] up as a community partner? Free dev passes ([CLAIM LINK], code [CODE]) + we'll list you on the partner wall and send a graphic to share.
+I'd like to find a useful way to bring [society] into the Hub. We can help members attend, give the community visibility, or support a way to participate. Which would matter most to your group?
 
-Worth a quick yes/no? Who's best to coordinate — and roughly how many might come?`,
+Worth a quick chat about what would be valuable for your members?`,
   },
   {
     id: "shenzhen",
@@ -1666,15 +1966,15 @@ Worth a quick yes/no? Who's best to coordinate — and roughly how many might co
       "<strong>Verify before outreach.</strong> Small list — every contact needs a live channel check first.",
     ],
     channel: "WeChat warm intro · GitHub issue · email (diaspora)",
-    sample: `Subject: HK dev conf — free passes for your club?
+    sample: `Subject: [club] × Open Source Hub in Hong Kong?
 
 Hey [name],
 
-How's it going? Pedro here. 你好 — I'm working on the Open Source Hub at a dev conference in Hong Kong this August. Open-source / builder focus — not crypto marketing.
+Pedro here. 你好 — I'm working on the Open Source Hub at a developer conference in Hong Kong this August. The focus is open-source builders and practical demos, not crypto promotion.
 
-Happy to partner with your club: free passes for members ([CLAIM LINK], code [CODE]), we credit you as a community partner. Easy trip from Shenzhen.
+I'd like to see whether the Hub can be useful to [club]. We have room to help with access, visibility, and participation, but the right shape depends on what your members need. It's an easy trip from Shenzhen.
 
-Interested? Happy to share details privately.`,
+Open to a quick conversation here?`,
   },
   {
     id: "philippines",
@@ -1686,15 +1986,15 @@ Interested? Happy to share details privately.`,
       "<strong>Reference local credibility</strong> — PH Bitcoin community is tight; name-drop mutual contacts when you have them.",
     ],
     channel: "Telegram · Facebook · X DM · email",
-    sample: `Subject: free dev passes — Bitcoin Asia OSS Hub (HK)
+    sample: `Subject: bringing the PH builder crew to Hong Kong?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia in HK late Aug — builder floor, the kind of thing PH Bitcoin folks would actually use.
+Pedro here — I'm building the Open Source Hub at Bitcoin Asia in HK late August. It should feel familiar to the PH Bitcoin scene: technical sessions, project demos, and room to meet the people shipping.
 
-Want to partner up? Free passes for your crew ([CLAIM LINK], code [CODE]) + we'll shout you out at the Hub.
+Could we explore [community] as a Partner? We can help get the right people into the room, amplify the community, or create a useful way to participate. Which would matter most to the PH crew?
 
-Rough guess on how many might make it? Who should I ping to set it up?`,
+If that sounds relevant, who should I coordinate with?`,
   },
   {
     id: "singapore",
@@ -1706,15 +2006,15 @@ Rough guess on how many might make it? Who should I ping to set it up?`,
       "<strong>Professional on email;</strong> casual on Discord/Telegram.",
     ],
     channel: "Email · Telegram · Discord · Meetup",
-    sample: `Subject: free passes for [society] — Bitcoin Asia OSS Hub
+    sample: `Subject: [society] at the Open Source Hub in HK?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — developer floor at the conference, not a trading expo.
+Pedro here — I'm putting together the Open Source Hub at Bitcoin Asia in HK late August. It's the technical floor: open-source sessions, live projects, and builders rather than a trading expo.
 
-We'd love to partner with [NUS Hackers / your society]: free passes for members ([CLAIM LINK], code [CODE]), your community listed as a partner + a graphic to reshare.
+I'd like to explore a useful partnership with [society]. We can support member access, community visibility, and ways to participate, but I don't want to assume which outcome your members care about.
 
-How many might be interested? Who's the right contact?`,
+Who is the right person for a quick fit check?`,
   },
   {
     id: "taiwan",
@@ -1726,15 +2026,15 @@ How many might be interested? Who's the right contact?`,
       "<strong>Discord, Telegram, IG DMs</strong> all in play for student groups.",
     ],
     channel: "Email · Discord · Telegram · Instagram · X",
-    sample: `Subject: free passes — Bitcoin Asia OSS Hub (HK)
+    sample: `Subject: Taipei builders → Open Source Hub HK?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — builder floor, lots of overlap with BitDevs crowd, short flight from Taipei.
+Pedro here — I'm working on the Open Source Hub at Bitcoin Asia in HK late August. There is a lot of overlap with the BitDevs and COSCUP crowd, and it is a short hop from Taipei.
 
-Want to partner [club]? Free passes ([CLAIM LINK], code [CODE]) + we credit your community. COSCUP Aug 8–9 is a nice warm-up if folks are already around.
+I'd like to explore bringing [club] into the Hub. We can help members attend, give the community useful visibility, or support a way to participate — whichever best serves the group.
 
-Who should I talk to, and any rough headcount?`,
+Open to a quick conversation about what would be useful?`,
   },
   {
     id: "india",
@@ -1746,15 +2046,15 @@ Who should I talk to, and any rough headcount?`,
       "<strong>Long-haul travel</strong> — only pitch builders who realistically attend APAC events.",
     ],
     channel: "X · email · Telegram",
-    sample: `Subject: free dev passes — Bitcoin Asia OSS Hub (HK)
+    sample: `Subject: [community] × Open Source Hub in Hong Kong?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — builder floor, right crowd for [community].
+Pedro here — I'm putting together the Open Source Hub at Bitcoin Asia in Hong Kong this August. [community]'s builder pipeline looks like a strong match for the technical sessions and project demos.
 
-Want to partner? Free passes for your devs ([CLAIM LINK], code [CODE]) + we'll credit you as a community partner.
+I'd like to see whether the Hub can support something [community] already wants to do — helping builders attend, showcasing their work, or connecting them with the right people in the room.
 
-Who should I coordinate with?`,
+What would make the trip genuinely useful to your cohort?`,
   },
   {
     id: "japan",
@@ -1766,15 +2066,15 @@ Who should I coordinate with?`,
       "<strong>Short hop from Japan to HK</strong> — emphasize convenience for meetup groups.",
     ],
     channel: "X · GitHub · email · Meetup",
-    sample: `Subject: free passes — Bitcoin Asia OSS Hub (HK)
+    sample: `Subject: [community] × Open Source Hub, Hong Kong?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia in HK late Aug — technical builder floor, short hop from Japan.
+Pedro here — I'm working on the Open Source Hub at Bitcoin Asia in HK late August. It is a technical builder floor and a short trip from Japan, so [community] came to mind.
 
-Partner ask: free dev passes for [community] ([CLAIM LINK], code [CODE]) + community partner listing.
+I'd like to find a useful shape for a [community] partnership. We can help with access, visibility, and participation. Which would be most useful to your community?
 
-Interested? Who's the right contact?`,
+Open to a quick fit check?`,
   },
   {
     id: "korea",
@@ -1786,15 +2086,15 @@ Interested? Who's the right contact?`,
       "<strong>Amplify cautiously</strong> — Korea's surface Bitcoin scene skews trading/RWA.",
     ],
     channel: "Email · Telegram · X",
-    sample: `Subject: free dev passes — Bitcoin Asia OSS Hub (HK)
+    sample: `Subject: Seoul builders at the Open Source Hub?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug) — developer floor at the conference.
+Pedro here — I'm putting together the Open Source Hub at Bitcoin Asia in HK late August. It is the conference's technical floor, with open-source sessions and working projects.
 
-We'd love to partner with [community]: free passes ([CLAIM LINK], code [CODE]) + partner wall credit.
+I'd like to explore [community] as a Partner. We can help the right builders attend, give the community visibility, or support a meaningful way to participate — depending on what your members would actually value.
 
-Who should I talk to?`,
+Open to a quick conversation?`,
   },
 ];
 
@@ -1809,30 +2109,31 @@ const STRATEGY = [
       "<strong>Split the ask.</strong> APAC-based = attend + amplify; global on-theme = content / remote amplification, not travel pitch.",
       "<strong>Personalize hard.</strong> Reference their project (Nostr MCP, Lightning AI, mining compute) — generic conference spam gets ignored.",
       "<strong>Nostr / X DMs</strong> for builders; email for org accounts. Keep it short — they're inbox-heavy.",
-      "<strong>Offer value first.</strong> Comped pass if they can attend, or claim codes for their audience — not \"please retweet our event.\"",
+      "<strong>Discover value first.</strong> Signal that we can help with access, visibility, and participation, then ask what would actually support their work or audience.",
+      "<strong>Earn the stage conversation.</strong> Mention speaking only for a clear topic/audience fit; never frame it as automatic.",
     ],
     channel: "X · Nostr · email · Telegram",
-    sample: `Subject: comp passes for your audience? — Bitcoin Asia OSS Hub
+    sample: `Subject: [project / work] at the Open Source Hub?
 
 Hey [name],
 
-How's it going? Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug). Your [project / work] is exactly the vibe we're going for.
+Pedro here — I'm shaping the Open Source Hub at Bitcoin Asia in HK this August. Your work on [project / work] is close to what we want the floor to feel like: technical, open, and useful.
 
-Simple ask: partner with us and get comp codes for builders who follow you ([CLAIM LINK], code [CODE]). We credit you as a community partner.
+I'd like to explore how the Hub could support your work — getting the right builders in the room, giving the project useful visibility, or finding a meaningful way to participate. Rather than pitch a fixed package, what would make this worthwhile for you and your community?
 
-No pressure — want me to send details?`,
+Open to a quick conversation?`,
   },
   {
-    id: "opensource-nostr-speakers", flag: "⚡", label: "OSS + Nostr Speakers",
+    id: "opensource-nostr-speakers", flag: "⚡", label: "Bitcoin Asia 2026 Speakers",
     targets: [
-      { section: "opensource-nostr-speakers", note: "Hub speakers · Nostr builders · Genesis & Nakamoto stage — already on the program" },
+      { section: "opensource-nostr-speakers", note: "Confirmed and listed speakers — already part of the Bitcoin Asia 2026 program" },
     ],
     audiences: ["confirmed speakers", "Nostr builders", "on-stage devs"],
     points: [
       "<strong>They're already in.</strong> Lead with logistics + amplification, not a cold pitch — comp passes for their community if relevant.",
       "<strong>Reference their session.</strong> Hub vs Nostr vs stage track — show you know where they fit.",
       "<strong>Peer density is the hook.</strong> Core/Lightning/Nostr contributors in the same building all week.",
-      "<strong>Nostr DMs or email</strong> for individuals; keep it short.",
+      "<strong>Nostr DMs or email</strong> for individuals; keep it short. Ask whether access, amplification, or community participation would help.",
     ],
     channel: "Nostr · X · email",
     sample: `Subject: Open Source Hub @ Bitcoin Asia — your community
@@ -1841,7 +2142,7 @@ Hey [name],
 
 How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug). Great to have you on the program.
 
-If your community should be in the room too, happy to set up comp codes ([CLAIM LINK], code [CODE]) and credit them as partners. Worth a quick thread?`,
+If your community should be in the room too, I'd love to understand what would help most — access for builders, amplification for the community, or another way to participate. Worth a quick thread?`,
   },
   {
     id: "t-bitcoin", flag: "🟠", label: "Track · Bitcoin-native",
@@ -1854,22 +2155,21 @@ If your community should be in the room too, happy to set up comp codes ([CLAIM 
       { section: "japan", note: "Tokyo Bitcoin Space · BTC Japan · Nostr JP builders" },
       { section: "korea", note: "Korea Bitcoin communities (verify active)" },
       { section: "influencers", note: "Tier 2 — Abdel Stark · Elizabeth Stark · mining/compute voices" },
-      { section: "opensource-nostr-speakers", note: "Hub + Nostr track speakers" },
     ],
     audiences: ["protocol devs", "BitDevs", "Bitcoin communities"],
     points: [
       "<strong>Bitcoin-centric belongs here.</strong> Lead with protocol, PRs, sats, sovereignty — this crowd wants depth, not an intro.",
-      "<strong>The give:</strong> peer density with Core/Lightning/Nostr contributors, funder/grant office hours, free dev passes, community partner credit.",
+      "<strong>Discovery first:</strong> ask whether they need access for builders, stronger connections in the room, visibility, or a way to contribute.",
       "<strong>Regional lists are sourcing pools</strong> — pick Bitcoin-native contacts inside each geography tab.",
     ],
     channel: "Telegram · X / Nostr DM · Meetup",
-    sample: `Subject: Open Source Hub @ Bitcoin Asia 2026 — free dev passes
+    sample: `Subject: [community] × Open Source Hub?
 
 Hey [name],
 
-How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug) — two days of BitDevs-style sessions, project stations, and workshops with Core, Lightning, and Nostr contributors, plus grant office hours with the funders in the room.
+Pedro here — I'm shaping the Open Source Hub at Bitcoin Asia in HK late August: two days of BitDevs-style sessions, project stations, and workshops with Core, Lightning, and Nostr contributors.
 
-I'd love to get [community]'s builders free passes and credit your community on-site. How many would make it? Happy to sort codes this week.`,
+I'd like to find a useful way to bring [community] into the Hub. We can help with access for builders, community visibility, and ways to participate. Which would matter most to your community? Open to a quick conversation?`,
   },
   {
     id: "t-ai", flag: "🤖", label: "Track · AI × open-source",
@@ -1882,17 +2182,18 @@ I'd love to get [community]'s builders free passes and credit your community on-
     audiences: ["decentralized AI", "agentic AI", "private AI"],
     points: [
       "<strong>De-Bitcoin the lead.</strong> Open source + AI is the headline; Bitcoin is the rails, mentioned once (\"agents that pay and hold value\").",
-      "<strong>The give:</strong> concentrated niche peers + space to demo their work to a builder audience.",
+      "<strong>Discovery first:</strong> learn whether their priority is access, project visibility, peer connections, or a meaningful way to participate.",
       "<strong>Not a general AI pitch</strong> — only decentralized/private/agentic AI + AI-×-Nostr builders.",
+      "<strong>Stage is conditional.</strong> Raise it only when their work and audience can carry a useful Open Source Stage session.",
     ],
     channel: "X / Nostr DM · email",
     sample: `Subject: Open source + AI at the Open Source Hub (HK, late Aug)
 
 Hey [name],
 
-How's it going? Pedro here. I do experience design for the Open Source Hub in Hong Kong this August — two days for open-source builders, including the crews working on private and agentic AI, agents that pay and hold value, and self-hostable inference.
+Pedro here — I'm shaping the Open Source Hub in Hong Kong this August, including a focused thread for private and agentic AI, agents that pay and hold value, and self-hostable inference. Your [project / work] looks unusually close to that brief.
 
-If that's your world, I'd love to get you a free dev pass and space to show your work. Interested?`,
+I'd like to explore how the Hub could support your work — getting the right builders in the room, giving the project useful visibility, or finding a meaningful way to participate. Rather than pitch a fixed package, what would make the trip worthwhile for you and your community?`,
   },
   {
     id: "t-students", flag: "🎓", label: "Track · Students",
@@ -1909,18 +2210,18 @@ If that's your world, I'd love to get you a free dev pass and space to show your
     audiences: ["uni CS / blockchain clubs", "GDG chapters", "bootcamps"],
     points: [
       "<strong>Open source + learning, jargon-light.</strong> Barely mention Bitcoin — it's just the event name.",
-      "<strong>The give:</strong> a free pass to a world-class conference is rare for a student — workshops, maintainers, hackathon energy.",
+      "<strong>Discovery first:</strong> ask whether the society needs member access, practical learning, maintainer connections, or support for something it already wants to run.",
       "<strong>Ask for the right person</strong> to set up a block for the society.",
       "<strong>Multi-campus leverage.</strong> One yes from a cross-campus hub fans out fast.",
     ],
     channel: "IG DM · society email · Telegram / Discord",
-    sample: `Subject: Free passes for [society] — Open Source Hub, Bitcoin Asia (HK)
+    sample: `Subject: [society] at the Open Source Hub in HK?
 
 Hey [name],
 
-How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia in Hong Kong (late Aug) — hands-on workshops, live demos with the maintainers behind real tools, hackathon energy, and a VR activation on the floor.
+Pedro here — I'm putting together the Open Source Hub at Bitcoin Asia in Hong Kong late August: hands-on workshops, live project demos, and maintainers in the room.
 
-A free pass is a rare thing for students, so I'd love to give [society] a block for your members. Who's the right person to set it up?`,
+I'd like to see whether the Hub can be useful to [society] — whether that means helping members attend, connecting them with maintainers, or supporting something the society already wants to do. Who is the best person to ask what would be valuable for your members?`,
   },
   {
     id: "t-oss", flag: "🐧", label: "Track · OSS communities",
@@ -1936,18 +2237,18 @@ A free pass is a rare thing for students, so I'd love to give [society] a block 
     audiences: ["GDG · g0v · COSCUP", "hackerspaces", "dev meetups"],
     points: [
       "<strong>Lead with \"we platform you.\"</strong> Open-source ethos; Bitcoin is the venue, not the pitch.",
-      "<strong>The give:</strong> community-partner program — credit on-site, space to convene, amplification + passes for members.",
+      "<strong>Discovery first:</strong> offer the categories — access, visibility, participation — and let the community define the useful outcome.",
       "<strong>Last mile is theirs:</strong> hand them an adaptable draft to post in their own voice.",
       "<strong>Regional tabs are where the lists live</strong> — filter for OSS / civic-tech / dev-society tags.",
     ],
     channel: "email · Discord · Telegram · Slack",
-    sample: `Subject: Community partnership — Open Source Hub, Bitcoin Asia (HK)
+    sample: `Subject: [community] × Open Source Hub?
 
 Hey [name],
 
-How's it going? Pedro here. I do experience design for the Open Source Hub at Bitcoin Asia (HK, late Aug) — two days celebrating open source and the people who ship it.
+Pedro here — I'm shaping the Open Source Hub at Bitcoin Asia in HK late August, two days built around open source and the people who ship it. [community] feels like a natural Partner, not just another logo.
 
-I'd love to make [community] a community partner: free dev passes for your members, your name credited on-site, space to convene your people, and we amplify you to everyone who shows up. In return, help spread the word to your members. Open to it?`,
+I'd like to explore a partnership that is genuinely useful to [community]. We can help with member access, community visibility, and ways to participate in the Hub. Which would be most useful to your community? Open to a quick fit check?`,
   },
   {
     id: "recognition", flag: "🤝", label: "Partner recognition",
@@ -1963,18 +2264,319 @@ I'd love to make [community] a community partner: free dev passes for your membe
     audiences: ["community partner", "earned not paid"],
     points: [
       "<strong>Partnership, not sponsorship.</strong> Partners don't pay — they bring builders + co-promote, and recognition is earned.",
-      "<strong>On-site:</strong> name on the Community Partners wall, \"[community] delegate\" badge ribbons for members, and a community meetup board to pin their socials.",
-      "<strong>Digital:</strong> listed on the Hub program page + a co-brandable \"proud community partner\" graphic they can reshare.",
-      "<strong>What we don't offer:</strong> workshops, stage time, or paid placement — passes + recognition only.",
+      "<strong>Start with the outcome:</strong> ask what would make the Hub useful before selecting from passes, visibility, connections, or participation.",
+      "<strong>Build the offer second:</strong> turn their answer into a concrete, proportional package using the inventory available.",
+      "<strong>Selective:</strong> strong-fit partners with a sizable audience can be considered for the Open Source Stage; never promise it before program review.",
+      "<strong>The exchange:</strong> one authentic announcement to their community and a point person for coordination.",
     ],
-    channel: "On-site wall · badge ribbons · program page · partner graphic",
+    channel: "Access · visibility · connections · participation",
     sample: `Hey [name],
 
-How's it going? Pedro here — quick rundown on community partner recognition at the Open Source Hub:
+Pedro here — quick thought on an Open Source Hub partnership:
 
-As a Community Partner, [community] gets: your name on the Hub partner wall and program page, "[community] delegate" ribbons for your members, a pin on the community meetup board, and a co-brandable graphic to share.
+I'd like it to solve something useful for [community], not hand you a generic sponsor package. We can help with member access, community visibility, connections, and meaningful ways to participate.
 
-That's it — free passes for your builders, recognition when you bring them. No fees, no stage slots.`,
+What would make the Hub genuinely valuable to your people? Once I understand that, I'll come back with a concrete proposal. Any stage idea still goes through normal program review.`,
+  },
+];
+
+const REHEARSAL_SCENARIOS = [
+  {
+    id: "community",
+    label: "Community organizer",
+    meta: "Partner + delegation",
+    root: "open",
+    nodes: {
+      open: {
+        messages: [
+          { speaker: "us", text: "Hey Maya — Pedro here. I’m shaping the Open Source Hub at Bitcoin Asia in HK this August. Your community came to mind because you consistently get builders in the same room.\n\nI’d like to explore a partnership that is actually useful to your people. We can help with access, visibility, connections, or a way to participate. Which would be most useful to your community? Open to a quick fit check?" },
+        ],
+        note: "The relevance line comes before the offer. The ask is only to test interest—not to commit.",
+        choices: [
+          { label: "Interested", text: "This could work. What do you need from us?", next: "interested" },
+          { label: "Send details", text: "Can you send me the details first?", next: "details" },
+          { label: "Too busy", text: "We’re stretched and can’t take on another partnership.", next: "busy" },
+        ],
+      },
+      interested: {
+        messages: [
+          { speaker: "them", text: "This could work. What do you need from us?" },
+          { speaker: "us", text: "Great. Before I prescribe anything: what would make the Hub genuinely useful to your community? Is the priority getting members into the room, giving their work visibility, making the right connections, or something else?" },
+        ],
+        choices: [
+          { label: "Member access", text: "Getting more of our members there would help most.", next: "five" },
+          { label: "Visibility + participation", text: "We want a way to showcase what the community is building.", next: "more" },
+          { label: "Need team approval", text: "I need to check with the team.", next: "approval" },
+        ],
+      },
+      details: {
+        messages: [
+          { speaker: "them", text: "Can you send me the details first?" },
+          { speaker: "us", text: "Absolutely. We can shape support around member access, community visibility, connections, and meaningful ways to participate. I’d rather send a relevant proposal than a menu: which outcome matters most to your community right now?" },
+        ],
+        note: "Answer the question in the chat before asking them to open a deck.",
+        choices: [
+          { label: "Access matters", text: "Helping members attend is the main thing.", next: "five" },
+          { label: "Not enough value", text: "I’m not sure that is enough for us.", next: "value" },
+        ],
+      },
+      busy: {
+        messages: [
+          { speaker: "them", text: "We’re stretched and can’t take on another partnership." },
+          { speaker: "us", text: "Totally fair. This only works if it’s useful and low-lift. I can leave you with a small member-access option without the Partner ask, or close the loop here — whichever is easier." },
+        ],
+        choices: [
+          { label: "Just member access", text: "A few member passes could still be useful.", next: "passesOnly" },
+          { label: "Close it", text: "Let’s leave it for now.", next: "closed" },
+        ],
+      },
+      five: {
+        messages: [
+          { speaker: "them", text: "Getting more of our members there would help most." },
+          { speaker: "us", text: "Good — then access should lead the proposal. Give me a realistic low/high attendance estimate and any travel or eligibility constraints. I’ll come back with a pass allocation that fits, rather than making you work around an arbitrary number." },
+        ],
+        note: "Turn the stated need into the minimum information required for a concrete proposal.",
+      },
+      more: {
+        messages: [
+          { speaker: "them", text: "We want a way to showcase what the community is building." },
+          { speaker: "us", text: "That helps. What would a useful showcase look like from your side: visibility for the community as a whole, a place for members to demo projects, or a focused session around one topic? I’ll only take forward the format that serves the audience as well as the partner." },
+        ],
+        note: "Clarify the desired outcome before suggesting a format or implying program access.",
+      },
+      approval: {
+        messages: [
+          { speaker: "them", text: "I need to check with the team." },
+          { speaker: "us", text: "Of course. I’ll send a four-line summary you can forward internally. Would checking back Thursday be useful, or would you rather come back to me?" },
+        ],
+        note: "Offer a follow-up date, but let them choose the cadence.",
+      },
+      handoff: {
+        messages: [
+          { speaker: "them", text: "Email works." },
+          { speaker: "us", text: "Great — send me the best address and I’ll keep it to one page. I’ll summarize the support areas, the questions we need to answer, and the next step — no generic sponsorship deck." },
+        ],
+      },
+      value: {
+        messages: [
+          { speaker: "them", text: "I’m not sure that is enough for us." },
+          { speaker: "us", text: "Helpful to know. What would make it genuinely useful: more member access, stronger visibility, or a way for your builders to participate? I won’t promise stage time, but I can take a concrete fit back to the program team." },
+        ],
+        note: "Diagnose value without negotiating against yourself.",
+      },
+      passesOnly: {
+        messages: [
+          { speaker: "them", text: "The passes could still be useful." },
+          { speaker: "us", text: "Done. I’ll send a small member-access option with no posting obligation. If the group gets excited later, we can revisit the Partner piece." },
+        ],
+      },
+      closed: {
+        messages: [
+          { speaker: "them", text: "Let’s leave it for now." },
+          { speaker: "us", text: "Will do. Thanks for the straight answer—and I’ll keep you off the follow-up list." },
+        ],
+      },
+    },
+  },
+  {
+    id: "influencer",
+    label: "Organizer / influencer",
+    meta: "Audience + stage fit",
+    root: "open",
+    nodes: {
+      open: {
+        messages: [
+          { speaker: "us", text: "Hey Alex — Pedro here. I’m shaping the Open Source Hub at Bitcoin Asia in HK this August. Your work on open-source agent tooling is unusually close to one of the threads we’re programming.\n\nI’d like to explore whether the Hub can support your work or community in a useful way — access, visibility, connections, or meaningful participation. Rather than pitch a fixed package, what would make this worthwhile for you?" },
+        ],
+        choices: [
+          { label: "Asks about stage", text: "Potentially. Is the speaking slot guaranteed?", next: "stage" },
+          { label: "Cannot travel", text: "Sounds good, but I can’t make Hong Kong.", next: "travel" },
+          { label: "Audience access", text: "Getting people from our audience there would matter most.", next: "audience" },
+        ],
+      },
+      stage: {
+        messages: [
+          { speaker: "them", text: "Potentially. Is the speaking slot guaranteed?" },
+          { speaker: "us", text: "No — stage is program-dependent, not a partnership entitlement. If you send me a sharp topic, format, and who it serves, I’ll take it to the programming team. A practical session on what you’ve learned building [project] would be stronger than a broad panel pitch." },
+        ],
+        note: "Candor builds trust. Give them the ingredients of a pitch the program team can evaluate.",
+        choices: [
+          { label: "Proposes a topic", text: "We could do a live teardown of our agent stack.", next: "topic" },
+          { label: "Stage is required", text: "We only partner when speaking is included.", next: "required" },
+        ],
+      },
+      travel: {
+        messages: [
+          { speaker: "them", text: "Sounds good, but I can’t make Hong Kong." },
+          { speaker: "us", text: "No problem. Is there still value in helping members of your audience attend, giving the project visibility, or connecting your team remotely? If none of those are useful without you there, we should leave it rather than force a partnership." },
+        ],
+        choices: [
+          { label: "Audience-only works", text: "Let’s do the audience passes.", next: "audienceOnly" },
+          { label: "No share without attending", text: "I’d rather not promote something I can’t attend.", next: "respect" },
+        ],
+      },
+      audience: {
+        messages: [
+          { speaker: "them", text: "Getting people from our audience there would matter most." },
+          { speaker: "us", text: "Then let’s build around access. Tell me how many people could realistically attend — not total reach — and whether they need help with tickets, travel planning, or simply a clear reason to come. I’ll shape the proposal around the real constraint." },
+        ],
+        note: "Anchor on likely attendance, not vanity audience size.",
+        choices: [
+          { label: "Twenty likely", text: "We could probably get 20 serious applicants.", next: "twenty" },
+          { label: "Run a giveaway", text: "Can we run a public giveaway?", next: "giveaway" },
+        ],
+      },
+      topic: {
+        messages: [
+          { speaker: "them", text: "We could do a live teardown of our agent stack." },
+          { speaker: "us", text: "That’s specific enough to evaluate. Send me a three-line outline, the ideal duration, and one example the audience would leave able to use. I’ll take that exact version to programming." },
+        ],
+      },
+      required: {
+        messages: [
+          { speaker: "them", text: "We only partner when speaking is included." },
+          { speaker: "us", text: "Understood. I can’t bundle stage time as a promotional benefit, so I shouldn’t imply otherwise. If the program fit is the deciding factor, send the topic first and we’ll evaluate that before either side commits." },
+        ],
+      },
+      audienceOnly: {
+        messages: [
+          { speaker: "them", text: "Let’s do the audience passes." },
+          { speaker: "us", text: "Great. Tell me who you want to reach and what would make them likely to attend. I’ll come back with an access plan and a short draft you can rewrite in your voice." },
+        ],
+      },
+      respect: {
+        messages: [
+          { speaker: "them", text: "I’d rather not promote something I can’t attend." },
+          { speaker: "us", text: "That makes sense. Let’s skip the Partner ask. If you know two builders who would genuinely benefit, I’m happy to offer passes privately—no post needed." },
+        ],
+      },
+      twenty: {
+        messages: [
+          { speaker: "them", text: "We could probably place 20." },
+          { speaker: "us", text: "Good signal. I’ll check what access we can support and come back with a firm proposal before you announce anything. Could you segment the message to people who can realistically travel to HK?" },
+        ],
+      },
+      giveaway: {
+        messages: [
+          { speaker: "them", text: "Can we run a public giveaway?" },
+          { speaker: "us", text: "We can, but I’d rather qualify for likely attendance than optimize for clicks. A short interest form or reply-to-claim usually produces a better room. I can give you copy for either route." },
+        ],
+      },
+    },
+  },
+  {
+    id: "oss",
+    label: "OSS community lead",
+    meta: "Bitcoin-fit objection",
+    root: "open",
+    nodes: {
+      open: {
+        messages: [
+          { speaker: "us", text: "Hey Sam — Pedro here. I’m shaping the Open Source Hub in Hong Kong this August. I thought of your community because the room is built around maintainers, live projects, and practical open-source work.\n\nI’d like to explore whether the Hub can support something useful for your members — access, visibility, connections, or a way to participate. Open to a quick fit check?" },
+        ],
+        choices: [
+          { label: "Is this crypto promo?", text: "We’re open-source, not a crypto community. Is this just promotion?", next: "crypto" },
+          { label: "What sessions?", text: "What would actually be relevant to our members?", next: "sessions" },
+          { label: "Not a fit", text: "I don’t think this is for us.", next: "decline" },
+        ],
+      },
+      crypto: {
+        messages: [
+          { speaker: "them", text: "We’re open-source, not a crypto community. Is this just promotion?" },
+          { speaker: "us", text: "Fair question. Bitcoin Asia is the host event, and I won’t blur that. The Hub itself is for open-source builders: maintainers, project demos, workshops, self-hosted tools, privacy, and open protocols. If that still feels too far from your members, we should skip it rather than force the fit." },
+        ],
+        note: "Name the host event plainly. Removing ambiguity is stronger than reframing it away.",
+        choices: [
+          { label: "Maybe relevant", text: "The open-protocol angle might fit.", next: "relevant" },
+          { label: "Still too far", text: "Still too far from our focus.", next: "declineDone" },
+        ],
+      },
+      sessions: {
+        messages: [
+          { speaker: "them", text: "What would actually be relevant to our members?" },
+          { speaker: "us", text: "I’d only point them to the open-source floor: maintainer-led demos, project stations, privacy/self-hosting work, and the focused AI/open-protocol sessions. I can send the relevant slice of the program rather than the full conference pitch. What does your community build most?" },
+        ],
+        choices: [
+          { label: "Privacy tooling", text: "Mostly privacy and self-hosted tools.", next: "privacy" },
+          { label: "General web dev", text: "Mostly general web development.", next: "general" },
+        ],
+      },
+      decline: {
+        messages: [
+          { speaker: "them", text: "I don’t think this is for us." },
+          { speaker: "us", text: "Got it. I won’t try to stretch the fit. Thanks for taking a look." },
+        ],
+      },
+      relevant: {
+        messages: [
+          { speaker: "them", text: "The open-protocol angle might fit." },
+          { speaker: "us", text: "That’s the honest overlap. I’ll send only the open-protocol sessions and the Partner terms. If two or three names come to mind after that, we can reserve the passes without asking for a broad endorsement." },
+        ],
+      },
+      declineDone: {
+        messages: [
+          { speaker: "them", text: "Still too far from our focus." },
+          { speaker: "us", text: "Understood. I’ll close the loop here—no follow-up sequence." },
+        ],
+      },
+      privacy: {
+        messages: [
+          { speaker: "them", text: "Mostly privacy and self-hosted tools." },
+          { speaker: "us", text: "Then there may be a real overlap. I’ll send the privacy/self-hosted sessions and three relevant projects first. If those land, we can talk about the passes and Partner listing." },
+        ],
+      },
+      general: {
+        messages: [
+          { speaker: "them", text: "Mostly general web development." },
+          { speaker: "us", text: "That’s probably too broad for me to claim a strong program fit. The student/workshop side may still help a few members, so I can share five passes without asking you to partner or promote." },
+        ],
+      },
+    },
+  },
+  {
+    id: "followup",
+    label: "No response",
+    meta: "Follow-up without pressure",
+    root: "open",
+    nodes: {
+      open: {
+        messages: [
+          { speaker: "us", text: "Quick bump, then I’ll leave this with you: is it worth a short conversation about what the Hub could support for [community], should I speak with someone else, or should I close the loop?" },
+        ],
+        note: "Use this after one substantive opener and a reasonable wait. Three legitimate options reduce the social cost of replying.",
+        choices: [
+          { label: "Hold them", text: "Hold them—sorry, busy week.", next: "hold" },
+          { label: "Talk to someone else", text: "Please speak with Jordan instead.", next: "redirect" },
+          { label: "No thanks", text: "Not for us this year.", next: "no" },
+          { label: "Still silent", text: "No response.", next: "silent" },
+        ],
+      },
+      hold: {
+        messages: [
+          { speaker: "them", text: "Hold them—sorry, busy week." },
+          { speaker: "us", text: "No problem. I’ll hold the block and send the four-line summary. What day should I check back?" },
+        ],
+      },
+      redirect: {
+        messages: [
+          { speaker: "them", text: "Please speak with Jordan instead." },
+          { speaker: "us", text: "Thanks. I’ll contact Jordan and mention you pointed me their way. I won’t keep you copied unless useful." },
+        ],
+      },
+      no: {
+        messages: [
+          { speaker: "them", text: "Not for us this year." },
+          { speaker: "us", text: "Understood—thanks for closing the loop. I’ll mark it there." },
+        ],
+      },
+      silent: {
+        messages: [
+          { speaker: "them", text: "No response." },
+          { speaker: "us", text: "Stop here. Mark “no response” and move on; do not manufacture urgency with another bump." },
+        ],
+        note: "Silence is a decision path too.",
+      },
+    },
   },
 ];
 
@@ -2109,7 +2711,6 @@ function matchesTrackContact(entry, trackId) {
 
   switch (trackId) {
     case "t-bitcoin":
-      if (sectionId === "opensource-nostr-speakers") return true;
       if (hasTag(item, "bitcoin")) return true;
       if (blobHas(item, /bitcoin|lightning|nostr|bitdev|bitshala|bitpleb|satoshi|miniscript|damus|fulgur|diamond.?hand|btcstudy|philippine bitcoin|bloom|chamber of commerce|bahk|lightning hackday/i)) return true;
       if (sectionId === "influencers" && blobHas(item, /bitcoin|lightning|nostr|mining|mcp|btcstudy|bitdev|association of hk/i)) return true;
@@ -2161,6 +2762,7 @@ function trackContactEntries(trackId, campaign) {
   const sectionIds = new Set((campaign.targets || []).map((t) => t.section));
   const out = [];
   activeSections().forEach((sec) => {
+    if (sec.id === "opensource-nostr-speakers") return;
     if (!sectionIds.has(sec.id)) return;
     sec.groups.forEach((g) => {
       g.items.forEach((item) => {
@@ -2235,7 +2837,7 @@ function campaignHTML(campaign) {
         <div class="strategy-block">
           <h3>Sample message</h3>
           <div class="msg-sample">
-            <pre>${formatTemplatePreview(campaign.sample || "")}</pre>
+            <pre>${formatTemplatePreview(ensureOutreachFooter(campaign.sample || ""))}</pre>
             <button type="button" class="msg-copy" data-campaign-id="${campaign.id}">Copy message</button>
           </div>
           ${campaign.channel ? `<p class="msg-channel">Best channels: <span>${campaign.channel}</span></p>` : ""}
@@ -2274,20 +2876,30 @@ function hubNavItems() {
       items.push({ id: track.id, flag: track.flag, label: track.label });
     });
   }
-  if (ev.sampleGraphics?.length) items.push({ id: "graphics", flag: "🎨", label: "Sample graphics" });
   const sections = ev.sections || [];
   if (sections.length) {
+    const speakerSection = sections.find((sec) => sec.id === "opensource-nostr-speakers");
+    if (speakerSection) {
+      const count = speakerSection.groups.reduce((n, g) => n + g.items.length, 0);
+      items.push({ divider: true, label: "Speakers" });
+      items.push({ id: speakerSection.id, flag: speakerSection.flag, label: speakerSection.title, count });
+    }
     items.push({ divider: true, label: "Contacts" });
-    sections.forEach((sec) => {
+    sections.filter((sec) => sec.id !== "opensource-nostr-speakers").forEach((sec) => {
       const count = sec.groups.reduce((n, g) => n + g.items.length, 0);
       items.push({ id: sec.id, flag: sec.flag, label: sec.title, count });
     });
+  }
+  if (REHEARSAL_SCENARIOS.length || ev.sampleGraphics?.length) {
+    items.push({ divider: true, label: "Playbook" });
+    if (REHEARSAL_SCENARIOS.length) items.push({ id: "rehearsal", flag: "↳", label: "Conversation simulator" });
+    if (ev.sampleGraphics?.length) items.push({ id: "graphics", flag: "🎨", label: "Sample graphics" });
   }
   return items;
 }
 
 function isContactHubTab(tab) {
-  return tab !== "graphics";
+  return tab !== "graphics" && tab !== "rehearsal";
 }
 
 function setHubTab(tab, { syncUrl = true } = {}) {
@@ -2379,8 +2991,105 @@ function renderSampleGraphics() {
   ).join("");
 }
 
+let rehearsalState = {
+  scenarioId: REHEARSAL_SCENARIOS[0]?.id || "",
+  nodeId: REHEARSAL_SCENARIOS[0]?.root || "",
+  history: REHEARSAL_SCENARIOS[0] ? [{ nodeId: REHEARSAL_SCENARIOS[0].root, label: "Opener" }] : [],
+};
+
+function activeRehearsalScenario() {
+  return REHEARSAL_SCENARIOS.find((scenario) => scenario.id === rehearsalState.scenarioId);
+}
+
+function setRehearsalScenario(scenarioId) {
+  const scenario = REHEARSAL_SCENARIOS.find((item) => item.id === scenarioId);
+  if (!scenario) return;
+  rehearsalState = {
+    scenarioId: scenario.id,
+    nodeId: scenario.root,
+    history: [{ nodeId: scenario.root, label: "Opener" }],
+  };
+  renderRehearsal();
+}
+
+function chooseRehearsalOption(index) {
+  const scenario = activeRehearsalScenario();
+  const node = scenario?.nodes[rehearsalState.nodeId];
+  const choice = node?.choices?.[index];
+  if (!choice || !scenario.nodes[choice.next]) return;
+  rehearsalState.nodeId = choice.next;
+  rehearsalState.history.push({ nodeId: choice.next, label: choice.label });
+  renderRehearsal();
+}
+
+function resetRehearsal() {
+  setRehearsalScenario(rehearsalState.scenarioId);
+}
+
+function rehearsalMessages() {
+  const scenario = activeRehearsalScenario();
+  if (!scenario) return [];
+  return rehearsalState.history.flatMap((step) => scenario.nodes[step.nodeId]?.messages || []);
+}
+
+function renderRehearsal() {
+  const scenario = activeRehearsalScenario();
+  const scenariosEl = document.getElementById("rehearsalScenarios");
+  const pathEl = document.getElementById("rehearsalPath");
+  const threadEl = document.getElementById("rehearsalThread");
+  const decisionEl = document.getElementById("rehearsalDecision");
+  if (!scenario || !scenariosEl || !pathEl || !threadEl || !decisionEl) return;
+
+  scenariosEl.innerHTML = `<div class="rehearsal-scenarios-label">Choose a target</div>` +
+    REHEARSAL_SCENARIOS.map((item) => `
+      <button type="button" class="scenario-button${item.id === scenario.id ? " active" : ""}" data-rehearsal-scenario="${item.id}" role="tab" aria-selected="${item.id === scenario.id}">
+        ${escHtml(item.label)}<small>${escHtml(item.meta)}</small>
+      </button>`).join("");
+
+  pathEl.innerHTML = `<div class="rehearsal-path-label">Decision path</div>` +
+    rehearsalState.history.map((step) => `<span class="path-step">${escHtml(step.label)}</span>`).join("");
+
+  const messages = rehearsalMessages();
+  const notes = rehearsalState.history
+    .map((step) => scenario.nodes[step.nodeId]?.note)
+    .filter(Boolean);
+  threadEl.innerHTML = messages.map((message) => `
+    <div class="chat-message chat-message--${message.speaker}">
+      <span class="chat-speaker">${message.speaker === "us" ? "Pedro" : "Target"}</span>${escHtml(message.text)}
+    </div>`).join("") +
+    (notes.length ? `<div class="chat-note">${escHtml(notes[notes.length - 1])}</div>` : "");
+
+  const node = scenario.nodes[rehearsalState.nodeId];
+  if (node.choices?.length) {
+    decisionEl.innerHTML = `<h3>They reply…</h3><div class="decision-options">` +
+      node.choices.map((choice, index) => `
+        <button type="button" class="decision-option" data-rehearsal-choice="${index}">
+          <span>${escHtml(choice.label)}</span>${escHtml(choice.text)}
+        </button>`).join("") +
+      `</div>`;
+  } else {
+    decisionEl.innerHTML = `<h3>Path complete</h3><p class="chat-note">Reset to rehearse another response, or copy the latest reply and adapt it to the real conversation.</p>`;
+  }
+}
+
+function copyLatestRehearsalReply() {
+  const latest = [...rehearsalMessages()].reverse().find((message) => message.speaker === "us");
+  if (!latest) return;
+  navigator.clipboard?.writeText(latest.text);
+  const button = document.getElementById("rehearsalCopy");
+  if (!button) return;
+  const original = button.textContent;
+  button.textContent = "Copied";
+  setTimeout(() => { button.textContent = original; }, 1200);
+}
+
 function sectionById(sectionId) {
   return activeSections().find((s) => s.id === sectionId);
+}
+
+function leadPersonalization(sectionId, item) {
+  if (!sectionId || !item?.name || typeof OUTREACH_PERSONALIZATION === "undefined") return null;
+  return OUTREACH_PERSONALIZATION[`${sectionId}::${item.name}`] || null;
 }
 
 function escHtml(str) {
@@ -2395,11 +3104,12 @@ function formatTemplatePreview(text) {
   return highlightTemplateVarsHtml(escHtml(text || ""));
 }
 
-function fillOutreachTemplateHtml(text, item) {
+function fillOutreachTemplateHtml(text, item, personalization = null) {
   if (!text) return "";
   const community = item.org || item.name;
   const project = item.angle || item.org || "work";
   const greetingName = outreachGreetingName(item);
+  const hook = personalization?.hook || "";
   const wrap = (v) => `<span class="template-var">${escHtml(v)}</span>`;
   const entries = [
     [/\[name\]/gi, greetingName],
@@ -2409,6 +3119,7 @@ function fillOutreachTemplateHtml(text, item) {
     [/\[club\]/gi, item.name],
     [/\[NUS Hackers \/ your society\]/gi, item.name],
     [/\[project \/ work\]/gi, project],
+    [/\[lead hook\]/gi, hook],
     [/\[CLAIM LINK\]/g, OUTREACH_DEFAULTS.claimLink],
     [/\[CODE\]/g, OUTREACH_DEFAULTS.code],
   ];
@@ -2435,7 +3146,7 @@ function bindMsgCopy() {
       const campaign = campaignForSection(btn.dataset.campaignId);
       if (!campaign?.sample) return;
       try {
-        await navigator.clipboard.writeText(campaign.sample);
+        await navigator.clipboard.writeText(ensureOutreachFooter(campaign.sample));
         btn.classList.add("copied");
         btn.textContent = "Copied";
         setTimeout(() => {
@@ -2528,13 +3239,24 @@ function partnershipMailto(item) {
   if (!p) return null;
   const to = p.to || primaryEmail(item);
   if (!to) return null;
-  return buildMailtoUrl({ to, subject: p.subject || "", body: p.body || "" });
+  return buildMailtoUrl({ to, subject: p.subject || "", body: ensureOutreachFooter(p.body || "") });
 }
 
 const OUTREACH_DEFAULTS = {
   claimLink: "https://asia.b.tc/claim",
   code: "OSH2026",
 };
+
+const OUTREACH_MESSAGE_FOOTER = `Check out https://asia.b.tc/open-source for more.
+
+All the best,
+Pedro`;
+
+function ensureOutreachFooter(text) {
+  const message = String(text || "").trimEnd();
+  if (message.endsWith(OUTREACH_MESSAGE_FOOTER)) return message;
+  return `${message}\n\n${OUTREACH_MESSAGE_FOOTER}`;
+}
 
 
 function primaryEmail(item) {
@@ -2561,10 +3283,11 @@ function outreachGreetingName(item) {
   return parts[0];
 }
 
-function fillOutreachTemplate(text, item) {
+function fillOutreachTemplate(text, item, personalization = null) {
   const community = item.org || item.name;
   const project = item.angle || item.org || "work";
   const greetingName = outreachGreetingName(item);
+  const hook = personalization?.hook || "";
   return text
     .replace(/\[name\]/gi, greetingName)
     .replace(/\{\{name\}\}/gi, greetingName)
@@ -2573,8 +3296,189 @@ function fillOutreachTemplate(text, item) {
     .replace(/\[club\]/gi, item.name)
     .replace(/\[NUS Hackers \/ your society\]/gi, item.name)
     .replace(/\[project \/ work\]/gi, project)
+    .replace(/\[lead hook\]/gi, hook)
     .replace(/\[CLAIM LINK\]/g, OUTREACH_DEFAULTS.claimLink)
     .replace(/\[CODE\]/g, OUTREACH_DEFAULTS.code);
+}
+
+function ensureLeadHook(template, hook) {
+  if (!hook || !template) return template;
+  if (/\[lead hook\]/i.test(template) || template.toLowerCase().includes(hook.toLowerCase())) return template;
+  const subjectMatch = template.match(/^(Subject:[^\n]*\n\n)([\s\S]*)$/);
+  const prefix = subjectMatch ? subjectMatch[1] : "";
+  const body = subjectMatch ? subjectMatch[2] : template;
+  const paragraphs = body.split(/\n\n+/);
+  paragraphs.splice(Math.min(2, paragraphs.length), 0, "[lead hook]");
+  return prefix + paragraphs.join("\n\n");
+}
+
+const CONTROLLED_OUTREACH_TEMPLATES = {
+  "t-bitcoin": {
+    discovery: `Subject: [community] × Open Source Hub?
+
+Hey [name],
+
+Pedro here — I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and the builders around your work involved.
+
+I’d like to understand what would make the Hub useful to your people. We can shape support around access, visibility, connections, or participation rather than assume a fixed bundle. Open to a quick fit check?`,
+    warm: `Subject: A useful Open Source Hub fit for [community]?
+
+Hey [name],
+
+Pedro here from the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and the builders around your work involved.
+
+It feels worth comparing notes on what would genuinely help your community — access, visibility, connections, or participation. What outcome would matter most?`,
+    direct: `Subject: Quick Open Source Hub fit check
+
+Hey [name],
+
+I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and the builders around your work involved.
+
+Would a short fit check be useful? Support can flex around access, visibility, connections, or participation. Which would matter most to you?`
+  },
+  "t-ai": {
+    discovery: `Subject: [project / work] at the Open Source Hub?
+
+Hey [name],
+
+Pedro here — I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August, including practical AI × open-source work.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and the builders around your work involved.
+
+I’d like to understand whether the Hub could be useful to your work or community through access, visibility, connections, or participation. What would make a conversation worthwhile?`,
+    warm: `Subject: Open-source AI builders in Hong Kong
+
+Hey [name],
+
+Pedro here from the Open Source Hub at Bitcoin Asia this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and the builders around your work involved.
+
+There may be a useful fit across access, visibility, connections, or participation. Which would matter most to you? Open to comparing notes?`,
+    direct: `Subject: Quick AI × open-source fit check
+
+Hey [name],
+
+I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and the builders around your work involved.
+
+Is a short fit check worthwhile? We can flex around access, visibility, connections, or participation without forcing a fixed package.`
+  },
+  "t-students": {
+    discovery: `Subject: [society] at the Open Source Hub in HK?
+
+Hey [name],
+
+Pedro here — I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and your students involved.
+
+I’d like to understand what would make it useful for your students or builders. We can explore access, visibility, connections, or participation rather than prescribe a pass bundle. What matters most to your group?`,
+    warm: `Subject: A useful Hub fit for [society]?
+
+Hey [name],
+
+Pedro here from the Open Source Hub at Bitcoin Asia this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and your students involved.
+
+Could we compare notes on what would best serve your students? We can explore access, visibility, connections, or participation — which would be most useful to your group?`,
+    direct: `Subject: Quick student-community fit check
+
+Hey [name],
+
+I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and your students involved.
+
+Would a short fit check help? Support can flex around access, visibility, connections, or participation depending on what your group needs.`
+  },
+  "t-oss": {
+    discovery: `Subject: [community] × Open Source Hub?
+
+Hey [name],
+
+Pedro here — I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August for maintainers, builders, and practical open-source work.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and your open-source community involved.
+
+I’d like to understand whether there is an honest fit for your community. We can explore access, visibility, connections, or participation. Which would be most useful to your community? Open to a quick conversation?`,
+    warm: `Subject: Open Source Hub × [community]
+
+Hey [name],
+
+Pedro here from the Open Source Hub at Bitcoin Asia this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and your open-source community involved.
+
+There may be a useful overlap for your builders. What would matter most: access, visibility, connections, participation, or something else?`,
+    direct: `Subject: Quick open-source community fit check
+
+Hey [name],
+
+I’m shaping the Open Source Hub at Bitcoin Asia in Hong Kong this August.
+
+[lead hook]
+
+We’re looking for partners and would love to have you and your open-source community involved.
+
+Is a short fit check worthwhile? We can flex around access, visibility, connections, or participation, based on what your community actually values.`
+  }
+};
+
+const SPEAKER_PEER_OUTREACH_TEMPLATE = `Subject: Help bring the right builders into the Hub
+
+Hey [name],
+
+[lead hook]
+
+Since you’re already part of the program, I’d love your help bringing the right builders, maintainers, and communities into the Open Source Hub. Who should we make sure is in the room?
+`;
+
+function controlledOutreachTemplate(primaryTrack, tone) {
+  const toneKey = String(tone || "discovery").toLowerCase();
+  if (toneKey === "speaker-peer") return SPEAKER_PEER_OUTREACH_TEMPLATE;
+  const trackAliases = {
+    bitcoin: "t-bitcoin", "bitcoin-native": "t-bitcoin", ai: "t-ai", "ai-oss": "t-ai",
+    students: "t-students", student: "t-students", oss: "t-oss", "open-source": "t-oss"
+  };
+  const track = trackAliases[primaryTrack] || primaryTrack;
+  const templates = CONTROLLED_OUTREACH_TEMPLATES[track] || CONTROLLED_OUTREACH_TEMPLATES["t-oss"];
+  const variant = toneKey === "friendly-rally"
+    ? "warm"
+    : toneKey === "serious-peer"
+      ? "direct"
+      : "discovery";
+  return templates[variant];
 }
 
 function parseOutreachSample(sample) {
@@ -2587,18 +3491,41 @@ function parseOutreachSample(sample) {
 
 function buildTemplateOutreach(item, sectionId) {
   const strategy = strategyForSection(sectionId);
-  const filled = fillOutreachTemplate(strategy.sample, item);
+  const template = ensureOutreachFooter(strategy.sample);
+  const filled = fillOutreachTemplate(template, item);
   const { subject, body } = parseOutreachSample(filled);
-  const raw = parseOutreachSample(strategy.sample);
+  const raw = parseOutreachSample(template);
   return {
     to: primaryEmail(item),
     subject,
     body,
     subjectHtml: raw.subject ? fillOutreachTemplateHtml(raw.subject, item) : "",
-    bodyHtml: fillOutreachTemplateHtml(raw.body || strategy.sample, item),
+    bodyHtml: fillOutreachTemplateHtml(raw.body || template, item),
     label: "Outreach message",
     name: item.name,
     channel: strategy.channel || "",
+  };
+}
+
+function buildPersonalizedOutreach(item, sectionId, personalization) {
+  const rawTemplate = controlledOutreachTemplate(personalization.primaryTrack, personalization.tone);
+  const template = ensureOutreachFooter(ensureLeadHook(rawTemplate, personalization.hook));
+  const filled = fillOutreachTemplate(template, item, personalization);
+  const { subject, body } = parseOutreachSample(filled);
+  const raw = parseOutreachSample(template);
+  return {
+    to: primaryEmail(item),
+    subject,
+    body,
+    subjectHtml: raw.subject ? fillOutreachTemplateHtml(raw.subject, item, personalization) : "",
+    bodyHtml: fillOutreachTemplateHtml(raw.body || template, item, personalization),
+    label: "Outreach message",
+    name: item.name,
+    channel: "",
+    prepNote: personalization.prepNote || "",
+    signals: Array.isArray(personalization.signals) ? personalization.signals : [],
+    tone: personalization.tone || "",
+    conf: item.conf || "",
   };
 }
 
@@ -2607,7 +3534,13 @@ let outreachSeq = 0;
 
 function registerOutreachMessage(data) {
   const id = `o${++outreachSeq}`;
-  outreachStore.set(id, data);
+  outreachStore.set(id, {
+    prepNote: "",
+    signals: [],
+    tone: "",
+    conf: "",
+    ...data,
+  });
   return id;
 }
 
@@ -2622,15 +3555,16 @@ function buildTrackTemplateOutreach(item, trackId, sectionId) {
   const strategies = activeEvent().strategy || STRATEGY;
   const strategy = strategies.find((s) => s.id === trackId);
   if (!strategy?.sample) return buildTemplateOutreach(item, sectionId);
-  const filled = fillOutreachTemplate(strategy.sample, item);
+  const template = ensureOutreachFooter(strategy.sample);
+  const filled = fillOutreachTemplate(template, item);
   const { subject, body } = parseOutreachSample(filled);
-  const raw = parseOutreachSample(strategy.sample);
+  const raw = parseOutreachSample(template);
   return {
     to: primaryEmail(item),
     subject,
     body,
     subjectHtml: raw.subject ? fillOutreachTemplateHtml(raw.subject, item) : "",
-    bodyHtml: fillOutreachTemplateHtml(raw.body || strategy.sample, item),
+    bodyHtml: fillOutreachTemplateHtml(raw.body || template, item),
     label: "Outreach message",
     name: item.name,
     channel: strategy.channel || "",
@@ -2638,27 +3572,37 @@ function buildTrackTemplateOutreach(item, trackId, sectionId) {
 }
 
 function messageCTAHTML(item, sectionId, trackId) {
-  const data = trackId
-    ? buildTrackTemplateOutreach(item, trackId, sectionId)
-    : buildTemplateOutreach(item, sectionId);
+  const personalization = leadPersonalization(sectionId, item);
+  const data = personalization
+    ? buildPersonalizedOutreach(item, sectionId, personalization)
+    : trackId
+      ? buildTrackTemplateOutreach(item, trackId, sectionId)
+      : buildTemplateOutreach(item, sectionId);
+  data.conf = item.conf || "";
   const id = registerOutreachMessage(data);
-  return `<button type="button" class="outreach-msg-cta" data-outreach-id="${id}">${ICONS.message}<span>Message</span></button>`;
+  return `<button type="button" class="outreach-msg-cta" data-outreach-id="${id}" aria-label="View personalized message for ${escHtml(item.name)}" title="View personalized message">${ICONS.message}<span>View message</span></button>`;
 }
 
-function partnershipCTAHTML(item) {
+function partnershipCTAHTML(item, sectionId) {
   const p = item.partnership;
   if (!p) return "";
   const to = p.to || primaryEmail(item);
   if (!to) return "";
+  const personalization = leadPersonalization(sectionId, item);
+  const bodyTemplate = ensureOutreachFooter(p.body || "");
   const id = registerOutreachMessage({
     to,
     subject: fillOutreachTemplate(p.subject || "", item),
-    body: fillOutreachTemplate(p.body || "", item),
+    body: fillOutreachTemplate(bodyTemplate, item),
     subjectHtml: p.subject ? fillOutreachTemplateHtml(p.subject, item) : "",
-    bodyHtml: fillOutreachTemplateHtml(p.body || "", item),
+    bodyHtml: fillOutreachTemplateHtml(bodyTemplate, item),
     label: p.label || "Partnership proposal",
     name: item.name,
     channel: "",
+    prepNote: personalization?.prepNote || "",
+    signals: Array.isArray(personalization?.signals) ? personalization.signals : [],
+    tone: personalization?.tone || "",
+    conf: item.conf || "",
   });
   return `<button type="button" class="partnership-cta" data-outreach-id="${id}">${ICONS.email}<span>${escHtml(p.label || "Partnership proposal")}</span></button>`;
 }
@@ -2675,6 +3619,19 @@ function openOutreachModal(id) {
     ? `${data.name} · ${data.to}`
     : [data.name, data.channel].filter(Boolean).join(" · ");
   document.getElementById("partnershipModalMeta").textContent = meta;
+  const prep = document.getElementById("outreachPrep");
+  const prepNote = document.getElementById("outreachPrepNote");
+  const prepBadges = document.getElementById("outreachPrepBadges");
+  const prepWarning = document.getElementById("outreachPrepWarning");
+  const signals = Array.isArray(data.signals) ? data.signals : [];
+  const hasPrep = Boolean(data.prepNote || data.tone || signals.length || data.conf === "warn");
+  prep.hidden = !hasPrep;
+  prepNote.textContent = data.prepNote || "No additional preparation note.";
+  prepBadges.innerHTML = [
+    ...(data.tone ? [`Tone: ${data.tone}`] : []),
+    ...signals,
+  ].map((value) => `<span class="personalization-badge">${escHtml(String(value))}</span>`).join("");
+  prepWarning.hidden = data.conf !== "warn";
   document.getElementById("partnershipModalSubject").innerHTML = data.subject
     ? `<strong>Subject:</strong> ${data.subjectHtml || escHtml(data.subject)}`
     : "";
@@ -2828,16 +3785,29 @@ function tagsHTML(tags, { priority = false } = {}) {
   return parts.map(tagHTML).join("");
 }
 
+function contactPersonalizationHTML(sectionId, item) {
+  const personalization = leadPersonalization(sectionId, item);
+  if (!personalization) return "";
+  const badges = [
+    ...(personalization.tone ? [`Tone: ${personalization.tone}`] : []),
+    ...(Array.isArray(personalization.signals) ? personalization.signals : []),
+  ];
+  return `<div class="contact-prep"><strong>Internal prep:</strong> ${escHtml(personalization.prepNote || "Review personalization before sending.")}
+    ${badges.length ? `<div class="personalization-badges">${badges.map((value) => `<span class="personalization-badge">${escHtml(String(value))}</span>`).join("")}</div>` : ""}
+  </div>`;
+}
+
 function cardHTML(item, sectionId, trackId) {
   const star = isShortlistItem(item);
   const isPriority = isPriorityItem(item);
   const avatar = avatarHTML(item);
   const angle = item.angle ? `<div class="card-angle">${item.angle}</div>` : "";
+  const prep = contactPersonalizationHTML(sectionId, item);
   const org = item.org ? ` <span style="color:var(--ink-muted);font-weight:400;font-size:13px">· ${item.org}</span>` : "";
   const tags = tagsHTML(item.tags);
   const hitBadge = isPriority ? `<span class="hit-badge">Hit first</span>` : "";
   const messageBtn = messageCTAHTML(item, sectionId, trackId);
-  const partnership = partnershipCTAHTML(item);
+  const partnership = partnershipCTAHTML(item, sectionId);
   const links = item.links.map(buildLink).join("");
   const search = itemSearchText(item);
   const pubkeyAttr = item.pubkey ? ` data-pubkey="${item.pubkey}"` : "";
@@ -2846,6 +3816,7 @@ function cardHTML(item, sectionId, trackId) {
     <div class="card-body">
       <div class="card-name">${item.name}${org}${hitBadge}${confBadgeHTML(item.conf)}</div>
       ${angle}
+      ${prep}
       ${tags !== "—" ? `<div class="card-tags">${tags}</div>` : ""}
       ${messageBtn}
       ${partnership}
@@ -2860,9 +3831,10 @@ function rowHTML(item, sectionId, trackId) {
   const avatar = avatarHTML(item);
   const org = item.org || "—";
   const angle = item.angle || "—";
+  const prep = contactPersonalizationHTML(sectionId, item);
   const tags = tagsHTML(item.tags, { priority: isPriority });
   const messageBtn = messageCTAHTML(item, sectionId, trackId);
-  const partnership = partnershipCTAHTML(item);
+  const partnership = partnershipCTAHTML(item, sectionId);
   const linkBits = item.links.map(buildLink).join("");
   const links = (messageBtn || partnership || linkBits)
     ? `<div class="links">${messageBtn}${partnership}${linkBits}</div>`
@@ -2873,7 +3845,7 @@ function rowHTML(item, sectionId, trackId) {
     <td class="cell-star">${star ? "★" : ""}</td>
     <td class="cell-name"><div class="cell-name-inner">${avatar}<span>${item.name}</span></div></td>
     <td class="cell-org">${org}</td>
-    <td class="cell-angle">${angle}</td>
+    <td class="cell-angle">${angle}${prep}</td>
     <td class="cell-tags">${tags}</td>
     <td class="cell-status">${confBadgeHTML(item.conf, { iconOnly: true })}</td>
     <td class="cell-links">${links !== "—" ? links : "—"}</td>
@@ -2983,12 +3955,64 @@ function render() {
     <div class="stat"><div class="num">${sections.length}</div><div class="lbl">Regions</div></div>`;
 
   updateHubPanelsVisibility();
+  renderRehearsal();
   renderHubNav();
   setHubTab(normalizeHubTab(state.hubTab));
   applyFilters();
   bindCopyLinks();
   bindMsgCopy();
   hydrateNostrPictures();
+}
+
+function validatePersonalizationCoverage() {
+  const personalization = typeof OUTREACH_PERSONALIZATION === "undefined" ? {} : OUTREACH_PERSONALIZATION;
+  const leads = new Map();
+  SECTIONS.forEach((section) => {
+    section.groups.forEach((group) => {
+      group.items.forEach((item) => leads.set(`${section.id}::${item.name}`, { section, group, item }));
+    });
+  });
+
+  const missingActionableLeads = [];
+  const staleKeys = Object.keys(personalization).filter((key) => !leads.has(key));
+  const confirmedSpeakersMissingSpeakerSignalOrTone = [];
+  const nostrHooksWithoutEvidence = [];
+  const bitcoinHooksWithoutEvidence = [];
+
+  leads.forEach(({ section, group, item }, key) => {
+    const entry = personalization[key];
+    const actionable = item.conf !== "dead";
+    if (actionable && !entry) missingActionableLeads.push(key);
+    if (!entry) return;
+
+    const signals = Array.isArray(entry.signals) ? entry.signals.join(" ") : "";
+    const evidence = `${section.title || ""} ${group.title || ""} ${itemBlob(item)} ${(item.links || []).map((link) => `${link.t} ${link.v}`).join(" ")}`.toLowerCase();
+    const hook = String(entry.hook || "").toLowerCase();
+    if (section.id === "opensource-nostr-speakers") {
+      const hasSpeakerSignal = /speaker|confirmed|program/.test(signals.toLowerCase());
+      const hasSpeakerTone = /speaker|peer/.test(String(entry.tone || "").toLowerCase());
+      if (!hasSpeakerSignal || !hasSpeakerTone) confirmedSpeakersMissingSpeakerSignalOrTone.push(key);
+    }
+    if (/\bnostr\b/.test(hook) && !/\bnostr\b|npub|relay|damus|primal/.test(evidence)) {
+      nostrHooksWithoutEvidence.push(key);
+    }
+    if (/\bbitcoin\b|\bbtc\b/.test(hook) && !/\bbitcoin\b|\bbtc\b|bitcoiners|bitdevs|lightning|satoshi/.test(evidence)) {
+      bitcoinHooksWithoutEvidence.push(key);
+    }
+  });
+
+  const report = {
+    missingActionableLeads,
+    staleKeys,
+    confirmedSpeakersMissingSpeakerSignalOrTone,
+    nostrHooksWithoutEvidence,
+    bitcoinHooksWithoutEvidence,
+  };
+  report.issueCount = Object.values(report).reduce((count, issues) => count + (Array.isArray(issues) ? issues.length : 0), 0);
+  report.valid = report.issueCount === 0;
+  window.outreachPersonalizationReport = report;
+  if (!report.valid) console.warn("Outreach personalization validation issues", report);
+  return report;
 }
 
 const NOSTR_RELAYS = [
@@ -3218,6 +4242,16 @@ function bindEvents() {
   });
   document.getElementById("themeToggle")?.addEventListener("click", toggleTheme);
   document.getElementById("hubNavCollapse")?.addEventListener("click", toggleHubNavCollapsed);
+  document.getElementById("rehearsalScenarios")?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-rehearsal-scenario]");
+    if (button) setRehearsalScenario(button.dataset.rehearsalScenario);
+  });
+  document.getElementById("rehearsalDecision")?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-rehearsal-choice]");
+    if (button) chooseRehearsalOption(Number(button.dataset.rehearsalChoice));
+  });
+  document.getElementById("rehearsalReset")?.addEventListener("click", resetRehearsal);
+  document.getElementById("rehearsalCopy")?.addEventListener("click", copyLatestRehearsalReply);
 
   window.addEventListener("popstate", () => {
     const params = new URLSearchParams(window.location.search);
@@ -3232,6 +4266,7 @@ function bindEvents() {
 
 bindEvents();
 render();
+validatePersonalizationCoverage();
 window.setHubTab = setHubTab;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

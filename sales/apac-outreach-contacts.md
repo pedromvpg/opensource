@@ -17,7 +17,6 @@
 | **Yat Siu** (Animoca) | Hong Kong | AI × crypto headline voice | X **@ysiu** | ✅ |
 | **keypleb** (Code Orange Dev School) | Bali / SEA | Bitcoin/Lightning/Rust OSS education | X **@CodeOrangeDevs** | ✅ |
 | **Jihan Wu** (Bitdeer) | Singapore | Bitcoin mining → AI compute | Via Bitdeer IR / X | ✅ |
-| **Dr. Qiwei Chen** (Bitdeer) | Singapore | AI datacenter infra | Via Bitdeer (listed speaker) | ✅ speaker |
 
 ### Tier 2 — Best Open Source Hub content fit (global, non-APAC, on-theme)
 
@@ -76,6 +75,12 @@ Confirmed speakers on the Open Source Hub, Nostr, and open-source/dev tracks. Fu
 | Ying Tong Lai | { ideal } | CSV (隐私保护型客户端验证) · Genesis · Aug 27 | yingtong@ideal.group · @therealyingtong |
 | Jonathan C | Ellipal | Wallets Without Compromise · Genesis · Aug 27 | john@ellipal.com |
 | Lea Thompson | Cake Wallet | Wallets (content host) · Genesis · Aug 27 | lea@cakewallet.com · @girlgone_crypto |
+
+### Other Bitcoin Asia 2026 program speakers
+| Name | Org | Program relevance | Contact |
+|---|---|---|---|
+| **Dr. Qiwei Chen** | Bitdeer | AI datacenter infrastructure · listed speaker | bitdeer.com |
+| **Aditya Ranjan** ⭐ | Bitcoin Bharat | Grassroots Bitcoin-only literacy · India Tour across 50+ cities · confirmed speaker | X @bitcoinbharat_ · bitcoinbhar.at |
 
 ---
 
@@ -317,7 +322,6 @@ Confirmed speakers on the Open Source Hub, Nostr, and open-source/dev tracks. Fu
 ### Educators / content & Summer of Bitcoin (attend / amplify)
 | Name | Contact | Angle | Conf. |
 |---|---|---|---|
-| **Aditya Ranjan** ⭐ (Bitcoin Bharat) | X @bitcoinbharat_ · bitcoinbhar.at | Grassroots Bitcoin-only literacy, India Tour (50+ cities) · already speaking at Bitcoin Asia 2026 | ✅ |
 | **Adi Shankara** ⭐ | X @adibitcoin · GitHub adi-shankara | Founder Summer of Bitcoin; Bitshala co-founder; PM CLN @ Blockstream | ✅ |
 | **Sandeep Goenka** | X @goenkasandeep | Bitcoin-only educator/author (Penguin 2024) | ✅ |
 | **Anil Patel ("Anil SaidSo")** | X @anilsaidso | Bitcoin-only educator, The Bitcoin Handbook (~250k X) · diaspora | ✅ |

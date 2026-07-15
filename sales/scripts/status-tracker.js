@@ -26,10 +26,10 @@
   const SB_URL  = "https://cmgqajmcnczykodnnjqw.supabase.co";   // base project URL (no /rest/v1/)
   const SB_ANON = "sb_publishable_Fza1j_nG2PYd4kxt_JhzTw_GVPYGpUI";                      // <-- paste
 
-  const STATUSES = ["", "Sent", "Responded", "Committed", "Declined", "No response"];
+  const STATUSES = ["", "Sent", "Responded", "Committed", "Declined", "No response", "No contact info"];
   const COLORS = {
     "Sent": "#5b8def", "Responded": "#e8b93b", "Committed": "#3ecf8e",
-    "Declined": "#ef5f5f", "No response": "#888",
+    "Declined": "#ef5f5f", "No response": "#888", "No contact info": "#b8860b",
   };
 
   const configured = SB_URL && !SB_URL.includes("YOUR-") && SB_ANON && !SB_ANON.includes("YOUR-");

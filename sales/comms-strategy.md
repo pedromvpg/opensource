@@ -17,10 +17,10 @@
 
 | Track | Lead framing / vernacular | Hero value-give (the first line) | Bitcoin emphasis |
 |---|---|---|---|
-| **1 · Bitcoin-native** | Protocol, ship code, PRs, sats, sovereignty | Peer density with Core/LN/Nostr contributors, funder/grant office hours, a stage, free Pro pass | **High** — Bitcoin-centric |
-| **2 · AI × open-source** | Agents, inference, open weights, self-host; Bitcoin as the rails | Concentrated niche peers + a demo / Dev-Takeover slot to show your work | **Low** — a detail, not the headline |
-| **3 · Students** | Open source + learning; jargon-light | A **free pass to a world-class conference** + hands-on workshops + maintainers/mentors in the room | **Minimal** — just the event name |
-| **4 · Pro OSS communities** | Open-source ethos, FOSS, maintainers, upstream | **We platform *your* community** — partner program + reach | **Minimal** — hosted-at, not about |
+| **1 · Bitcoin-native** | Protocol, ship code, PRs, sats, sovereignty | Help their builders attend, connect, and participate | **High** — Bitcoin-centric |
+| **2 · AI × open-source** | Agents, inference, open weights, self-host; Bitcoin as the rails | Give relevant projects and communities a useful place in the room | **Low** — a detail, not the headline |
+| **3 · Students** | Open source + learning; jargon-light | Help members access workshops, maintainers, and practical learning | **Minimal** — just the event name |
+| **4 · Pro OSS communities** | Open-source ethos, FOSS, maintainers, upstream | **Support what they already want to do** — access, visibility, participation | **Minimal** — hosted-at, not about |
 
 VR spectacle cuts across all four (mostly in broadcast assets).
 
@@ -28,9 +28,17 @@ VR spectacle cuts across all four (mostly in broadcast assets).
 
 ## 3. Value-give principle
 
-Lead with **one concrete give per message**, tailored — never a menu, never "please come to our event."
-- **Individuals** (students, AI builders) → a concrete pass + hands-on/peers/demo slot.
-- **Communities** (pro OSS, Bitcoin communities) → "we platform your community" (credit on-site, space to convene, amplification) + passes for members.
+Lead with **one relevant reason**, then open a discovery conversation. We know the tools available; we do not yet know which outcome matters to them.
+
+**Categories we can draw from after discovery:**
+- **Access:** organizer/influencer passes and complimentary community passes, with room to expand when demand is credible.
+- **Visibility:** featured Partner placement on the Open Source page and partner amplification.
+- **Participation:** ways to showcase work, gather their community, or contribute to the Hub.
+- **Programming:** possible Open Source Stage consideration for a strong topic and audience fit. This is program-dependent, never guaranteed.
+
+The first message should not prescribe a bundle. Signal that we can help with access, visibility, and participation, then ask what would make the partnership useful for their people. Once they answer, build a concrete offer around that need.
+
+The exchange should remain proportional and light. Do not manufacture urgency, hide that Bitcoin Asia is the host event, or imply stage access is pay-to-play.
 
 ---
 
@@ -47,38 +55,38 @@ Lead with **one concrete give per message**, tailored — never a menu, never "p
 ## 5. Track message templates (1:1 to organizers/individuals)
 
 ### Track 1 — Bitcoin-native
-> **Subject: Open Source Hub @ Bitcoin Asia 2026 — free dev passes**
+> **Subject: [community] × Open Source Hub?**
 >
-> Hi — I'm Pedro, experience designer for the Open Source Hub at Bitcoin Asia (HK, late Aug). Two days of BitDevs-style sessions, project stations, and workshops with Core, Lightning, and Nostr contributors — plus grant office hours with the funders in the room.
+> Hey [name] — Pedro here. I'm shaping the Open Source Hub at Bitcoin Asia in HK late August: two days of BitDevs-style sessions, project stations, and workshops with Core, Lightning, and Nostr contributors.
 >
-> I'd love to get [community]'s builders free Pro passes and credit your community on-site. How many would make it? Happy to sort codes this week.
+> I'd like to find a useful way to bring [community] into the Hub. We can help with access for your builders, visibility for the community, and ways to participate. Which would matter most to your community? Open to a quick conversation?
 
 ### Track 2 — AI × open-source *(Bitcoin de-emphasized)*
-> **Subject: Open source + AI at the Open Source Hub (HK, late Aug)**
+> **Subject: [project / work] at the Open Source Hub?**
 >
-> Hi — I'm Pedro, experience designer for the Open Source Hub in Hong Kong this August. Two days for open-source builders — including the crews working on private and agentic AI, agents that pay and hold value, and self-hostable inference.
+> Hey [name] — Pedro here. I'm shaping the Open Source Hub in Hong Kong this August, including a focused thread for private and agentic AI, agents that pay and hold value, and self-hostable inference. Your work on [project / work] looks unusually close to that brief.
 >
-> If that's your world, I'd love to get you a free dev pass and a demo / Dev-Takeover slot to show your work to a builder audience. Interested?
+> I'd like to explore how the Hub could support your work — getting the right builders in the room, giving the project useful visibility, or finding a meaningful way to participate. Rather than pitch you a fixed package, what would make the trip worthwhile for you and your community?
 
 ### Track 3 — Students *(open source + learning)*
-> **Subject: Free passes for [society] — Open Source Hub, Bitcoin Asia (HK)**
+> **Subject: [society] at the Open Source Hub in HK?**
 >
-> Hi — I'm Pedro, experience designer for the Open Source Hub at Bitcoin Asia in Hong Kong (late Aug). It's a working space for open-source developers — hands-on workshops, live demos with the maintainers behind real tools, hackathon energy, and a VR activation on the floor.
+> Hey [name] — Pedro here. I'm putting together the Open Source Hub at Bitcoin Asia in Hong Kong late August: hands-on workshops, live project demos, and maintainers in the room.
 >
-> A free pass is a rare thing for students, so I'd love to give [society] a block for your members. Who's the right person to set it up?
+> I'd like to see whether the Hub can be useful to [society] — whether that means helping members attend, connecting them with maintainers, or supporting something the society already wants to do. Who is the best person to ask what would be valuable for your members?
 
 ### Track 4 — Pro OSS communities *(we platform you)*
-> **Subject: Community partnership — Open Source Hub, Bitcoin Asia (HK)**
+> **Subject: [community] × Open Source Hub?**
 >
-> Hi — I'm Pedro, experience designer for the Open Source Hub at Bitcoin Asia (HK, late Aug) — two days celebrating open source and the people who ship it.
+> Hey [name] — Pedro here. I'm shaping the Open Source Hub at Bitcoin Asia in HK late August, two days built around open source and the people who ship it. [community] feels like a natural Partner, not just another logo.
 >
-> I'd love to make [community] a community partner: free dev passes for your members, your name credited on-site, space to convene your people, and we amplify you to everyone who shows up. In return, help spread the word to your members. Open to it?
+> I'd like to explore a partnership that is genuinely useful to [community]. We can help with member access, community visibility, and ways to participate in the Hub. Which would be most useful to your community? Open to a quick fit check?
 
 ---
 
 ## 6. Organizer adaptable draft (member-facing reshare — they rewrite in their own voice)
 
-> [community] is a partner of the **Open Source Hub** at Bitcoin Asia (Hong Kong, late Aug). We've got **[N] free developer passes** for members — 2 days of open-source workshops, live project demos, and an on-floor VR activation. Grab one: [CLAIM LINK] (code [CODE]). First come, first served.
+> [community] is a Partner of the **Open Source Hub** at Bitcoin Asia (Hong Kong, late Aug). We have **[N] complimentary GA passes** for members — two days of open-source workshops, live project demos, and builders from across the region. If you can realistically make it to HK, claim one here: [CLAIM LINK] (code [CODE]).
 
 Give organizers: this draft + both social assets + the pass code. Tell them to make it sound like *them*.
 

@@ -124,9 +124,9 @@ const OPEN_SOURCE_NOSTR_SPEAKERS = [
     "picture": "https://pbs.twimg.com/profile_images/1362551718110580740/v-W5Q2uo_400x400.jpg",
     "partnership": {
       "to": "stephan.livera@gmail.com",
-      "subject": "comp passes for your audience?",
+      "subject": "Help rally the right Bitcoin builders?",
       "label": "Partnership proposal",
-      "body": "Hey Stephan — Pedro here. Open Source Hub at Bitcoin Asia (HK, late Aug).\n\nWould love a simple partnership: credit Stephan Livera Podcast as a community partner + comp passes for your audience ([CLAIM LINK], code [CODE]). Happy to cross-promo on your channels if useful.\n\nNo pressure — open to a quick thread?\n\nPedro\npedro@btcmedia.org"
+      "body": "Hey Stephan — Pedro here.\n\nGreat to have you across the Bitcoin Asia program on Bitcoin myths, forks, and the self-custody-to-shareholders conversation.\n\nSince you're already involved, I'd love your help rallying the right Bitcoin builders and communities around the Open Source Hub. We can shape support around access, visibility, connections, or participation rather than assume a fixed package.\n\nWho should we make sure is in the room, and would a light Stephan Livera Podcast community partnership be useful?"
     }
   },
   {
@@ -314,6 +314,50 @@ const OPEN_SOURCE_NOSTR_SPEAKERS = [
     "star": true,
     "pubkey": "af9d70407464247d19fd243cf1bee81e6df1e639217dc66366bf37aa42d05d35",
     "picture": "https://yakihonne.s3.ap-east-1.amazonaws.com/af9d70407464247d19fd243cf1bee81e6df1e639217dc66366bf37aa42d05d35/files/1720499568246-YAKIHONNES3.jpg"
+  },
+  {
+    "name": "Dr. Qiwei Chen",
+    "org": "Bitdeer",
+    "angle": "AI datacenter infrastructure · listed Bitcoin Asia 2026 speaker",
+    "tags": [
+      "speaker",
+      "AI infrastructure",
+      "Singapore"
+    ],
+    "conf": "ok",
+    "links": [
+      {
+        "t": "web",
+        "v": "bitdeer.com"
+      }
+    ]
+  },
+  {
+    "name": "Aditya Ranjan",
+    "org": "Bitcoin Bharat",
+    "angle": "Grassroots Bitcoin-only literacy · India Tour across 50+ cities · Bitcoin Asia 2026 speaker",
+    "tags": [
+      "speaker",
+      "Bitcoin",
+      "educator",
+      "India"
+    ],
+    "conf": "ok",
+    "star": true,
+    "links": [
+      {
+        "t": "x",
+        "v": "bitcoinbharat_"
+      },
+      {
+        "t": "instagram",
+        "v": "bitcoinbhar.at"
+      },
+      {
+        "t": "web",
+        "v": "bitcoinbhar.at"
+      }
+    ]
   },
   {
     "name": "Ying Tong Lai",

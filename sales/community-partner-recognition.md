@@ -8,14 +8,16 @@
 
 ## The deal (one-liner for partners)
 
-> Bring your builders to the Open Source Hub and help spread the word — and we'll credit your community on-site, put your delegates in the room together, and cross-promote you to everyone who shows up.
+> We want the Open Source Hub to be useful to your community. Tell us whether access, visibility, connections, or a way to participate would make the biggest difference, and we'll shape the partnership around that.
 
 **Partner gives:**
 - Distributes a block of comp codes to their members (they pick who).
 - One announcement to their community (Telegram / X / email / IG — their channel).
 - A point person we can coordinate with.
 
-**Partner gets:** everything in the tiers below.
+**Partner gets:** a tailored mix from the toolkit below. The standard inventory starts with organizer/community passes and featured Partner visibility, but the first conversation should discover the need before prescribing the package.
+
+**Possible add-on:** Partners with a strong topic fit and a sizable audience can be considered for the Open Source Stage. This is a programming decision, not a guaranteed partnership benefit.
 
 ---
 
@@ -23,13 +25,14 @@
 
 | | **Community Partner** (default) | **Anchor Community Partner** (brings a real delegation / co-hosts) |
 |---|---|---|
-| Qualifies | Any partnered community distributing codes | ~15+ verified builders attending, **or** co-hosts a meetup/session |
+| Qualifies | Any partnered community distributing codes | ~15+ verified builders attending, **or** a clear programming/community fit |
+| Passes | 2 GA+ organizers + 5 community GA | 2 GA+ organizers + expanded GA block based on demand |
 | Partner wall (on-site) | ✅ listed | ✅ featured (larger / top) |
 | Program-page listing | ✅ | ✅ + short blurb + link |
 | Delegate badge ribbon | ✅ | ✅ |
 | Social thank-you graphic | ✅ (group post) | ✅ (dedicated post) |
 | Community meetup board | ✅ can pin their events | ✅ |
-| Stage shout-out (MC) | — | ✅ named from the Open Source Stage |
+| Speaking opportunity | — | Considered when topic + audience fit; not guaranteed |
 | Nostr Stream mention / mini-interview | — | ✅ (schedule-permitting) |
 | Self-hosted community table / meetup slot | — | ✅ (space-permitting) |
 | Featured in post-event recap | — | ✅ |
@@ -47,7 +50,7 @@ Keep the bar for Anchor honest and low-friction — the point is to reward the c
 4. **Self-hosted community table / meetup slot** *(Anchor)* — a time window + a corner where a partner gathers their people. *Execution: depends on floor space and schedule — confirm early what's available before promising specific slots.*
 
 ### On-stage & broadcast (ties into existing Hub programming)
-5. **MC stage shout-outs** *(Anchor)* — the Open Source Stage MC names partner communities at session starts / breaks. *Execution: a shout-out script; near-zero cost.*
+5. **Open Source Stage consideration** *(selected partners)* — evaluate a concrete topic, format, and audience outcome through the normal program process. Partnership alone does not secure stage time.
 6. **Nostr Stream recognition** *(Anchor)* — a "thank you to our community partners" segment, or a 3–5 min partner mini-interview, on the on-site Nostr broadcast (ReverendHodl). *Execution: schedule-permitting; fits the V4V / open-protocol ethos perfectly.*
 
 ### Digital & social (pre + post)
@@ -61,7 +64,7 @@ Keep the bar for Anchor honest and low-friction — the point is to reward the c
 
 - **Wall space & signage** — confirm with the Hub build-out team what physical surfaces exist before committing to a printed partner wall.
 - **Badge/ribbon logistics** — confirm ribbons can be added to the existing badge pipeline and who prints them.
-- **Stage & Nostr Stream time** — MC shout-outs are easy; interview slots are schedule-dependent — mark them "schedule-permitting" in partner comms so you never over-promise.
+- **Stage & Nostr Stream time** — both are schedule/program-dependent. Never include stage time in the firm offer; invite a topic proposal only when the partner and audience are a strong fit.
 - **Program-page edit** — get the "Community Partners" section live early; it's the proof point that makes the outreach credible.
 
 ## Sequencing (7-week sprint)
@@ -74,4 +77,4 @@ Keep the bar for Anchor honest and low-friction — the point is to reward the c
 
 ## Partner-facing blurb (drop into outreach follow-ups)
 
-> As a Community Partner of the Open Source Hub, [community] gets: your name on the Hub's Community Partners wall and program page, "[community] delegate" ribbons for your members' badges, a spot on the community meetup board, and a co-brandable partner graphic to share. Bring a crew and you're an Anchor Partner — a shout-out from the Open Source Stage, a mention on our live Nostr broadcast, and space to gather your people on the floor.
+> We'd like the Open Source Hub partnership to solve something useful for [community], not hand you a generic sponsor package. We can help with member access, community visibility, and meaningful ways to participate. What would make the Hub genuinely valuable to your people? Once we know that, we'll come back with a concrete proposal; any stage idea still goes through normal program review.
