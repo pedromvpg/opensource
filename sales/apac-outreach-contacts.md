@@ -79,6 +79,8 @@ Confirmed speakers on the Open Source Hub, Nostr, and open-source/dev tracks. Fu
 ### Other Bitcoin Asia 2026 program speakers
 | Name | Org | Program relevance | Contact |
 |---|---|---|---|
+| **Chris** | bitsurance \| SEEDOR | Beyond Self-Custody · prediction markets & AI · Satoshi Millionaire gameshow | chris@seedor.io |
+| **Neil Woodfine** | Second | What Ark Makes Possible · first Ark payment, refresh & exit | neil@second.tech |
 | **Dr. Qiwei Chen** | Bitdeer | AI datacenter infrastructure · listed speaker | bitdeer.com |
 | **Aditya Ranjan** ⭐ | Bitcoin Bharat | Grassroots Bitcoin-only literacy · India Tour across 50+ cities · confirmed speaker | X @bitcoinbharat_ · bitcoinbhar.at |
 

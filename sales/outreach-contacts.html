@@ -1099,7 +1099,7 @@
 
   /* ---------- Sections ---------- */
   .section { margin-top: 44px; scroll-margin-top: 90px; }
-  .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
   .section-head h2 {
     font-family: var(--font-display);
     font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
@@ -1109,6 +1109,29 @@
     font-family: var(--font-mono);
     color: var(--ink-muted); font-size: 13px; font-weight: 400;
   }
+  .section-head .section-actions {
+    margin-left: auto;
+    align-self: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .section-head .csv-export,
+  .section-head .table-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    font-family: var(--font-display);
+    font-size: 12px;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+  }
+  .section-head .csv-export:hover,
+  .section-head .table-view:hover { color: var(--ink); border-color: var(--card-hover-border); }
   .section-note {
     color: var(--ink-muted); font-size: 13.5px; margin-bottom: 18px; max-width: 900px;
   }
@@ -2884,8 +2907,11 @@ function hubNavItems() {
       items.push({ divider: true, label: "Speakers" });
       items.push({ id: speakerSection.id, flag: speakerSection.flag, label: speakerSection.title, count });
     }
+    const contactSections = sections.filter((sec) => sec.id !== "opensource-nostr-speakers");
+    const allCount = sections.reduce((n, sec) => n + sec.groups.reduce((m, g) => m + g.items.length, 0), 0);
     items.push({ divider: true, label: "Contacts" });
-    sections.filter((sec) => sec.id !== "opensource-nostr-speakers").forEach((sec) => {
+    items.push({ id: "all", flag: "☰", label: "All", count: allCount });
+    contactSections.forEach((sec) => {
       const count = sec.groups.reduce((n, g) => n + g.items.length, 0);
       items.push({ id: sec.id, flag: sec.flag, label: sec.title, count });
     });
@@ -3201,10 +3227,10 @@ const ICONS = {
   message:`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
 };
 
-function buildLink(l) {
+function linkMeta(l) {
   const t = l.t;
   const v = l.v;
-  let url = "#", label = l.label || v, kind = t, icon = ICONS.web;
+  let url = "#", label = l.label || v, kind = t, icon = ICONS.web, copyOnly = false;
   switch (t) {
     case "x": url = `https://x.com/${v}`; label = l.label || `@${v}`; icon = ICONS.x; break;
     case "github": url = `https://github.com/${v}`; label = l.label || v; icon = ICONS.github; break;
@@ -3225,13 +3251,160 @@ function buildLink(l) {
     case "linktree": url = `https://linktr.ee/${v}`; label = l.label || "Linktree"; icon = ICONS.linktree; break;
     case "whatsapp": url = `https://wa.me/${v.replace(/\D/g,'')}`; label = l.label || v; icon = ICONS.whatsapp; break;
     case "nostr": url = `https://njump.me/${v}`; label = l.label || v.slice(0, 16) + "…"; icon = ICONS.nostr; break;
-    case "wechat": return `<span class="link copy" data-copy="${v}" title="Copy WeChat ID">${ICONS.wechat}<span>WeChat: ${v}</span></span>`;
-    case "qq": return `<span class="link copy" data-copy="${v}" title="Copy QQ">${ICONS.qq}<span>QQ: ${v}</span></span>`;
+    case "wechat": url = v; label = `WeChat: ${v}`; icon = ICONS.wechat; kind = "wechat"; copyOnly = true; break;
+    case "qq": url = v; label = `QQ: ${v}`; icon = ICONS.qq; kind = "qq"; copyOnly = true; break;
   }
-  if (t === "email") {
-    return `<a class="link" href="${url}">${icon}<span>${label}</span></a>`;
+  return { t, v, url, label, kind, icon, copyOnly };
+}
+
+function buildLink(l) {
+  const meta = linkMeta(l);
+  if (meta.copyOnly) {
+    return `<span class="link copy" data-copy="${meta.v}" title="Copy ${meta.kind === "qq" ? "QQ" : "WeChat ID"}">${meta.icon}<span>${meta.label}</span></span>`;
   }
-  return `<a class="link" href="${url}" target="_blank" rel="noopener">${icon}<span>${label}</span></a>`;
+  if (meta.t === "email") {
+    return `<a class="link" href="${meta.url}">${meta.icon}<span>${meta.label}</span></a>`;
+  }
+  return `<a class="link" href="${meta.url}" target="_blank" rel="noopener">${meta.icon}<span>${meta.label}</span></a>`;
+}
+
+const CONF_CSV_LABEL = { ok: "Verified", warn: "Verify first", dead: "Dead" };
+
+function csvEscape(value) {
+  const str = String(value ?? "");
+  if (/[",\n\r]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
+  return str;
+}
+
+function contactEmailsCsv(item) {
+  return (item.links || []).filter((l) => l.t === "email").map((l) => l.v).join("; ");
+}
+
+function contactLinksCsv(item) {
+  return (item.links || []).map((l) => {
+    const meta = linkMeta(l);
+    if (meta.t === "email") return `email:${meta.v}`;
+    if (meta.copyOnly) return `${meta.kind}:${meta.v}`;
+    return `${meta.kind}:${meta.url}`;
+  }).join(" | ");
+}
+
+function sectionContactRows(sec) {
+  const rows = [];
+  sec.groups.forEach((g) => {
+    g.items.forEach((item) => {
+      rows.push({
+        sectionId: sec.id,
+        sectionTitle: sec.title,
+        group: g.title || "",
+        item,
+      });
+    });
+  });
+  return rows;
+}
+
+function allContactRows() {
+  return activeSections().flatMap(sectionContactRows);
+}
+
+function contactsToCsv(rows) {
+  const headers = [
+    "Section", "Group", "Name", "Org", "Notes", "Tags", "Confidence",
+    "Shortlist", "Priority", "Email", "Links",
+  ];
+  const lines = [headers.map(csvEscape).join(",")];
+  rows.forEach(({ sectionTitle, group, item }) => {
+    lines.push([
+      sectionTitle,
+      group,
+      item.name || "",
+      item.org || "",
+      item.angle || "",
+      displayTags(item.tags).join("; "),
+      CONF_CSV_LABEL[item.conf] || item.conf || "",
+      isShortlistItem(item) ? "yes" : "",
+      isPriorityItem(item) ? "yes" : "",
+      contactEmailsCsv(item),
+      contactLinksCsv(item),
+    ].map(csvEscape).join(","));
+  });
+  return lines.join("\n");
+}
+
+function downloadCsv(filename, csv) {
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function exportCsvFilename(slug) {
+  const day = new Date().toISOString().slice(0, 10);
+  return `osh-${slug}-${day}.csv`;
+}
+
+function rowsForSectionExport(sectionId) {
+  if (sectionId === "all") return allContactRows();
+  const sec = activeSections().find((s) => s.id === sectionId);
+  return sec ? sectionContactRows(sec) : [];
+}
+
+function sectionExportTitle(sectionId) {
+  if (sectionId === "all") return "All contacts";
+  const sec = activeSections().find((s) => s.id === sectionId);
+  return sec ? sec.title : sectionId;
+}
+
+function exportSectionCsv(sectionId) {
+  const rows = rowsForSectionExport(sectionId);
+  if (!rows.length) return;
+  downloadCsv(exportCsvFilename(sectionId), contactsToCsv(rows));
+}
+
+function contactTablePayload(sectionId) {
+  return {
+    sectionId,
+    title: sectionExportTitle(sectionId),
+    eventLabel: activeEvent().label || "",
+    generatedAt: new Date().toISOString(),
+    rows: rowsForSectionExport(sectionId).map(({ sectionTitle, group, item }) => ({
+      section: sectionTitle,
+      group,
+      name: item.name || "",
+      org: item.org || "",
+      notes: item.angle || "",
+      tags: displayTags(item.tags).join("; "),
+      confidence: CONF_CSV_LABEL[item.conf] || item.conf || "",
+      shortlist: isShortlistItem(item) ? "yes" : "",
+      priority: isPriorityItem(item) ? "yes" : "",
+      email: contactEmailsCsv(item),
+      links: contactLinksCsv(item),
+    })),
+  };
+}
+
+function openSectionTable(sectionId) {
+  const payload = contactTablePayload(sectionId);
+  if (!payload.rows.length) return;
+  try {
+    sessionStorage.setItem("osh-table-view", JSON.stringify(payload));
+  } catch (_) {
+    return;
+  }
+  window.open(`contacts-table.html?section=${encodeURIComponent(sectionId)}`, "_blank", "noopener");
+}
+
+function sectionExportButtons(sectionId) {
+  return `<div class="section-actions">
+    <button type="button" class="csv-export" data-export-section="${sectionId}" title="Download CSV">Export CSV</button>
+    <button type="button" class="table-view" data-table-section="${sectionId}" title="Open plain HTML table">View table</button>
+  </div>`;
 }
 
 function partnershipMailto(item) {
@@ -3865,6 +4038,25 @@ function avatarError(img){
 }
 
 /* ---------- render ---------- */
+function contactGroupBlocksHTML(sec, items, sectionId) {
+  let html = "";
+  html += `<div class="grid">`;
+  html += items.map((it) => cardHTML(it, sectionId)).join("");
+  html += `</div>`;
+  html += `<div class="table-wrap"><table class="contact-table">
+    <colgroup>
+      <col class="col-star" /><col class="col-name" /><col class="col-org" />
+      <col class="col-angle" /><col class="col-tags" /><col class="col-status" /><col class="col-links" />
+    </colgroup>
+    <thead><tr>
+      <th class="cell-star">★</th><th class="cell-name">Name</th><th class="cell-org">Org</th>
+      <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th>${STATUS_COL_HEAD}<th class="cell-links">Contact</th>
+    </tr></thead><tbody>`;
+  html += items.map((it) => rowHTML(it, sectionId)).join("");
+  html += `</tbody></table></div>`;
+  return html;
+}
+
 function sectionHTML(sec) {
   const count = sec.groups.reduce((n, g) => n + g.items.length, 0);
   const campaign = campaignForSection(sec.id);
@@ -3873,27 +4065,38 @@ function sectionHTML(sec) {
       <span class="flag">${sec.flag}</span>
       <h2>${sec.title}</h2>
       <span class="count">${count}</span>
+      ${sectionExportButtons(sec.id)}
     </div>`;
   if (sec.note) html += `<div class="section-note ${sec.caveat ? "caveat" : ""}">${sec.note}</div>`;
   html += campaignHTML(campaign);
-  sec.groups.forEach(g => {
+  sec.groups.forEach((g) => {
     if (g.title) html += `<div class="subsection-title">${g.title}</div>`;
-    html += `<div class="grid">`;
-    html += g.items.map(it => cardHTML(it, sec.id)).join("");
-    html += `</div>`;
-    html += `<div class="table-wrap"><table class="contact-table">
-      <colgroup>
-        <col class="col-star" /><col class="col-name" /><col class="col-org" />
-        <col class="col-angle" /><col class="col-tags" /><col class="col-status" /><col class="col-links" />
-      </colgroup>
-      <thead><tr>
-        <th class="cell-star">★</th><th class="cell-name">Name</th><th class="cell-org">Org</th>
-        <th class="cell-angle">Notes</th><th class="cell-tags">Tags</th>${STATUS_COL_HEAD}<th class="cell-links">Contact</th>
-      </tr></thead><tbody>`;
-    html += g.items.map(it => rowHTML(it, sec.id)).join("");
-    html += `</tbody></table></div>`;
+    html += contactGroupBlocksHTML(sec, g.items, sec.id);
   });
   html += `<div class="no-results hidden" id="noResults-${sec.id}">No contacts match your filters.</div>`;
+  html += `</section>`;
+  return html;
+}
+
+function allSectionHTML() {
+  const sections = activeSections();
+  const count = sections.reduce((n, sec) => n + sec.groups.reduce((m, g) => m + g.items.length, 0), 0);
+  let html = `<section class="section" id="sec-all">
+    <div class="section-head">
+      <span class="flag">☰</span>
+      <h2>All</h2>
+      <span class="count">${count}</span>
+      ${sectionExportButtons("all")}
+    </div>
+    <div class="section-note">Every contact across speakers and regional lists. Use Export CSV for the full dump.</div>`;
+  sections.forEach((sec) => {
+    const secCount = sec.groups.reduce((n, g) => n + g.items.length, 0);
+    if (!secCount) return;
+    html += `<div class="subsection-title">${sec.flag} ${sec.title} · ${secCount}</div>`;
+    const items = sec.groups.flatMap((g) => g.items);
+    html += contactGroupBlocksHTML(sec, items, sec.id);
+  });
+  html += `<div class="no-results hidden" id="noResults-all">No contacts match your filters.</div>`;
   html += `</section>`;
   return html;
 }
@@ -3934,13 +4137,16 @@ function render() {
   });
 
   if (hubSectionPanels) {
+    const allPanel = sections.length
+      ? `<div class="hub-panel" data-panel="all" id="panel-all">${allSectionHTML()}</div>`
+      : "";
     const sectionPanels = sections.map((sec) =>
       `<div class="hub-panel" data-panel="${sec.id}" id="panel-${sec.id}">${sectionHTML(sec)}</div>`
     ).join("");
     const trackPanels = trackCampaigns().map((t) =>
       `<div class="hub-panel" data-panel="${t.id}" id="panel-${t.id}">${trackPanelHTML(t.id)}</div>`
     ).join("");
-    hubSectionPanels.innerHTML = sectionPanels + trackPanels;
+    hubSectionPanels.innerHTML = allPanel + sectionPanels + trackPanels;
   }
 
   const total = allItems.length;
@@ -4242,6 +4448,15 @@ function bindEvents() {
   });
   document.getElementById("themeToggle")?.addEventListener("click", toggleTheme);
   document.getElementById("hubNavCollapse")?.addEventListener("click", toggleHubNavCollapsed);
+  document.getElementById("hubSectionPanels")?.addEventListener("click", (e) => {
+    const exportBtn = e.target.closest("[data-export-section]");
+    if (exportBtn) {
+      exportSectionCsv(exportBtn.dataset.exportSection);
+      return;
+    }
+    const tableBtn = e.target.closest("[data-table-section]");
+    if (tableBtn) openSectionTable(tableBtn.dataset.tableSection);
+  });
   document.getElementById("rehearsalScenarios")?.addEventListener("click", (event) => {
     const button = event.target.closest("[data-rehearsal-scenario]");
     if (button) setRehearsalScenario(button.dataset.rehearsalScenario);

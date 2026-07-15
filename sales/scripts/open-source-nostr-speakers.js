@@ -316,6 +316,44 @@ const OPEN_SOURCE_NOSTR_SPEAKERS = [
     "picture": "https://yakihonne.s3.ap-east-1.amazonaws.com/af9d70407464247d19fd243cf1bee81e6df1e639217dc66366bf37aa42d05d35/files/1720499568246-YAKIHONNES3.jpg"
   },
   {
+    "name": "Chris",
+    "org": "bitsurance | SEEDOR",
+    "angle": "Beyond Self-Custody: Building Your Sovereignty Stack · Forecasting the Future in the Age of Prediction Markets & AI · Satoshi Millionaire interactive gameshow",
+    "tags": [
+      "speaker",
+      "Bitcoin",
+      "self-custody",
+      "AI",
+      "prediction markets"
+    ],
+    "conf": "ok",
+    "links": [
+      {
+        "t": "email",
+        "v": "chris@seedor.io"
+      }
+    ]
+  },
+  {
+    "name": "Neil Woodfine",
+    "org": "Second",
+    "angle": "What Ark Makes Possible · Making Your First Ark Payment, Refresh, & Exit",
+    "tags": [
+      "speaker",
+      "Bitcoin",
+      "Ark",
+      "self-custody",
+      "payments"
+    ],
+    "conf": "ok",
+    "links": [
+      {
+        "t": "email",
+        "v": "neil@second.tech"
+      }
+    ]
+  },
+  {
     "name": "Dr. Qiwei Chen",
     "org": "Bitdeer",
     "angle": "AI datacenter infrastructure · listed Bitcoin Asia 2026 speaker",
