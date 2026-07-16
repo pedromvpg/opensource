@@ -3313,7 +3313,10 @@ function contactStatusSlug(value) {
 }
 
 function contactStatus(sectionId, name) {
-  if (window.OSHStatus?.get) return window.OSHStatus.get(sectionId, name) || "";
+  if (window.OSHStatus?.get) {
+    const live = window.OSHStatus.get(sectionId, name);
+    if (live) return live;
+  }
   try {
     const key = contactStatusSlug((sectionId || "") + "|" + (name || ""));
     const map = JSON.parse(localStorage.getItem("osh-status") || "{}");
@@ -3323,13 +3326,31 @@ function contactStatus(sectionId, name) {
   }
 }
 
+function outreachMessageForExport(item, sectionId) {
+  try {
+    const personalization = leadPersonalization(sectionId, item);
+    const data = personalization
+      ? buildPersonalizedOutreach(item, sectionId, personalization)
+      : buildTemplateOutreach(item, sectionId);
+    const subject = (data.subject || "").trim();
+    const body = (data.body || "").trim();
+    if (!subject && !body) return { subject: "", body: "", message: "" };
+    const message = subject ? `Subject: ${subject}\n\n${body}` : body;
+    return { subject, body, message };
+  } catch (err) {
+    console.warn("[export] message build failed for", item?.name, err);
+    return { subject: "", body: "", message: "" };
+  }
+}
+
 function contactsToCsv(rows) {
   const headers = [
     "Status", "Section", "Group", "Name", "Org", "Notes", "Tags", "Confidence",
-    "Shortlist", "Priority", "Email", "Links",
+    "Shortlist", "Priority", "Email", "Links", "Subject", "Message",
   ];
   const lines = [headers.map(csvEscape).join(",")];
   rows.forEach(({ sectionId, sectionTitle, group, item }) => {
+    const outreach = outreachMessageForExport(item, sectionId);
     lines.push([
       contactStatus(sectionId, item.name),
       sectionTitle,
@@ -3343,6 +3364,8 @@ function contactsToCsv(rows) {
       isPriorityItem(item) ? "yes" : "",
       contactEmailsCsv(item),
       contactLinksCsv(item),
+      outreach.subject,
+      outreach.message,
     ].map(csvEscape).join(","));
   });
   return lines.join("\n");
@@ -3389,37 +3412,56 @@ function contactTablePayload(sectionId) {
     title: sectionExportTitle(sectionId),
     eventLabel: activeEvent().label || "",
     generatedAt: new Date().toISOString(),
-    rows: rowsForSectionExport(sectionId).map(({ sectionId: rowSectionId, sectionTitle, group, item }) => ({
-      status: contactStatus(rowSectionId, item.name),
-      section: sectionTitle,
-      group,
-      name: item.name || "",
-      org: item.org || "",
-      notes: item.angle || "",
-      tags: displayTags(item.tags).join("; "),
-      confidence: CONF_CSV_LABEL[item.conf] || item.conf || "",
-      shortlist: isShortlistItem(item) ? "yes" : "",
-      priority: isPriorityItem(item) ? "yes" : "",
-      email: contactEmailsCsv(item),
-      links: contactLinksCsv(item),
-    })),
+    rows: rowsForSectionExport(sectionId).map(({ sectionId: rowSectionId, sectionTitle, group, item }) => {
+      const outreach = outreachMessageForExport(item, rowSectionId);
+      return {
+        status: contactStatus(rowSectionId, item.name),
+        section: sectionTitle,
+        group,
+        name: item.name || "",
+        org: item.org || "",
+        notes: item.angle || "",
+        tags: displayTags(item.tags).join("; "),
+        confidence: CONF_CSV_LABEL[item.conf] || item.conf || "",
+        shortlist: isShortlistItem(item) ? "yes" : "",
+        priority: isPriorityItem(item) ? "yes" : "",
+        email: contactEmailsCsv(item),
+        links: contactLinksCsv(item),
+        subject: outreach.subject,
+        message: outreach.message,
+      };
+    }),
   };
 }
 
-function openSectionTable(sectionId) {
+async function openSectionTable(sectionId) {
+  try {
+    if (window.OSHStatus?.ready) await window.OSHStatus.ready;
+  } catch (_) {}
+
   const payload = contactTablePayload(sectionId);
   if (!payload.rows.length) return;
+
+  // Diagnose empty exports in the console when something regresses.
+  const filledMsg = payload.rows.filter((r) => r.message).length;
+  const filledStatus = payload.rows.filter((r) => r.status).length;
+  console.log("[table-view]", sectionId, {
+    rows: payload.rows.length,
+    withMessage: filledMsg,
+    withStatus: filledStatus,
+  });
+
   try {
     // localStorage (not sessionStorage): new tabs opened with noopener do not
     // inherit sessionStorage, so the table page would load empty.
     localStorage.setItem("osh-table-view", JSON.stringify(payload));
   } catch (err) {
     console.error("[table-view] could not store payload", err);
+    alert("Could not open table view — contact list is too large for browser storage. Try a smaller section.");
     return;
   }
-  // Keep the .html suffix so local python -m http.server works;
-  // Vercel cleanUrls serves this path as well.
-  const url = `contacts-table.html?section=${encodeURIComponent(sectionId)}`;
+  // Cache-bust so reusing an existing table tab still reloads fresh data.
+  const url = `contacts-table.html?section=${encodeURIComponent(sectionId)}&t=${Date.now()}`;
   const win = window.open(url, "_blank");
   if (!win) location.assign(url);
 }

@@ -59,6 +59,12 @@
   }
   async function saveStatus(key, status) {
     cache[key] = status;
+    try {
+      const mirrored = JSON.parse(localStorage.getItem("osh-status") || "{}");
+      if (status) mirrored[key] = status;
+      else delete mirrored[key];
+      localStorage.setItem("osh-status", JSON.stringify(mirrored));
+    } catch (_) {}
     if (sb) {
       const { error } = await sb.from("contact_status").upsert({
         id: key, status, updated_by: localStorage.getItem("osh-user") || null,
@@ -108,16 +114,23 @@
   });
 
   window.OSHStatus = {
+    ready: null,
     keyFor(sectionId, name) {
       return slug((sectionId || "") + "|" + (name || ""));
     },
     get(sectionId, name) {
       const key = this.keyFor(sectionId, name);
-      const sels = document.querySelectorAll(".status-select");
-      for (const sel of sels) {
-        if (sel.dataset.key === key) return sel.value || "";
-      }
-      return cache[key] || "";
+      let domValue = null;
+      let foundDom = false;
+      document.querySelectorAll(".status-select").forEach((sel) => {
+        if (sel.dataset.key !== key) return;
+        foundDom = true;
+        // Prefer a non-empty DOM value; empty may be a stale pre-load inject.
+        if (sel.value) domValue = sel.value;
+      });
+      if (domValue) return domValue;
+      if (cache[key]) return cache[key];
+      return foundDom ? "" : "";
     },
     getAll() {
       return { ...cache };
@@ -125,13 +138,16 @@
   };
 
   function start() {
-    loadAll().then(() => {
+    window.OSHStatus.ready = loadAll().then(() => {
+      // Keep a local mirror so exports work even if the in-memory cache
+      // is read before selects are painted.
+      try { localStorage.setItem("osh-status", JSON.stringify(cache)); } catch (_) {}
       injectAll();
       const root = document.getElementById("hubSectionPanels")
         || document.getElementById("hubLayout")
         || document.body;
       if (root) new MutationObserver(injectAll).observe(root, { childList: true, subtree: true });
-      console.log("[status] tracking mode:", mode);
+      console.log("[status] tracking mode:", mode, "keys:", Object.keys(cache).length);
     });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);

@@ -58,6 +58,13 @@
     white-space: nowrap;
   }
   tr:nth-child(even) td { background: #fafafa; }
+  td.cell-message {
+    white-space: pre-wrap;
+    min-width: 280px;
+    max-width: 420px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
   a { color: #0b57d0; }
 </style>
 </head>
@@ -78,6 +85,8 @@
       ["priority", "Priority"],
       ["email", "Email"],
       ["links", "Links"],
+      ["subject", "Subject"],
+      ["message", "Message"],
     ];
 
     let currentPayload = null;
@@ -119,8 +128,8 @@
     }
 
     function tsvEscape(value) {
-      const str = String(value ?? "").replace(/\r\n|\r|\n/g, " ");
-      if (/[\t"]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
+      const str = String(value ?? "").replace(/\r\n|\r|\n/g, "\n");
+      if (/[\t"\n]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
       return str;
     }
 
@@ -132,10 +141,18 @@
       return lines.join("\n");
     }
 
+    function htmlCell(row, key) {
+      const text = cellText(row, key);
+      if (key === "message") {
+        return `<td style="white-space:pre-wrap;vertical-align:top">${esc(text).replace(/\n/g, "<br>")}</td>`;
+      }
+      return `<td>${esc(text)}</td>`;
+    }
+
     function contactsToHtmlTable(payload) {
       const head = HEADERS.map(([, label]) => `<th>${esc(label)}</th>`).join("");
       const body = payload.rows.map((row) => {
-        const cells = HEADERS.map(([key]) => `<td>${esc(cellText(row, key))}</td>`).join("");
+        const cells = HEADERS.map(([key]) => htmlCell(row, key)).join("");
         return `<tr>${cells}</tr>`;
       }).join("");
       // Minimal table HTML — Google Docs pastes this as a real table.
@@ -215,6 +232,9 @@
       const body = payload.rows.map((row) => {
         const cells = HEADERS.map(([key]) => {
           if (key === "links") return `<td>${renderLinks(row[key])}</td>`;
+          if (key === "message") {
+            return `<td class="cell-message">${esc(cellText(row, key))}</td>`;
+          }
           if (key === "email" && row.email) {
             return `<td>${String(row.email).split("; ").map((e) =>
               `<a href="mailto:${esc(e)}">${esc(e)}</a>`
