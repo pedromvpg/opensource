@@ -23,6 +23,13 @@
   }
   .meta-text { flex: 1 1 auto; }
   .empty { color: #555; max-width: 40em; }
+  .warn {
+    background: #fff6d8;
+    border: 1px solid #e6c200;
+    padding: 10px 12px;
+    margin: 0 0 16px;
+    max-width: 52em;
+  }
   .copy-cells {
     display: inline-flex;
     align-items: center;
@@ -41,9 +48,16 @@
     border-color: #0a7a32;
     background: #e8f7ee;
   }
+  .table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+    border: 1px solid #ddd;
+  }
   table {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: max-content;
+    min-width: 100%;
     font-size: 13px;
   }
   th, td {
@@ -51,20 +65,36 @@
     padding: 6px 8px;
     text-align: left;
     vertical-align: top;
+    background: #fff;
   }
   th {
     background: #f3f3f3;
     font-weight: 600;
     white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 2;
   }
   tr:nth-child(even) td { background: #fafafa; }
+  /* Keep status / name / message visible while scrolling sideways */
+  th:nth-child(1), td:nth-child(1) { position: sticky; left: 0; z-index: 3; min-width: 7em; }
+  th:nth-child(2), td:nth-child(2) { position: sticky; left: 7em; z-index: 3; min-width: 10em; }
+  th:nth-child(3), td:nth-child(3) { position: sticky; left: 17em; z-index: 3; }
+  th:nth-child(1), th:nth-child(2), th:nth-child(3) { z-index: 4; background: #f3f3f3; }
+  td:nth-child(1), td:nth-child(2), td:nth-child(3) { background: #fff; box-shadow: 1px 0 0 #ccc; }
+  tr:nth-child(even) td:nth-child(1),
+  tr:nth-child(even) td:nth-child(2),
+  tr:nth-child(even) td:nth-child(3) { background: #fafafa; }
+  td.cell-empty { color: #999; }
   td.cell-message {
     white-space: pre-wrap;
     min-width: 280px;
-    max-width: 420px;
+    max-width: 360px;
     font-size: 12px;
     line-height: 1.45;
   }
+  td.cell-status { white-space: nowrap; }
+  td.cell-subject { max-width: 220px; }
   a { color: #0b57d0; }
 </style>
 </head>
@@ -72,21 +102,22 @@
   <div id="root"></div>
   <script>
     const STORAGE_KEY = "osh-table-view";
+    // Outreach-first order so Status + Message are on-screen without scrolling.
     const HEADERS = [
       ["status", "Status"],
+      ["name", "Name"],
+      ["message", "Message"],
+      ["priority", "Priority"],
+      ["subject", "Subject"],
+      ["email", "Email"],
       ["section", "Section"],
       ["group", "Group"],
-      ["name", "Name"],
       ["org", "Org"],
       ["notes", "Notes"],
       ["tags", "Tags"],
       ["confidence", "Confidence"],
       ["shortlist", "Shortlist"],
-      ["priority", "Priority"],
-      ["email", "Email"],
       ["links", "Links"],
-      ["subject", "Subject"],
-      ["message", "Message"],
     ];
 
     let currentPayload = null;
@@ -101,6 +132,26 @@
 
     function cellText(row, key) {
       return String(row[key] ?? "");
+    }
+
+    function displayCell(row, key) {
+      const text = cellText(row, key);
+      if (key === "status" && !text) return { html: `<td class="cell-status cell-empty">—</td>`, text: "" };
+      if (key === "message") {
+        return { html: `<td class="cell-message">${esc(text)}</td>`, text };
+      }
+      if (key === "subject") {
+        return { html: `<td class="cell-subject">${esc(text)}</td>`, text };
+      }
+      if (key === "links") return { html: `<td>${renderLinks(text)}</td>`, text };
+      if (key === "email" && text) {
+        return {
+          html: `<td>${text.split("; ").map((e) => `<a href="mailto:${esc(e)}">${esc(e)}</a>`).join("; ")}</td>`,
+          text,
+        };
+      }
+      if (key === "status") return { html: `<td class="cell-status">${esc(text)}</td>`, text };
+      return { html: `<td>${esc(text)}</td>`, text };
     }
 
     function renderLinks(value) {
@@ -119,6 +170,9 @@
     }
 
     function readPayload() {
+      if (window.__OSH_TABLE_PAYLOAD__ && Array.isArray(window.__OSH_TABLE_PAYLOAD__.rows)) {
+        return window.__OSH_TABLE_PAYLOAD__;
+      }
       try {
         const raw = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
         return raw ? JSON.parse(raw) : null;
@@ -146,6 +200,7 @@
       if (key === "message") {
         return `<td style="white-space:pre-wrap;vertical-align:top">${esc(text).replace(/\n/g, "<br>")}</td>`;
       }
+      if (key === "status" && !text) return `<td>—</td>`;
       return `<td>${esc(text)}</td>`;
     }
 
@@ -155,7 +210,6 @@
         const cells = HEADERS.map(([key]) => htmlCell(row, key)).join("");
         return `<tr>${cells}</tr>`;
       }).join("");
-      // Minimal table HTML — Google Docs pastes this as a real table.
       return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
     }
 
@@ -185,7 +239,6 @@
           }, 1800);
         }
       } catch (_) {
-        // Fallback for stricter clipboard permissions
         const ta = document.createElement("textarea");
         ta.value = tsv;
         ta.style.cssText = "position:fixed;left:-9999px;top:0";
@@ -225,36 +278,32 @@
         return;
       }
 
+      const sample = payload.rows[0] || {};
+      const stale = !("message" in sample);
+      const withMsg = payload.rows.filter((r) => r.message).length;
+      const withStatus = payload.rows.filter((r) => r.status).length;
+
       currentPayload = payload;
       document.title = `${payload.title} — table`;
       const when = payload.generatedAt ? new Date(payload.generatedAt).toLocaleString() : "";
       const head = HEADERS.map(([, label]) => `<th>${esc(label)}</th>`).join("");
       const body = payload.rows.map((row) => {
-        const cells = HEADERS.map(([key]) => {
-          if (key === "links") return `<td>${renderLinks(row[key])}</td>`;
-          if (key === "message") {
-            return `<td class="cell-message">${esc(cellText(row, key))}</td>`;
-          }
-          if (key === "email" && row.email) {
-            return `<td>${String(row.email).split("; ").map((e) =>
-              `<a href="mailto:${esc(e)}">${esc(e)}</a>`
-            ).join("; ")}</td>`;
-          }
-          return `<td>${esc(row[key])}</td>`;
-        }).join("");
-        return `<tr>${cells}</tr>`;
+        return `<tr>${HEADERS.map(([key]) => displayCell(row, key).html).join("")}</tr>`;
       }).join("");
 
       root.innerHTML = `
         <h1>${esc(payload.title)}</h1>
         <p class="meta">
-          <span class="meta-text">${esc(payload.eventLabel || "")}${when ? ` · ${esc(when)}` : ""} · ${payload.rows.length} row${payload.rows.length === 1 ? "" : "s"} · <a href="outreach-contacts.html">Back to hub</a></span>
+          <span class="meta-text">${esc(payload.eventLabel || "")}${when ? ` · ${esc(when)}` : ""} · ${payload.rows.length} row${payload.rows.length === 1 ? "" : "s"} · ${withStatus} with status · ${withMsg} with message · <a href="outreach-contacts.html">Back to hub</a></span>
           <button type="button" class="copy-cells" id="copyCells" title="Copy table for Google Docs / Sheets">Copy cells</button>
         </p>
-        <table id="contactsTable">
-          <thead><tr>${head}</tr></thead>
-          <tbody>${body}</tbody>
-        </table>`;
+        ${stale ? `<p class="warn">This table was opened with outdated data (no Message column). Go back to the hub and click <strong>View table</strong> again.</p>` : ""}
+        <div class="table-scroll">
+          <table id="contactsTable">
+            <thead><tr>${head}</tr></thead>
+            <tbody>${body}</tbody>
+          </table>
+        </div>`;
 
       document.getElementById("copyCells")?.addEventListener("click", copyCells);
     }

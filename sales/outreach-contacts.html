@@ -3345,27 +3345,27 @@ function outreachMessageForExport(item, sectionId) {
 
 function contactsToCsv(rows) {
   const headers = [
-    "Status", "Section", "Group", "Name", "Org", "Notes", "Tags", "Confidence",
-    "Shortlist", "Priority", "Email", "Links", "Subject", "Message",
+    "Status", "Name", "Message", "Priority", "Subject", "Email",
+    "Section", "Group", "Org", "Notes", "Tags", "Confidence", "Shortlist", "Links",
   ];
   const lines = [headers.map(csvEscape).join(",")];
   rows.forEach(({ sectionId, sectionTitle, group, item }) => {
     const outreach = outreachMessageForExport(item, sectionId);
     lines.push([
       contactStatus(sectionId, item.name),
+      item.name || "",
+      outreach.message,
+      isPriorityItem(item) ? "yes" : "",
+      outreach.subject,
+      contactEmailsCsv(item),
       sectionTitle,
       group,
-      item.name || "",
       item.org || "",
       item.angle || "",
       displayTags(item.tags).join("; "),
       CONF_CSV_LABEL[item.conf] || item.conf || "",
       isShortlistItem(item) ? "yes" : "",
-      isPriorityItem(item) ? "yes" : "",
-      contactEmailsCsv(item),
       contactLinksCsv(item),
-      outreach.subject,
-      outreach.message,
     ].map(csvEscape).join(","));
   });
   return lines.join("\n");
@@ -3442,7 +3442,6 @@ async function openSectionTable(sectionId) {
   const payload = contactTablePayload(sectionId);
   if (!payload.rows.length) return;
 
-  // Diagnose empty exports in the console when something regresses.
   const filledMsg = payload.rows.filter((r) => r.message).length;
   const filledStatus = payload.rows.filter((r) => r.status).length;
   console.log("[table-view]", sectionId, {
@@ -3452,15 +3451,30 @@ async function openSectionTable(sectionId) {
   });
 
   try {
-    // localStorage (not sessionStorage): new tabs opened with noopener do not
-    // inherit sessionStorage, so the table page would load empty.
     localStorage.setItem("osh-table-view", JSON.stringify(payload));
   } catch (err) {
-    console.error("[table-view] could not store payload", err);
-    alert("Could not open table view — contact list is too large for browser storage. Try a smaller section.");
-    return;
+    console.warn("[table-view] localStorage write failed, using embedded blob", err);
   }
-  // Cache-bust so reusing an existing table tab still reloads fresh data.
+
+  // Embed payload in a blob page so section=all never depends on storage size/staleness.
+  try {
+    const template = await fetch("contacts-table.html", { cache: "no-store" }).then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.text();
+    });
+    const json = JSON.stringify(payload).replace(/</g, "\\u003c");
+    const injected = template.replace(
+      '<div id="root"></div>',
+      `<div id="root"></div>\n<script>window.__OSH_TABLE_PAYLOAD__=${json};<\/script>`
+    );
+    const blobUrl = URL.createObjectURL(new Blob([injected], { type: "text/html" }));
+    const win = window.open(blobUrl, "_blank");
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 120000);
+    if (win) return;
+  } catch (err) {
+    console.warn("[table-view] blob open failed, falling back to contacts-table.html", err);
+  }
+
   const url = `contacts-table.html?section=${encodeURIComponent(sectionId)}&t=${Date.now()}`;
   const win = window.open(url, "_blank");
   if (!win) location.assign(url);
