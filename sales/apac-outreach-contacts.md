@@ -43,7 +43,66 @@
 | **Bitcoin Association of HK** | Hong Kong | TG **t.me/bitcoinorghk** · **info@bitcoin.org.hk** | ✅ |
 
 **Verify first:** Pouch.ph — X **@Pouch_PH**, founder Ethan Rose **@erose_official** (2026 op status unconfirmed) ⚠️
-**Null result:** VR/MR × Bitcoin in APAC — no real fit. Do not build a VR/MR lane. ❌
+
+---
+
+## 1b. KOLs — Open-source AI & VR (X.com outreach)
+
+**Purpose:** Short X DMs for amplification / content fit, plus a **Hong Kong / home-turf** lane for local attend + amplify.
+**Channel:** X DM first (global); email / Discord / web for HK community orgs.
+
+### Hong Kong / home turf
+
+| Name | Angle | Contact | Conf. |
+|---|---|---|---|
+| **Yat Siu** (Animoca) | AI × crypto / agentic commerce · attend + amplify | X **@ysiu** | ✅ |
+| **Animoca Brands** | HK Web3 + AI agents (Minds) · org amplifier | X **@animocabrands** | ✅ |
+| **Open Source Hong Kong (OSHK)** | Local OSS community · HKOSCon | **webmaster@opensource.hk** · X **@opensourcehk** | ✅ |
+| **Preface (Preface AI)** | In-person HK AI education | preface.ai | ✅ |
+| **GDG on Campus HKUST** | Agentic-AI hackathon builder pool | Discord · IG **@gdg_hkust** · hkustdsc@gmail.com ⚠️ | ✅ |
+| **Inter-University GenAI Hackathon for SDGs** | GenAI across 8 UGC unis | hack4sdg.com | ✅ |
+| **HKXRA** | HK XR / VR / AR / spatial computing body | hkxra.org | ✅ |
+| **0xU Hong Kong Blockchain Club** | Multi-uni Web3 students (~700+) | X **@0xuclub** | ✅ |
+
+### Open-source AI
+
+| Name | Angle | X | Conf. |
+|---|---|---|---|
+| **Clem Delangue** (Hugging Face) | Open-source AI hub | **@ClementDelangue** | ✅ |
+| **Thomas Wolf** (Hugging Face) | Transformers / open ML tooling | **@Thom_Wolf** | ✅ |
+| **Georgi Gerganov** (llama.cpp / ggml) | Local inference | **@ggerganov** | ✅ |
+| **Simon Willison** | Practical open LLM engineering | **@simonw** | ✅ |
+| **Jeremy Howard** (fast.ai) | Open deep-learning education | **@jeremyphoward** | ✅ |
+| **Soumith Chintala** (PyTorch) | Open training stack | **@soumithchintala** | ✅ |
+| **Arthur Mensch** (Mistral) | Open-weight models | **@arthurmensch** | ✅ |
+| **George Hotz** (tinygrad) | Open training | **@georgehotz** | ✅ |
+| **Tri Dao** (FlashAttention) | Open systems ML | **@tri_dao** | ✅ |
+| **Daniel Han** (Unsloth) | Open fine-tuning | **@danielhanchen** | ✅ |
+| **Maxime Labonne** | Open LLM courses | **@maximelabonne** | ✅ |
+| **Swyx** (Latent Space / AI Engineer) | AI engineer amplifier | **@swyx** | ✅ |
+| **Nathan Lambert** (Interconnects) | Open-model commentary | **@natolambert** | ✅ |
+| **Stella Biderman** (EleutherAI) | Open research | **@StellaBiderman** | ✅ |
+| **Awni Hannun** (MLX) | Open on-device ML | **@awnihannun** | ✅ |
+| **Maple AI / OpenSecret** | Private E2E AI · Bitcoin payments | **@TryMapleAI** | ✅ |
+| **Ollama** | Local open-model runner | **@ollama** | ✅ |
+| **Hugging Face** (org) | Community amplifier | **@huggingface** | ✅ |
+
+### Open XR / VR / realtime 3D
+
+| Name | Angle | X | Conf. |
+|---|---|---|---|
+| **Diego Marcos** (A-Frame) | Open WebXR framework | **@dmarcos** | ✅ |
+| **Kevin Ngo** (A-Frame) | WebXR community | **@andgokevin** | ✅ |
+| **Don McCurdy** | glTF / open 3D web | **@donrmccurdy** | ✅ |
+| **Ricardo Cabello** (three.js) | Open WebGL foundation | **@mrdoob** | ✅ |
+| **Ada Rose Cannon** | WebXR standards | **@Lady_Ada_King** | ✅ |
+| **Bastiaan Olij** (Godot XR) | Open engine XR tools | **@mux213** | ✅ |
+| **Kent Bye** (Voices of VR) | XR journalism amplifier | **@kentbye** | ✅ |
+| **Brandon Jones** (Chrome WebXR) | Browser WebXR | **@Tojiro** | ✅ |
+| **A-Frame** (project) | WebXR community | **@aframevr** | ✅ |
+| **John Carmack** | VR systems commentary | **@ID_AA_Carmack** | ⚠️ mega-account / amplify-only |
+
+> Note: Global AI/XR names are amplify-first. **Hong Kong / home turf** is the attend lane (Yat Siu, OSHK, Preface, campus GenAI, HKXRA, 0xU). No strong dedicated **VR/MR × Bitcoin** attend list existed earlier — HKXRA covers local XR community outreach.
 
 ---
 
